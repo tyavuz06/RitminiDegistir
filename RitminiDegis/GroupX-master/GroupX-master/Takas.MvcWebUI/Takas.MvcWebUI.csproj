@@ -301,6 +301,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OrnekController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserProfilController.cs" />
     <Compile Include="DependencyInjection\Ninject\InsanceFactory.cs" />
     <Compile Include="DependencyInjection\Ninject\NinjectControllerFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -504,6 +505,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Ornek\" />
+    <Folder Include="Views\UserProfil\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Takas.Business\Takas.Business.csproj">
