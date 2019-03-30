@@ -47,7 +47,7 @@ namespace Takas.Business.Concrete
 
 		public List<Product> GetListByUserId(int userId)
 		{
-			return _productDal.GetList(x => x.User_ID == userId);
+			return _productDal.GetListWihEagerLoading("ProductImageGalleries", x => x.User_ID == userId);
 		}
    }
 }

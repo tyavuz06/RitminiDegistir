@@ -238,7 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DependencyInjection\Ninject\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +281,10 @@
     <ProjectReference Include="..\Takas.Entities\Takas.Entities.csproj">
       <Project>{be3f4e39-7f1d-4f4a-9885-b58c6a12e48b}</Project>
       <Name>Takas.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Takas.MvcWebUI\Takas.MvcWebUI.csproj">
+      <Project>{FD268C4D-F3E5-42C5-9182-C30BD0AEA601}</Project>
+      <Name>Takas.MvcWebUI</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

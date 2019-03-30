@@ -22,6 +22,7 @@ namespace Takas.API.Controllers
 		{
 			var UserList = _productService.GetListByUserId(UserId);
 
+			return null;
 		}
 	}
 }
