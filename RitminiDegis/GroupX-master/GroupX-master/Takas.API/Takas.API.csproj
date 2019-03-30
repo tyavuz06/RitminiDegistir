@@ -52,9 +52,6 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -178,7 +175,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\UserProfilController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -235,6 +231,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Activate\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,10 +278,6 @@
     <ProjectReference Include="..\Takas.Entities\Takas.Entities.csproj">
       <Project>{be3f4e39-7f1d-4f4a-9885-b58c6a12e48b}</Project>
       <Name>Takas.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Takas.MvcWebUI\Takas.MvcWebUI.csproj">
-      <Project>{FD268C4D-F3E5-42C5-9182-C30BD0AEA601}</Project>
-      <Name>Takas.MvcWebUI</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
