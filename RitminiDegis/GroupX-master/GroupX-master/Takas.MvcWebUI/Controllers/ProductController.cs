@@ -28,6 +28,7 @@ namespace Takas.MvcWebUI.Controllers
 
         }
         
+        // Ürün detay sayfasın ıcın method
 		public async Task<ActionResult> Detail(int id)
         {
             ProductDetailViewModel productModel = new ProductDetailViewModel();
