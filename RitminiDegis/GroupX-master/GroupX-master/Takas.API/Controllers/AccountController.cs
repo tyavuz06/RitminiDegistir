@@ -19,10 +19,7 @@ namespace Takas.API.Controllers
     {
         IUserService _userService;
 
-        public AccountController()
-        {
-            _userService = new UserManager();
-        }
+       
 
         [HttpPost]
         [Route("api/Account/Login")]
@@ -81,7 +78,7 @@ namespace Takas.API.Controllers
                     user.isActive = true;
                     try
                     {
-                        _userService.ActivateUser(user);
+                        _userService.Update(user);
                     }
                     catch
                     {
