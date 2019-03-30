@@ -19,30 +19,29 @@ namespace Takas.MvcWebUI.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("ListOfUserProduct");
+            ViewBag.PageInfo = "BENİM SAYFAM";
+            return View();
         }
-
-        public ActionResult ListOfUserProduct()
+        public ActionResult MyProducts()
         {
             ViewBag.PageInfo = "ÜRÜNLERİM";
-	        return View("Index");
+            return View();
         }
-
         public ActionResult Profil()
         {
             ViewBag.PageInfo = "PROFİLİM";
-            return View("Index");
+            return View();
         }
 
         public ActionResult Exchanges()
         {
             ViewBag.PageInfo = "TAKASLARIM";
-            return View("Index");
+            return View();
         }
         public ActionResult Messages()
         {
             ViewBag.PageInfo = "MESAJLARIM";
-            return View("Index");
+            return View();
         }
     }
 }

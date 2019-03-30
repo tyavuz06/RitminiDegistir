@@ -501,8 +501,8 @@
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Shared\_UserProfileLayout.cshtml" />
-    <Content Include="Views\UserProfil\Index.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
+    <Content Include="Views\UserProfil\MyProducts.cshtml" />
     <Content Include="Views\UserProfil\Profil.cshtml" />
     <Content Include="Views\UserProfil\Exchanges.cshtml" />
     <Content Include="Views\UserProfil\Messages.cshtml" />
