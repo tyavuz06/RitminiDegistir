@@ -33,7 +33,9 @@ namespace Takas.MvcWebUI.DependencyInjection.Ninject
 
 			Bind<IProductImageGalleryService>().To<ProductImageGalleryManager>().InSingletonScope();
 
-			Bind<IProductService>().To<ProductManager>().InSingletonScope();
+            
+
+            Bind<IProductService>().To<ProductManager>().InSingletonScope();
 
 			Bind<IProductDal>().To<EfProductDal>().InSingletonScope();
 
@@ -52,6 +54,7 @@ namespace Takas.MvcWebUI.DependencyInjection.Ninject
 			Bind<IUserService>().To<UserManager>().InSingletonScope();
 
 			Bind<IUserDal>().To<EfUserDal>().InSingletonScope();
+
 
 		}
 	}
