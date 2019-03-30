@@ -8,6 +8,12 @@ namespace Takas.Common.SystemConstants
 {
     public class SystemConstannts
     {
+        public enum Brands
+        {
+            Marka1=1,
+            Marka2=2,
+            Marka3=3
+        }
         public enum Situation
         {
             BEKLEMEDE=1,

@@ -17,10 +17,15 @@ namespace Takas.Entities.Concrete
 		}
 
 		public int ID { get; set; }
-
-		//[Required]
-		//[StringLength(50)]
-		public string Name { get; set; }
+        //[Required]
+        //[StringLength(50)]
+        public string Brand { get; set; }
+        //[Required]
+        //[StringLength(50)]
+        public string Model { get; set; }
+        //[Required]
+        //[StringLength(50)]
+        public string Name { get; set; }
 
 		//[Required]
 		//[StringLength(500)]
