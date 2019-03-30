@@ -19,8 +19,7 @@ namespace Takas.MvcWebUI.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.PageInfo = "BENİM SAYFAM";
-            return View();
+            return RedirectToAction("MyProducts");
         }
         public ActionResult MyProducts()
         {
