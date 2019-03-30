@@ -31,6 +31,7 @@ namespace Takas.MvcWebUI.Controllers
         // Ürün detay sayfasın ıcın method
 		public async Task<ActionResult> Detail(int id)
         {
+			// Burada Model kullanmak istedik
             ProductDetailViewModel productModel = new ProductDetailViewModel();
             productModel.Product = _productService.Get(id);
             if (productModel.Product != null)
