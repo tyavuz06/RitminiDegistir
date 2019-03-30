@@ -291,6 +291,11 @@
     <Content Include="Content\Site\js\popper.min.js" />
     <Content Include="Content\Site\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\homebg.jpg" />
+    <Content Include="Images\indir.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -499,6 +504,8 @@
     <Content Include="Views\UserProfil\Index.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\UserProfil\Profil.cshtml" />
+    <Content Include="Views\UserProfil\Exchanges.cshtml" />
+    <Content Include="Views\UserProfil\Messages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
