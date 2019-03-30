@@ -40,6 +40,10 @@ namespace Takas.Business.Abstract
 		/// <param name="yeniProduct">Girilen bir Entity degeri ve burada Id ile oldurmeyp daha dogru yontemler kullanilabilir.</param>
 		void Delete(Product yeniProduct);
 
-
+		/// <summary>
+		/// Gelen UserId ye gore Kullaniciya ait Productlari listeliyoruz.
+		/// </summary>
+		/// <param name="userId">Kullaniciya ait UserId bilgisini gonderiyoruz</param>
+		List<Product> GetListByUserId(int userId);
     }
 }

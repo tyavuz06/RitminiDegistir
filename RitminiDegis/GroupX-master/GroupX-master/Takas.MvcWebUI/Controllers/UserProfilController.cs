@@ -16,5 +16,12 @@ namespace Takas.MvcWebUI.Controllers
         {
             return View();
         }
+
+        public ActionResult ListOfUserProduct()
+        {
+			
+
+	        return View();
+        }
     }
 }

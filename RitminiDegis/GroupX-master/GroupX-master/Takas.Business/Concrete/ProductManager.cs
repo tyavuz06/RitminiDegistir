@@ -45,6 +45,9 @@ namespace Takas.Business.Concrete
 			_productDal.Delete(yeniProduct);
 		}
 
-		
+		public List<Product> GetListByUserId(int userId)
+		{
+			return _productDal.GetList(x => x.User_ID == userId);
+		}
    }
 }
