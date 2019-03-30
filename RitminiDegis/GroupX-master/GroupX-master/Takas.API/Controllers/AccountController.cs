@@ -81,7 +81,7 @@ namespace Takas.API.Controllers
                     user.isActive = true;
                     try
                     {
-                        _userService.ActivateUser(user);
+                        _userService.Update(user);
                     }
                     catch
                     {

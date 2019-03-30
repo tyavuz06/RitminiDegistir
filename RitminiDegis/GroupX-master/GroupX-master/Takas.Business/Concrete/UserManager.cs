@@ -73,7 +73,7 @@ namespace Takas.Business.Concrete
 		
 		public User GetUserByEmail(string email)
         {
-            return _userdal.Get(t => t.Email == email);
+            return _userDal.Get(t => t.Email == email);
         }
     }
 }

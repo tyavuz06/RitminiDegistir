@@ -30,12 +30,7 @@ namespace Takas.Business.Abstract
 		/// <returns>User</returns>
 		User GetUserByEmail(string email);
 		
-		/// <summary>
-		/// Async Olarak User Ekleme Islemı yapar Gerıye Boolean türünde değer döner
-		/// </summary>
-		/// <param name="user"> Usur türünde bir kullanıcı</param>
-		/// <returns>Boolean</returns>
-        void ActivateUser(User user);
+		
 		
 		/// <summary>
 		/// Bu Method VeriTabanindaki Tum User Listesini Getitir.
