@@ -11,10 +11,22 @@ namespace Takas.MvcWebUI.Controllers
 	/// </summary>
     public class UserProfilController : Controller
     {
+        public UserProfilController()
+        {
+        }
+
         // GET: UserProfil
+
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult ListOfUserProduct()
+        {
+			
+
+	        return View();
         }
     }
 }
