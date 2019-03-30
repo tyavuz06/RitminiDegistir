@@ -3,5 +3,39 @@
     Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
 }
 
-<h2>Index</h2>
 
+<div class="col-12 col-md-8 col-lg-9">
+    <div class="shop_grid_product_area">
+        <div class="row">
+            @for(int i=1; i<15; i++)        
+            {
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-product-wrapper">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img src="/Content/Site/img/product-img/product-1.jpg" alt="">
+                            <!-- Hover Thumb -->
+                            <img class="hover-img" src="/Content/Site/img/product-img/product-2.jpg" alt="">
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <span>topshop</span>
+                            <a href="single-product-details.html">
+                                <h6>Knot Front Mini Dress</h6>
+                            </a>
+
+                            <!-- Hover Content -->
+                            <div class="hover-content">
+                                <!-- Add to Cart -->
+                                <div class="add-to-cart-btn">
+                                    <a href="#" class="btn essence-btn">Ürün Düzenleme</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        </div>
+</div>

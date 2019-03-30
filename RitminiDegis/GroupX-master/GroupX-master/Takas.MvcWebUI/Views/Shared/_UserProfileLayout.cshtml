@@ -1,5 +1,55 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="breadcumb_area bg-img" style="background-image: url(/Content/Site/img/bg-img/breadcumb.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>@ViewBag.PageInfo</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+<!-- ##### Shop Grid Area Start ##### -->
+<section class="shop_grid_area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="shop_sidebar_area">
 
-@RenderBody()
+                    <!-- ##### Single Widget ##### -->
+                    <div class="widget catagory mb-50">
+                        <!-- Widget Title -->
+                        @*<h6 class="widget-title mb-30">Catagories</h6>*@
+
+                        <!--  Catagories  -->
+                        <div class="catagories-menu">
+                            <ul id="menu-content2" class="menu-content collapse show">
+                                <!-- Single Item -->
+                                <li data-toggle="collapse" data-target="#clothing">
+                                    <a href="/UserProfil/Index">Ürünlerim</a>
+                                </li>
+                                <!-- Single Item -->
+                                <li data-toggle="collapse" data-target="#shoes" class="collapsed">
+                                    <a href="/UserProfil/Profil">Profilim</a>
+                                </li>
+                                <!-- Single Item -->
+                                <li data-toggle="collapse" data-target="#accessories" class="collapsed">
+                                    <a href="/UserProfil/Exchanges">Takaslarım</a>
+                                </li>
+                                <li data-toggle="collapse" data-target="#accessories" class="collapsed">
+                                    <a href="/UserProfil/Messages">Mesajlarım</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @RenderBody()
+        </div>
+    </div>
+</section>
