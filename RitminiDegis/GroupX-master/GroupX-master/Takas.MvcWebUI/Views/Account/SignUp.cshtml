@@ -1,0 +1,72 @@
+﻿@model User
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" method="post" action="/Account/SignUpUser">
+                <span class="login100-form-title p-b-26">
+                    ProjectX'e Hoş Geldiniz
+                </span>
+                <span class="login100-form-title p-b-26">
+
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="">
+                    @Html.TextBoxFor(t=>t.Name,new {@class="input100" ,name="Name"})
+                    <span class="focus-input100" data-placeholder="Adınızı Giriniz."></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="">
+                    @Html.TextBoxFor(t => t.Surname, new { @class = "input100", name = "Surname" })
+                    <span class="focus-input100" data-placeholder="Soyadınızı Giriniz."></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                    @Html.TextBoxFor(t => t.Email, new { @class = "input100", name = "Email" })
+                    <span class="focus-input100" data-placeholder="Email"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Şifreyi Giriniz.">
+                    <span class="btn-show-pass">
+                        <i class="zmdi zmdi-eye"></i>
+                    </span>
+                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "Password", type="password" })
+                    <span class="focus-input100" data-placeholder="Şifre"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Şifreyi Tekrar Giriniz.">
+                    <span class="btn-show-pass">
+                        <i class="zmdi zmdi-eye"></i>
+                    </span>
+                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "RePassword", type = "password" })
+                    <span class="focus-input100" data-placeholder="Şifre Tekrar"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="">
+                    @Html.TextAreaFor(t=>t.Address, new { @class = "input100", name = "Address" })
+                    <span class="focus-input100" data-placeholder="Adresinizi Giriniz."></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="">
+                    @Html.TextBoxFor(t => t.PhoneNumber, new { @class = "input100", name = "PhoneNumber" })
+                    <span class="focus-input100" data-placeholder="Telefon Numarası Giriniz."></span>
+                </div>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn">
+                            Kayıt Ol
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center p-t-15">
+                    <span class="txt1">
+                        Zaten hesabın var mı?
+                    </span>
+
+                    <a class="txt2" href="/Login/Login">
+                        Giriş Yap
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

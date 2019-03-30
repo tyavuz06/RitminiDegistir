@@ -1,0 +1,61 @@
+﻿@model ProductDetailViewModel
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ##### Single Product Details Area Start ##### -->
+<section class="single_product_details_area d-flex align-items-center">
+
+    <!-- Single Product Thumb -->
+    <div class="single_product_thumb clearfix">
+        <div class="product_thumbnail_slides owl-carousel">
+            @*<img src="/Content/Site/img/product-img/product-big-1.jpg" alt="">
+                <img src="/Content/Site/img/product-img/product-big-2.jpg" alt="">
+                <img src="/Content/Site/img/product-img/product-big-3.jpg" alt="">*@
+            @foreach (var item in Model.productImageGalleries)
+            {
+                <img src="~/Images/@item.Image" style="width:1000px;height:972px"/>
+            }
+        </div>
+    </div>
+
+    <!-- Single Product Description -->
+    <div class="single_product_desc clearfix">
+        <span>Buraya Producta Marka Kolonu Eklenip O yazılacak</span>
+        <a href="cart.html">
+            <h2>@Model.Product.Name</h2>
+        </a>
+        @*<p class="product-price"><span class="old-price">$65.00</span> $49.00</p>*@
+        <p class="product-desc">@Model.Product.Description</p>
+
+        <!-- Form -->
+        <form class="cart-form clearfix" method="post">
+            <!-- Select Box -->
+            <div class="select-box d-flex mt-50 mb-30">
+                @*<select name="select" id="productSize" class="mr-5">
+                    <option value="value">Size: XL</option>
+                    <option value="value">Size: X</option>
+                    <option value="value">Size: M</option>
+                    <option value="value">Size: S</option>
+                </select>
+                <select name="select" id="productColor">
+                    <option value="value">Color: Black</option>
+                    <option value="value">Color: White</option>
+                    <option value="value">Color: Red</option>
+                    <option value="value">Color: Purple</option>
+                </select>*@
+            </div>
+            <!-- Cart & Favourite Box -->
+            <div class="cart-fav-box d-flex align-items-center">
+                <!-- Cart -->
+                <button type="submit" name="addtocart" value="5" class="btn essence-btn">Ritmini Değiştir!</button>
+                <!-- Favourite -->
+                <div class="product-favourite ml-4">
+                    <a href="#" class="favme fa fa-heart"></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- ##### Single Product Details Area End ##### -->

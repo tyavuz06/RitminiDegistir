@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+using Takas.DataAccess.Abstract;
+using Takas.Entities.Abstract;
+
+namespace Takas.DataAccess.Concrete.EntityFramework
+{
+	public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : class, IEntity, new() where TContext : DbContext, new()
+	{
+		
+		public async Task<List<TEntity>> GetList(Expression<Func<TEntity, bool>> Filter = null)
+		{
+			using (TContext context = new TContext())
+			{
+				return await (Filter == null ? context.Set<TEntity>().ToListAsync() : context.Set<TEntity>().Where(Filter).ToListAsync());
+			}
+		}
+
+		public List<TEntity> GetListWihEagerLoading(string eagerLoading, Expression<Func<TEntity, bool>> Filter = null)
+		{
+			using (TContext context = new TContext())
+			{
+				return Filter == null
+					? context.Set<TEntity>().Include(eagerLoading).ToList()
+					: context.Set<TEntity>().Include(eagerLoading).Where(Filter).ToList();
+			}
+		}
+
+
+		public TEntity Get(Expression<Func<TEntity, bool>> Filter)
+		{
+			using (TContext context = new TContext())
+			{
+				return context.Set<TEntity>().Where(Filter).FirstOrDefault();
+			}
+		}
+
+		public void Add(TEntity entity)
+		{
+			using (TContext context = new TContext())
+			{
+				context.Entry(entity).State = EntityState.Added;
+				context.SaveChanges();
+			}
+		}
+
+        public async Task<bool> AddAsync(TEntity entity)
+        {
+            using (TContext context = new TContext())
+            {
+                try
+                {
+                    context.Entry(entity).State = EntityState.Added;
+                    await context.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public void Update(TEntity entity)
+		{
+			using (TContext context = new TContext())
+			{
+				context.Entry(entity).State = EntityState.Modified;
+				context.SaveChanges();
+			}
+		}
+
+		public void Delete(TEntity entity)
+		{
+			using (TContext context = new TContext())
+			{
+				context.Entry(entity).State = EntityState.Deleted;
+				context.SaveChanges();
+			}
+		}
+	}
+}
