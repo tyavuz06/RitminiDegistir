@@ -30,18 +30,18 @@ namespace Takas.MvcWebUI.Controllers
 
         public ActionResult Profil()
         {
-            ViewBag.PageInfo = "Profil";
+            ViewBag.PageInfo = "PROFİLİM";
             return View("Index");
         }
 
         public ActionResult Exchanges()
         {
-            ViewBag.PageInfo = "Takas";
+            ViewBag.PageInfo = "TAKASLARIM";
             return View("Index");
         }
         public ActionResult Messages()
         {
-            ViewBag.PageInfo = "Mesajlarım";
+            ViewBag.PageInfo = "MESAJLARIM";
             return View("Index");
         }
     }

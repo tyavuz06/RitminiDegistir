@@ -47,6 +47,7 @@ namespace Takas.MvcWebUI.Controllers
         }
         public ActionResult AddProduct()
         {
+            ViewBag.PageInfo = "ÜRÜN EKLE";
             return View();
         }
 

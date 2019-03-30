@@ -498,6 +498,7 @@
     <Content Include="Views\Shared\_UserProfileLayout.cshtml" />
     <Content Include="Views\UserProfil\Index.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
+    <Content Include="Views\UserProfil\Profil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
