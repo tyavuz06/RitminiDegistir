@@ -45,6 +45,10 @@ namespace Takas.MvcWebUI.Controllers
             ViewBag.title = "Ürün Detay | Ürün1";
             return View(productModel);
         }
+        public ActionResult AddProduct()
+        {
+            return View();
+        }
 
     }
 }
