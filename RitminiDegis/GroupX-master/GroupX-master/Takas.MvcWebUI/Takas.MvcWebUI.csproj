@@ -302,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OrnekController.cs" />
@@ -491,6 +492,7 @@
     <Content Include="Content\login\__MACOSX\Login_v2\vendor\bootstrap\css\._bootstrap.css.map" />
     <Content Include="Content\login\__MACOSX\Login_v2\vendor\bootstrap\css\._bootstrap.min.css.map" />
     <Content Include="libman.json" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
@@ -515,6 +517,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\Ornek\" />
   </ItemGroup>
   <ItemGroup>

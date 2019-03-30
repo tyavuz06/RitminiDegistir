@@ -34,7 +34,6 @@ namespace Takas.MvcWebUI.Controllers
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri("http://localhost:2765/");
-                //client.BaseAddress = new Uri("http://localhost:54640/");
                 HttpResponseMessage result = client.PostAsJsonAsync("api/Account/Login", new User
                 {
                     Password = user.Password,
