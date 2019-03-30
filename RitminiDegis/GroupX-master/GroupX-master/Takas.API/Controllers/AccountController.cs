@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Results;
 using Takas.Business.Abstract;
 using Takas.Business.Concrete;
 using Takas.Common;
@@ -18,9 +19,9 @@ namespace Takas.API.Controllers
     {
         IUserService _userService;
 
-        public AccountController(IUserService userService)
+        public AccountController()
         {
-	        _userService = userService;
+            _userService = new UserManager();
         }
 
         [HttpPost]
@@ -52,7 +53,7 @@ namespace Takas.API.Controllers
                 bool result = await _userService.AddUser(user);
                 if (result == true)
                 {
-                    string link = "<a href='http://localhost:2765/Activation/Activate/" + user.Email + "/" + Security.sha512encrypt(user.ValidationKey) + "'>";
+                    string link = "<a href='http://localhost:50903/Account/Activate?email=" + user.Email + "&valKey=" + Security.sha512encrypt(user.ValidationKey) + "'>";
                     string subjectName = "ProjectX Aktivasyon İşlemi";
                     //todo image işi ayarlanacak.
                     string image = "";
@@ -67,8 +68,7 @@ namespace Takas.API.Controllers
             }
 
         }
-		
-		[HttpGet]
+        [HttpGet]
         [Route("api/Account/Activate/")]
         public async Task<bool> Activate(string email, string valKey)
         {
@@ -81,7 +81,7 @@ namespace Takas.API.Controllers
                     user.isActive = true;
                     try
                     {
-                        _userService.Update(user);
+                        _userService.ActivateUser(user);
                     }
                     catch
                     {
