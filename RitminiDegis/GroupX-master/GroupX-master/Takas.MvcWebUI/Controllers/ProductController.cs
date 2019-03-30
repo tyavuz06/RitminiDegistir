@@ -40,10 +40,6 @@ namespace Takas.MvcWebUI.Controllers
             }
             else
             {
-	            if (true)
-	            {
-		            
-	            }
                 return View("/Views/Shared/NotFound.cshtml");
             }
             ViewBag.title = "Ürün Detay | Ürün1";
