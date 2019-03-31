@@ -19,10 +19,13 @@ namespace Takas.API.Controllers
     {
         IUserService _userService;
 
+
         public AccountController(IUserService userService)
         {
 	        _userService = userService;
         }
+
+
 
 
         [HttpPost]
@@ -63,7 +66,7 @@ namespace Takas.API.Controllers
                 }
                 return result;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
