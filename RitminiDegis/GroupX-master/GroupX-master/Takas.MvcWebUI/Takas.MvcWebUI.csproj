@@ -135,7 +135,6 @@
     <Content Include="Areas\Admin\Content\AdminPanel\.gitignore" />
     <Content Include="Areas\Admin\Content\AdminPanel\404.html" />
     <Content Include="Areas\Admin\Content\AdminPanel\blank.html" />
-    <Content Include="Areas\Admin\Content\AdminPanel\charts.html" />
     <Content Include="Areas\Admin\Content\AdminPanel\css\sb-admin.css" />
     <Content Include="Areas\Admin\Content\AdminPanel\css\sb-admin.min.css" />
     <Content Include="Areas\Admin\Content\AdminPanel\forgot-password.html" />
@@ -1708,6 +1707,7 @@
     <Content Include="Areas\Admin\Content\AdminPanel\vendor\jquery\jquery.min.js" />
     <Content Include="Areas\Admin\Content\AdminPanel\vendor\jquery\jquery.slim.js" />
     <Content Include="Areas\Admin\Content\AdminPanel\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Areas\Admin\Content\AdminPanel\charts.html" />
     <Content Include="Content\login\Login_v2\css\main.css" />
     <Content Include="Content\login\Login_v2\css\util.css" />
     <Content Include="Content\login\Login_v2\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -1879,6 +1879,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OrnekController.cs" />
@@ -2225,6 +2226,8 @@
     <Content Include="Areas\Admin\Content\AdminPanel\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Areas\Admin\Content\AdminPanel\vendor\jquery\jquery.min.map" />
     <Content Include="Areas\Admin\Content\AdminPanel\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminPanelLayoutPage.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
@@ -2249,9 +2252,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\Ornek\" />
   </ItemGroup>
   <ItemGroup>
