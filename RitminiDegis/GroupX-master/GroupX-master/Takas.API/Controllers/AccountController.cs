@@ -19,8 +19,6 @@ namespace Takas.API.Controllers
     {
         IUserService _userService;
 
-       
-
         [HttpPost]
         [Route("api/Account/Login")]
         public object Login(User user)
@@ -59,7 +57,7 @@ namespace Takas.API.Controllers
                 }
                 return result;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
