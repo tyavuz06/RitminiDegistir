@@ -19,7 +19,11 @@ namespace Takas.API.Controllers
     {
         IUserService _userService;
 
-       
+        public AccountController(IUserService userService)
+        {
+	        _userService = userService;
+        }
+
 
         [HttpPost]
         [Route("api/Account/Login")]
