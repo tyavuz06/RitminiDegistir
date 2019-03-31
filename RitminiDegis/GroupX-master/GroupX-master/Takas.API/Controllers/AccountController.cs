@@ -18,11 +18,12 @@ namespace Takas.API.Controllers
     public class AccountController : ApiController
     {
         IUserService _userService;
+        private IProductService _productService; // Bunu tamamen gereksiz olarak ekledim silicez. tekrar push etmem lazim ondan ekledim.
 
-
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, IProductService productService)
         {
 	        _userService = userService;
+	        _productService = productService;
         }
 
 
