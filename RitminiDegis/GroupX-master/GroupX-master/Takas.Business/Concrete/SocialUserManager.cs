@@ -12,6 +12,7 @@ using Takas.Entities.Concrete;
 
 namespace Takas.Business.Concrete
 {
+    //burda da değişiklik var
     public class SocialUserManager : ISocialUserService
     {
         ISocialUserDal _socialUserDal;
@@ -40,6 +41,7 @@ namespace Takas.Business.Concrete
                     Email = "a@a.com",
                     Name = firstname,
                     Surname=lastname,
+                    isActive = true,
                     Password = Common.RandomSfr.Generate(8),
                     AccountCreateDate = DateTime.Now,
                     AccountActiveDate=DateTime.Now,
@@ -57,6 +59,8 @@ namespace Takas.Business.Concrete
                     SOCIALID = socialID,
                     UserID = user.ID
                 };
+                //lazy loading yeni
+                socialUser.User = user;
                 //o kullanıcıya token oluşturma
                 Token token = new Token
                 {
@@ -72,6 +76,9 @@ namespace Takas.Business.Concrete
 
 
                 _userDal.Add(user);
+                var userr = _userDal.Get(t => t.Name == user.Name && t.Surname == user.Surname && t.Password == user.Password);
+                socialUser.UserID = userr.ID;
+
                 _socialUserDal.Add(socialUser);
 
 
