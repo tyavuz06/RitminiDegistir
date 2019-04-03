@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
 using System.Web.Http.Results;
 using Takas.Business.Abstract;
 using Takas.Business.Concrete;
@@ -28,9 +29,15 @@ namespace Takas.API.Controllers
 
 
 
-
+		[ResponseType(typeof(User))]
         [HttpPost]
         [Route("api/Account/Login")]
+		// Buradaki Donus Tipleri Object ya da User yada Baska birsey olmayacak
+		// Buradaki Donus Tiplerimiz IHttpActionResult olarak donecegiz. O Yuzden ResponseType belirliyorum ki hangi turle islem yaptigimizi Gorelim.
+		// Daha Eklemedik ama Calisma Prensibimiz bu olacak. Bunun nedeni ise Biz Burada Sadece veri donusu yapiyoruz eger bir hata olursa sistem kendi kafasina gore hata codu atayacak
+		// Yani 200 ok demekti ya 401 bilmem ne hatasi bunlari kendisi atiyor ama bi return OK(user) diyerek okay dondugumuzu NotFound() diyerek atiyorum 500 kodunu gonderecegiz
+		// buda su ise yarayacak karsi tarafta bu kodu alan yazilimci buna gore islem yapmasi gerektigini bilecek aksi durumda kullanici sistemin verecegi hatayi alacak buda kullaniciya detayli aciklama vermemis olacak.
+		// Denemdim ama normalde HttpResponseMessage olarak donersek ModelState i gonderek icersiinde ayrina hangi hatanin oldugunu bildirebiliyoruz ama IHttpActionResult ta modelstate donebilir miyiz emin degilim. (MANTIKEN DONEBILIRIZ ODA BIR OBJECT SONUCTA NESYSE BAKACAGIZ BUNLARA)
         public object Login(User user)
         {
             try
@@ -49,7 +56,8 @@ namespace Takas.API.Controllers
             }
         }
 
-        [HttpPost]
+        [ResponseType(typeof(Boolean))]
+		[HttpPost]
         [Route("api/Account/SignUp")]
         public async Task<bool> SignUp(User user)
         {
@@ -73,7 +81,8 @@ namespace Takas.API.Controllers
             }
 
         }
-        [HttpGet]
+        [ResponseType(typeof(Boolean))]
+		[HttpGet]
         [Route("api/Account/Activate/")]
         public async Task<bool> Activate(string email, string valKey)
         {
