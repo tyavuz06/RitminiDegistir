@@ -14,14 +14,6 @@ namespace Takas.MvcWebUI.Controllers
 {
     public class AccountController : Controller
     {
-        ITokenService _tokenService;
-        ISocialUserService _socialUserService;
-        public AccountController(ISocialUserService socialUserService, ITokenService tokenService)
-        {
-            _socialUserService = socialUserService;
-            _tokenService = tokenService;
-        }
-
         // GET: Loginn
         User user = new User();
         public ActionResult Login()
@@ -98,56 +90,6 @@ namespace Takas.MvcWebUI.Controllers
                 }
             }
             return RedirectToAction("SignUp", "Account", user);
-        }
-
-
-        public ActionResult FacebookLoginResult()
-        {
-            string code = Request["code"];
-            Facebook.FacebookClient fb = new Facebook.FacebookClient();
-            fb.AppId = "958753294515704";
-            fb.AppSecret = "a77614a903afbf8f773c0f06295f08c8";
-
-            fb.AccessToken = code;
-
-            dynamic result = fb.Post("/oauth/access_token", new
-            {
-                client_id = "958753294515704",
-                client_secret = "a77614a903afbf8f773c0f06295f08c8",
-                code = code,
-                redirect_uri = "http://localhost:50903/Account/FacebookLoginResult"
-            });
-
-            fb.AccessToken = result.access_token;
-            dynamic userdata = fb.Get("me");
-
-            string name = userdata.name;
-            string[] fullname=name.Split(' ');
-            userdata.firstname = fullname[0];
-            userdata.lastname = fullname[1];
-            bool serviceresult = _socialUserService.SocialUserOperation((int)Common.SystemConstants.SystemConstannts.SOCIAL_TYPE.FACEBOOK, userdata.id, userdata.email, userdata.name, userdata.firstname, userdata.lastname);
-
-            if (serviceresult)
-            {
-                return RedirectToAction("Index", "Home", new { });
-            }
-
-            return null;
-        }
-        public String GetAccessToken(string code)
-        {
-            WebClient client = new WebClient();
-
-            string url = "https://graph.facebook.com/oauth/access_token?" + "client_id=" + "1156176144545912" + "&client_secret=" + "cf33a7b17de11a033c3514a61ea2b233" + "&code=" + code + "&redirect_uri=http:%2F%2Flocalhost:5176%2F";
-
-            string result = client.DownloadString(url);
-
-
-
-            string accessToken = result.Split('&')[0];
-            accessToken = accessToken.Split('=')[1];
-
-            return accessToken;
         }
     }
 }

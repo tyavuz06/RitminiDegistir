@@ -58,7 +58,6 @@
     <Compile Include="Abstract\IProductDal.cs" />
     <Compile Include="Abstract\IProductImageGalleryDal.cs" />
     <Compile Include="Abstract\IRoleDal.cs" />
-    <Compile Include="Abstract\ISocialUserDal.cs" />
     <Compile Include="Abstract\ITokenDal.cs" />
     <Compile Include="Abstract\IUserCommentDal.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
@@ -70,7 +69,6 @@
     <Compile Include="Concrete\EntityFramework\EfProductDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfProductImageGallery.cs" />
     <Compile Include="Concrete\EntityFramework\EfRoleDal.cs" />
-    <Compile Include="Concrete\EntityFramework\EfSocialUserDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfTokenDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfUserCommentDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfUserDal.cs" />

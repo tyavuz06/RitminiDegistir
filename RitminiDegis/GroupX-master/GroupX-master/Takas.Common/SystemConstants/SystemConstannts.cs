@@ -20,13 +20,7 @@ namespace Takas.Common.SystemConstants
             ONAYLANDI=2,
             AKTİF=3,
             PASİF=4,
-            ENGELLENDİ=5,
-            SOCİALUSER = 6
-        }
-        public enum SOCIAL_TYPE : byte
-        {
-            FACEBOOK = 1
-
+            ENGELLENDİ=5
         }
         public const string SmtpCredentialUserName = "wissen502@outlook.com";
         public const string SmtpCredentialPassword = "Wisen502!!";
