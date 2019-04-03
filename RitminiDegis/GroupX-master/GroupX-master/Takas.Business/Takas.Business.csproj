@@ -52,6 +52,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,6 +68,7 @@
     <Compile Include="Abstract\IProductImageGalleryService.cs" />
     <Compile Include="Abstract\IProductService.cs" />
     <Compile Include="Abstract\IRoleService.cs" />
+    <Compile Include="Abstract\ISocialUserService.cs" />
     <Compile Include="Abstract\ITokenService.cs" />
     <Compile Include="Abstract\IUserCommentService.cs" />
     <Compile Include="Abstract\IUserService.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Concrete\ProductImageGalleryManager.cs" />
     <Compile Include="Concrete\ProductManager.cs" />
     <Compile Include="Concrete\RoleManager.cs" />
+    <Compile Include="Concrete\SocialUserManager.cs" />
     <Compile Include="Concrete\TokenManager.cs" />
     <Compile Include="Concrete\UserCommentManager.cs" />
     <Compile Include="Concrete\UserManager.cs" />
@@ -89,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Takas.Common\Takas.Common.csproj">
+      <Project>{423EF69A-915E-4149-AA92-1201A5D55531}</Project>
+      <Name>Takas.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Takas.DataAccess\Takas.DataAccess.csproj">
       <Project>{d6038ee0-9ee3-419e-b405-72b45fc92179}</Project>
       <Name>Takas.DataAccess</Name>

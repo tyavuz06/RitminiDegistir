@@ -44,5 +44,11 @@ namespace Takas.Entities.Concrete
 
         public bool isBlocked { get; set; }
 
-	}
+
+        //yeni eklendi user ın durumunu belirtiyor
+        public int ActiveStatus { get; set; }
+
+        public virtual ICollection<Token> Tokens { get; set; }
+
+    }
 }

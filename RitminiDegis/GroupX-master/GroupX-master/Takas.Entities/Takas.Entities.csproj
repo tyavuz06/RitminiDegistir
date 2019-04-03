@@ -56,6 +56,7 @@
     <Compile Include="Concrete\Product.cs" />
     <Compile Include="Concrete\ProductImageGallery.cs" />
     <Compile Include="Concrete\Role.cs" />
+    <Compile Include="Concrete\SocialUser.cs" />
     <Compile Include="Concrete\Token.cs" />
     <Compile Include="Concrete\User.cs" />
     <Compile Include="Concrete\UserComment.cs" />
