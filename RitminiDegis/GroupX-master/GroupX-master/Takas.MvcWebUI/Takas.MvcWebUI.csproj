@@ -1874,7 +1874,8 @@
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\homebg.jpg" />
-    <Content Include="Images\indir.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\projectx.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

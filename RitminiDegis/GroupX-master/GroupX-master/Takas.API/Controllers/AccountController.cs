@@ -20,8 +20,8 @@ namespace Takas.API.Controllers
 
         public AccountController(IUserService userService, IProductService productService)
         {
-	        _userService = userService;
-	        _productService = productService;
+            _userService = userService;
+            _productService = productService;
         }
 
 
@@ -54,7 +54,7 @@ namespace Takas.API.Controllers
             try
             {
                 bool result = await _userService.AddUser(user);
-                if (result == true)
+                if (result)
                 {
                     string link = "<a href='http://localhost:50903/Account/Activate?email=" + user.Email + "&valKey=" + Security.sha512encrypt(user.ValidationKey) + "'>";
                     string subjectName = "ProjectX Aktivasyon İşlemi";
@@ -65,12 +65,14 @@ namespace Takas.API.Controllers
                 }
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
 
         }
+
+
         [HttpGet]
         [Route("api/Account/Activate/")]
         public async Task<bool> Activate(string email, string valKey)

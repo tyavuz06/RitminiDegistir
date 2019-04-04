@@ -55,6 +55,20 @@ namespace Takas.MvcWebUI.Controllers
                     if (resultString != null)
                     {
                         user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(resultString);
+                        Token token = new Token()
+                        {
+                            User_ID = user.ID,
+                            IP = "",
+                            OS = "",
+                            ExpireDate = DateTime.Now.AddDays(1),
+                            Browser = "",
+                            StartDate = DateTime.Now,
+                            TokenValue = RandomSfr.Generate(60),
+                            User = user
+                        };
+                        HttpCookie httpCookie = new HttpCookie("userAuth",token.TokenValue);
+                        HttpContext.Response.Cookies.Add(httpCookie);
+                        HttpContext.Session["User"] = user;
                         return RedirectToAction("Index", "Home");
                     }
                     else
