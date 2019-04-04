@@ -105,13 +105,18 @@
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">
-                    <a href="/Account/Login">
-                    @if (HttpContext.Current.Session["User"]!=null)
+                    @if (HttpContext.Current.Session["User"] == null)
                     {
-                        
+                        <a href="/Account/Login">
+                            <img src="/Content/Site/img/core-img/user.svg" alt="">
+                        </a>
                     }
-                        <img src="/Content/Site/img/core-img/user.svg" alt="">
-                    </a>
+                    else
+                    {
+                        <a href="/UserProfil/Index">
+                            <img src="/Content/Site/img/core-img/user.svg" alt="">
+                        </a>
+                    }
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">

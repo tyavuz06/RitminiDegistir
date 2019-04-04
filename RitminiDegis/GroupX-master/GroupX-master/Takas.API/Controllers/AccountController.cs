@@ -43,7 +43,7 @@ namespace Takas.API.Controllers
             }
             catch
             {
-                return user;
+                return null;
             }
         }
 

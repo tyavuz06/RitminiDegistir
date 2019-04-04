@@ -15,6 +15,7 @@ namespace Takas.MvcWebUI
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 			ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+            
         }
     }
 }

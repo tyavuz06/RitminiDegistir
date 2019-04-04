@@ -52,7 +52,7 @@ namespace Takas.MvcWebUI.Controllers
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
                     string resultString = result.Content.ReadAsStringAsync().Result;
-                    if (resultString != null)
+                    if (resultString !="\null")
                     {
                         user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(resultString);
                         Token token = new Token()
@@ -66,20 +66,33 @@ namespace Takas.MvcWebUI.Controllers
                             TokenValue = RandomSfr.Generate(60),
                             User = user
                         };
+
                         HttpCookie httpCookie = new HttpCookie("userAuth",token.TokenValue);
+                        httpCookie.Expires = token.ExpireDate;
                         HttpContext.Response.Cookies.Add(httpCookie);
                         HttpContext.Session["User"] = user;
+
                         return RedirectToAction("Index", "Home");
                     }
                     else
+                    {
+                        HttpContext.Session["User"] = null;
                         return View("Login", user);
+                    }
+                       
                 }
                 else
+                {
+                    HttpContext.Session["User"] = null;
                     return RedirectToAction("Login", "Login", user);
+                }
+                    
             }
             else
+            {
+                HttpContext.Session["User"] = null;
                 return RedirectToAction("Login", "Login", user);
-
+            }
         }
 
         public ActionResult SignUpUser(User user)
