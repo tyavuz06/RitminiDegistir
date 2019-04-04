@@ -12,7 +12,7 @@ using Takas.Entities.Concrete;
 
 namespace Takas.Business.Concrete
 {
-    //burda da değişiklik var
+    
     public class SocialUserManager : ISocialUserService
     {
         ISocialUserDal _socialUserDal;
@@ -27,7 +27,7 @@ namespace Takas.Business.Concrete
 
         public bool SocialUserOperation(int socialType, string socialID, string email, string username, string firstname, string lastname)
         {
-            //todo:burdan devam edilecektir
+
             //bu kullanıcı daha once kayıt olmuşmu
             SocialUser socialUser = _socialUserDal.Get(t => t.SOCIALID == socialID && t.SocialType == socialType);
             //daha önce kayıt olmamış ise
@@ -40,13 +40,13 @@ namespace Takas.Business.Concrete
                     ActiveStatus = (int)SystemConstannts.Situation.SOCİALUSER,
                     Email = "a@a.com",
                     Name = firstname,
-                    Surname=lastname,
+                    Surname = lastname,
                     isActive = true,
                     Password = Common.RandomSfr.Generate(8),
                     AccountCreateDate = DateTime.Now,
-                    AccountActiveDate=DateTime.Now,
-                    Address="hdfdjfdk jdhdfjd",
-                    PhoneNumber="12344555"
+                    AccountActiveDate = DateTime.Now,
+                    Address = "hdfdjfdk jdhdfjd",
+                    PhoneNumber = "12344555"
 
                 };
                 user.Tokens = new List<Token>();
@@ -59,8 +59,7 @@ namespace Takas.Business.Concrete
                     SOCIALID = socialID,
                     UserID = user.ID
                 };
-                //lazy loading yeni
-                socialUser.User = user;
+
                 //o kullanıcıya token oluşturma
                 Token token = new Token
                 {
@@ -74,7 +73,7 @@ namespace Takas.Business.Concrete
                 HttpContext.Current.Response.Cookies.Add(cok);
                 HttpContext.Current.Session["User"] = user;
 
-
+                //oluşturulan user ve socialuser ı database e kayıt etme
                 _userDal.Add(user);
                 var userr = _userDal.Get(t => t.Name == user.Name && t.Surname == user.Surname && t.Password == user.Password);
                 socialUser.UserID = userr.ID;
@@ -84,7 +83,7 @@ namespace Takas.Business.Concrete
 
                 try
                 {
-                    //db.SaveChanges();
+
                     return true;
 
                 }
@@ -97,22 +96,39 @@ namespace Takas.Business.Concrete
             }
             else
             {
-                //bu kullanıcı daha once kayıt olmuş ise Token ekle
-                Token token = new Token
+                int id = socialUser.UserID;
+                Token tkn = _tokenDal.Get(t => t.User_ID == id);
+                List<SocialUser> socialUserEager;
+                if (tkn.ExpireDate < DateTime.Now)
                 {
-                    StartDate = DateTime.Now,
-                    ExpireDate = DateTime.Now.AddHours(6),
-                    TokenValue = Security.sha512encrypt(RandomSfr.Generate(20)),
-                };
-                //socialUser.User.Tokens.Add(token);
-                HttpCookie cok = new HttpCookie("userauth", token.TokenValue);
-                cok.Expires = DateTime.Now.AddHours(6);
-                HttpContext.Current.Response.Cookies.Add(cok);
-                HttpContext.Current.Session["User"] = socialUser.User;
+                    //bu kullanıcı daha once kayıt olmuş ise ve token expiredate zamanı geçmiş ise Token ekle
+                    Token token = new Token
+                    {
+                        StartDate = DateTime.Now,
+                        ExpireDate = DateTime.Now.AddHours(6),
+                        TokenValue = Security.sha512encrypt(RandomSfr.Generate(20)),
+                    };
+                    //socialUser.User.Tokens.Add(token); işlemi için oluşturulan EagerLoadingUser() mettodundan socialuser alma
+                    socialUserEager = EagerLoadingUser();
+                    foreach (var item in socialUserEager)
+                    {
+                        item.User.Tokens.Add(token);
+                    }
+
+                    HttpCookie cok = new HttpCookie("userauth", token.TokenValue);
+                    cok.Expires = DateTime.Now.AddHours(6);
+                    HttpContext.Current.Response.Cookies.Add(cok);
+                }
+                socialUserEager = EagerLoadingUser();
+                foreach (var item in socialUserEager)
+                {
+
+                    HttpContext.Current.Session["User"] = item.User;
+                }
 
                 try
                 {
-                    //db.SaveChanges();
+
                     return true;
 
                 }
@@ -125,7 +141,7 @@ namespace Takas.Business.Concrete
 
             return false;
         }
-		// TANSU BURASI CEKIYOR EAGERLOADING OLAYINI
+        // BURASI EAGERLOADING i çekiyor
         public List<SocialUser> EagerLoadingUser()
         {
 	        return _socialUserDal.EagerLoadingWithParams(null,x=>x.User.Tokens); ;

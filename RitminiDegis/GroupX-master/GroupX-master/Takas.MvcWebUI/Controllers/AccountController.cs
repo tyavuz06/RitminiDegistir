@@ -12,7 +12,7 @@ using Takas.Common;
 
 namespace Takas.MvcWebUI.Controllers
 {
-    //burada değişiklik var
+    
     public class AccountController : Controller
     {
         ITokenService _tokenService;
