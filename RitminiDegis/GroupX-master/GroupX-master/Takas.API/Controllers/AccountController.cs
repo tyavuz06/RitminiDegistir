@@ -10,7 +10,6 @@ using System.Web.Http.Description;
 using System.Web.Http.Results;
 using Takas.API.Authentication;
 using Takas.Business.Abstract;
-using Takas.Business.Concrete;
 using Takas.Common;
 using Takas.Entities.Concrete;
 
@@ -25,13 +24,13 @@ namespace Takas.API.Controllers
 
         public AccountController(IUserService userService, IProductService productService)
         {
-	        _userService = userService;
-	        _productService = productService;
+            _userService = userService;
+            _productService = productService;
         }
 
 
 
-		[ResponseType(typeof(User))]
+
         [HttpPost]
 		//[WebApiAuthorize(Roles = "Admin,User")] // Biz Yazdik, Admin veya User Rollerine sahip kullanici bunu calistirabilecek
 		[Route("api/Account/Login")]
@@ -55,19 +54,18 @@ namespace Takas.API.Controllers
             }
             catch
             {
-                return user;
+                return null;
             }
         }
 
-        [ResponseType(typeof(Boolean))]
-		[HttpPost]
+        [HttpPost]
         [Route("api/Account/SignUp")]
         public async Task<bool> SignUp(User user)
         {
             try
             {
                 bool result = await _userService.AddUser(user);
-                if (result == true)
+                if (result)
                 {
                     string link = "<a href='http://localhost:50903/Account/Activate?email=" + user.Email + "&valKey=" + Security.sha512encrypt(user.ValidationKey) + "'>";
                     string subjectName = "ProjectX Aktivasyon İşlemi";
@@ -78,14 +76,15 @@ namespace Takas.API.Controllers
                 }
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
 
         }
-        [ResponseType(typeof(Boolean))]
-		[HttpGet]
+
+
+        [HttpGet]
         [Route("api/Account/Activate/")]
         public async Task<bool> Activate(string email, string valKey)
         {

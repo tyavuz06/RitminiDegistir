@@ -29,14 +29,12 @@ namespace Takas.Business.Abstract
 		/// <param name="email"> String türünde bir email</param>
 		/// <returns>User</returns>
 		User GetUserByEmail(string email);
-		
-		
-		
-		/// <summary>
-		/// Bu Method VeriTabanindaki Tum User Listesini Getitir.
-		/// </summary>
-		/// <returns>User List</returns>
-		Task<List<User>> GetList();
+
+        /// <summary>
+        /// Bu Method VeriTabanindaki Tum User Listesini Getitir.
+        /// </summary>
+        /// <returns>User List</returns>
+        Task<List<User>> GetList();
 
 		/// <summary>
 		/// Veritabanindan ARANAN User kaydını doner.

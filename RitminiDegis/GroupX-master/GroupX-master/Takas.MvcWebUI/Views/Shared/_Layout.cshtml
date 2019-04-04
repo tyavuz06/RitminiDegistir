@@ -11,7 +11,7 @@
     <title>@ViewBag.title</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="/Content/Site/img/core-img/favicon.ico">
+    <link rel="icon" href="~/Images/logo.png">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="/Content/Site/css/core-style.css">
@@ -25,7 +25,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="/Home/Index"><img src="/Content/Site/img/core-img/logo.png" alt=""></a>
+                <a class="nav-brand" href="/Home/Index"><img src="~/Images/logo.png" style="width:150px;height:75px" alt=""></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -84,8 +84,6 @@
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -107,7 +105,18 @@
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">
-                    <a href="/Account/Login"><img src="/Content/Site/img/core-img/user.svg" alt=""></a>
+                    @if (HttpContext.Current.Session["User"] == null)
+                    {
+                        <a href="/Account/Login">
+                            <img src="/Content/Site/img/core-img/user.svg" alt="">
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/UserProfil/Index">
+                            <img src="/Content/Site/img/core-img/user.svg" alt="">
+                        </a>
+                    }
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
