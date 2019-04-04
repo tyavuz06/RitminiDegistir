@@ -2233,7 +2233,6 @@
     <Content Include="Areas\Admin\Views\Shared\_AdminPanelLayoutPage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelUserList.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\TumKullanicilar.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddUser.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
