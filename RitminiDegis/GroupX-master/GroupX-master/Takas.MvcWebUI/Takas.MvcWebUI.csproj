@@ -2234,6 +2234,8 @@
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelUserList.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Delete.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />

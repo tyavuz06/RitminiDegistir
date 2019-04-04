@@ -1,8 +1,49 @@
-﻿@model Takas.Entities.Concrete.User
+﻿@using Takas.Entities.Concrete
+@model Takas.Entities.Concrete.User
 @{
     ViewBag.Title = "AddUser";
     Layout = "~/Areas/Admin/Views/Shared/_AdminPanelLayoutPage.cshtml";
 }
 
-<h2>AddUser</h2>
+<div class="alert alert-primary text-center" role="alert">
+    Kullanici Ekle
+</div>
+
+@using (Html.BeginForm("AddUser", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-12 align-items-sm-center">
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Lütfen Ad giriniz" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.Surname)
+            @Html.TextBoxFor(t => t.Surname, new { @class = "form-control", placeholder = "Soyad Giriniz" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(t => t.Email)
+            @Html.TextBoxFor(t => t.Email, new { @class = "form-control", placeholder = "name@example.com" })
+            <small id="emailHelp" class="form-text text-muted">Email adresinizi hicbir kimse ile paylasmayacagiz </small>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.Password)
+            @Html.PasswordFor(t => t.Password, new { @class = "form-control", placeholder = "Sifrenizi Giriniz" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(t => t.PhoneNumber)
+            @Html.TextBoxFor(t => t.PhoneNumber, new { @class = "form-control", placeholder = "Telefon Numarani Giriniz" })
+        </div>
+        //Todo Buraya Role ler gelecek dropdownlist olarak secip adama o role u atayacagiz
+        <div class="form-group">
+            @Html.LabelFor(t => t.RoleID)
+            @* @Html.DropDownListFor(t => t.RoleID, new SelectList(List<Role>))*@
+        </div>
+        <input type="submit" value="Kaydet" class="btn btn-primary btn-group-lg" />
+    </div>
+
+}
 
