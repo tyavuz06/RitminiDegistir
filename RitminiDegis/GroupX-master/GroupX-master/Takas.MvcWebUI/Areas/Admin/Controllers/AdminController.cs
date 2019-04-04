@@ -8,6 +8,8 @@ using Takas.Entities.Concrete;
 
 namespace Takas.MvcWebUI.Areas.Admin.Controllers
 {
+
+	//TODO Web Api lere gitmeden once ModelState lerimizi kontrol edelim hata varsa webapi ye gitmeyecegiz bunlari unutma.
 	public class AdminController : Controller
 	{
 		// GET: Admin/Admin
@@ -38,33 +40,34 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 			return View();
 		}
 
-
-
-
-		
 		public ActionResult Update(int id)
 		{
 			//Todo Web Api uzerinden islem yapacagiz
+			//Todo gidip Id ye gore Bu degerleri cekecegiz sonra bunu view a bascacagiz.
 			return View();
 		}
 
-		
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Update(User user)
+		{
+			if (ModelState.IsValid)
+			{
+				//Todo WebApi ye gonder Kayit Islemini Yapsin
+				return RedirectToAction("Index");
+			}
+			else
+			{
+				return View(user);
+			}
+		}
+
 		public ActionResult Delete(int id)
 		{
 			//Todo Web Api uzerinden islem yapacagiz
-			return View();
+			//todo Gelen id ye gore 
+			return RedirectToAction("Index");
 		}
-
-
-
-
-
-
-
-
-
-
-
 
 	}
 }

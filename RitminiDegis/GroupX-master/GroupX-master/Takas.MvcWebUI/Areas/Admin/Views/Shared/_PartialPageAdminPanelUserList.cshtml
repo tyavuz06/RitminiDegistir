@@ -12,6 +12,7 @@
 
 }
 
+
 @* todo  Gelen Model Icerisinde IsActive e bakarak ya da isBlocked a bakarak kullanicinin bulundugu satirin arka plan rengini degistirebiliriz.*@
 
 
@@ -20,12 +21,12 @@
     <div class="card-header">
         <i class="fas fa-table"></i>
         Kullanici Listesi
-        @*<div class="row"> Renk Ayari Yapmak Istersen Sendeyiz Yavuz 
-            <i class="fas fa-table btn-lg"></i>
-            <div class="alert alert-success" role="alert">
-                Kullanici Listesi
-            </div>
-        </div>*@
+        @*<div class="row"> Renk Ayari Yapmak Istersen Sendeyiz Yavuz
+                <i class="fas fa-table btn-lg"></i>
+                <div class="alert alert-success" role="alert">
+                    Kullanici Listesi
+                </div>
+            </div>*@
     </div>@if (GosterilsinMi)
     {
         <a href="@Url.Action("AddUser","Admin")" class="btn btn-primary btn-xl text-center">Kullanici Ekle</a>
@@ -94,7 +95,7 @@
                             <td>MadaLavir</td>
                             <td>
                                 <a href="@Url.Action("Update", "Admin", new { id = 1 })" class="btn btn-outline-success btn-sm">Guncelle</a>
-                                <a href="@Url.Action("Delete", "Admin", new {id = 1})" class="btn btn-outline-danger btn-sm">Sil</a>
+                                <a href="@Url.Action("Delete", "Admin", new {id = 1})" class="btn btn-outline-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz')">Sil</a>
                             </td>
                         </tr>
                     }
