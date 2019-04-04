@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,5 +26,8 @@ namespace Takas.Entities.Concrete
 		public string OS { get; set; }
 		//[StringLength(50)]
 		public string Browser { get; set; }
+
+        [ForeignKey("User_ID")]
+        public virtual User User { get; set; }
     }
 }
