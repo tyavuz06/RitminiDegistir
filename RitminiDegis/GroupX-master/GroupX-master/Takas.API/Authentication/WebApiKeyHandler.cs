@@ -15,7 +15,7 @@ namespace Takas.API.Authentication
 	public class WebApiKeyHandler : DelegatingHandler
 	{
 		// Burada Request geliyor bunun icerisinde webapi key i ariyacagiz. Eger bu var ise tamam bu adam guvebli diyip gecmesine izin verecegiz ama yok ise daha action a gitmeden istek iptal edecegiz.
-		// Bu islemin gerceklesebilmesi icin [Authorize] attribute lerini eklememiz lazzim ya class seviyesinde ya da action seviyesinde eklemelisin.
+		// Bu islemin gerceklesebilmesi icin [Authorize] attribute lerini eklememiz lazzim ya class seviyesinde ya da action seviyesinde eklemelisin. // KendiAuthorize attribute umuzu yazdik role islemleri icin
 		protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
 			var queryString = request.RequestUri.ParseQueryString(); // Burasi Bana bir Collection donduruyor name value seklinde
@@ -44,6 +44,7 @@ namespace Takas.API.Authentication
 			//	HttpContext.Current.User = principal; // Sonra bunu current user a atiyoruz boylece actionlarimizin uzerindeki [Authorize] attribute unu bu ust taraftaki code blogu asip action icine girecektir.
 			//	// Kullanici var ise current.user icerisinde otomatikman action islemine girip oradaki code bloglari calisacaktir
 			//	// eger kullaniciVarMi null gelirse sistem bu request islemini UnAuthorize olarak isleme alip kullaniciya izin vermiyecektir.
+			// KendiAuthorize attribute umuzu yazdik role islemleri icin
 			//}
 
 

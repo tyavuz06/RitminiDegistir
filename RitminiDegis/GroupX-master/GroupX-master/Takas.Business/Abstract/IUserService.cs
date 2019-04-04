@@ -62,5 +62,5 @@ namespace Takas.Business.Abstract
 		/// </summary>
 		/// <param name="entity">User türünde bir nesne veriyoruz ve veritabanından o nesne siliniyor.</param>
 		void Delete(User entity);
-	}
+    }
 }

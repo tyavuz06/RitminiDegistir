@@ -75,5 +75,7 @@ namespace Takas.Business.Concrete
         {
             return _userDal.Get(t => t.Email == email);
         }
+
+		
     }
 }

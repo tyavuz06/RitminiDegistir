@@ -17,6 +17,7 @@ namespace Takas.MvcWebUI.Controllers
     {
         ITokenService _tokenService;
         ISocialUserService _socialUserService;
+		
         public AccountController(ISocialUserService socialUserService, ITokenService tokenService)
         {
             _socialUserService = socialUserService;
@@ -39,6 +40,8 @@ namespace Takas.MvcWebUI.Controllers
         [HttpPost]
         public ActionResult LoginUser(User user)
         {
+	       var degisken= _socialUserService.EagerLoadingUser();
+
             if (ModelState.IsValid)
             {
                 HttpClient client = new HttpClient();

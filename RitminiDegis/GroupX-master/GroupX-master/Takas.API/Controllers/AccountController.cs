@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
+using Takas.API.Authentication;
 using Takas.Business.Abstract;
 using Takas.Business.Concrete;
 using Takas.Common;
@@ -16,6 +17,7 @@ using Takas.Entities.Concrete;
 namespace Takas.API.Controllers
 {
     [EnableCors(origins: "http://localhost:50903/", headers: "*", methods: "*")]
+	
     public class AccountController : ApiController
     {
         IUserService _userService;
@@ -31,7 +33,8 @@ namespace Takas.API.Controllers
 
 		[ResponseType(typeof(User))]
         [HttpPost]
-        [Route("api/Account/Login")]
+		//[WebApiAuthorize(Roles = "Admin,User")] // Biz Yazdik, Admin veya User Rollerine sahip kullanici bunu calistirabilecek
+		[Route("api/Account/Login")]
 		// Buradaki Donus Tipleri Object ya da User yada Baska birsey olmayacak
 		// Buradaki Donus Tiplerimiz IHttpActionResult olarak donecegiz. O Yuzden ResponseType belirliyorum ki hangi turle islem yaptigimizi Gorelim.
 		// Daha Eklemedik ama Calisma Prensibimiz bu olacak. Bunun nedeni ise Biz Burada Sadece veri donusu yapiyoruz eger bir hata olursa sistem kendi kafasina gore hata codu atayacak

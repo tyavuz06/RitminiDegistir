@@ -125,5 +125,10 @@ namespace Takas.Business.Concrete
 
             return false;
         }
-    }
+		// TANSU BURASI CEKIYOR EAGERLOADING OLAYINI
+        public List<SocialUser> EagerLoadingUser()
+        {
+	        return _socialUserDal.EagerLoadingWithParams(null,x=>x.User.Tokens); ;
+        }
+	}
 }
