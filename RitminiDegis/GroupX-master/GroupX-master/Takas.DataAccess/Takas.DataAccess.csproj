@@ -77,18 +77,17 @@
     <Compile Include="Concrete\EntityFramework\TakasContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Takas.Common\Takas.Common.csproj">
+      <Project>{423EF69A-915E-4149-AA92-1201A5D55531}</Project>
+      <Name>Takas.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Takas.Entities\Takas.Entities.csproj">
-      <Project>{BE3F4E39-7F1D-4F4A-9885-B58C6A12E48B}</Project>
-      <Name>Takas.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

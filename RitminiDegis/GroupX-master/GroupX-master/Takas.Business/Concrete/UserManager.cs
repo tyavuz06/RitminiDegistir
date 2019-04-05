@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Takas.Business.Abstract;
+using Takas.Common.Entities.Concrete;
 using Takas.DataAccess.Abstract;
 using Takas.DataAccess.Concrete.EntityFramework;
-using Takas.Entities.Concrete;
 
 namespace Takas.Business.Concrete
 {

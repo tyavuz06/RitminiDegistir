@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Takas.Entities.Abstract
+namespace Takas.Common.Entities.Abstract
 {
 	public interface IEntity
 	{

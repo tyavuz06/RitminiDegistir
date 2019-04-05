@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure.MappingViews;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using Takas.Entities.Concrete;
+using Takas.Common.Entities.Concrete;
+
 
 namespace Takas.MvcWebUI.Areas.Admin.Controllers
 {
@@ -16,12 +19,19 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 		public ActionResult Index()
 		{
 			//todo Bu sayfada bir model gidcek bu model de User Class imizi gonderecek. Veritabanindaki tum kullanicilari buraya gonderecegiz. WebApi den gelecek buraya degerler. Admin Panel aslinda Web Api ile calismasa da olur mu acaba bunu bir dusunelim.
+
+			
+			
+			
+
+
 			return View();
 		}
 
 		public ActionResult UserList()
 		{
 			//todo Bu sayfada bir model gidcek bu model de User Class imizi gonderecek. Veritabanindaki tum kullanicilari buraya gonderecegiz. WebApi den gelecek buraya degerler.
+
 			return View("_PartialPageAdminPanelUserList");
 		}
 

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using System.Web;
 using Takas.Business.Abstract;
 using Takas.Common;
+using Takas.Common.Entities.Concrete;
 using Takas.Common.SystemConstants;
 using Takas.DataAccess.Abstract;
-using Takas.Entities.Concrete;
+
 
 namespace Takas.Business.Concrete
 {

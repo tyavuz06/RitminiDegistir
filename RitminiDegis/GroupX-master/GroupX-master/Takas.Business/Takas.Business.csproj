@@ -100,10 +100,6 @@
       <Project>{d6038ee0-9ee3-419e-b405-72b45fc92179}</Project>
       <Name>Takas.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Takas.Entities\Takas.Entities.csproj">
-      <Project>{BE3F4E39-7F1D-4F4A-9885-B58C6A12E48B}</Project>
-      <Name>Takas.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

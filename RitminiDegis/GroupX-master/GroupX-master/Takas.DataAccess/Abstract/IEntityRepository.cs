@@ -4,7 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Takas.Entities.Abstract;
+using Takas.Common.Entities.Abstract;
+
 
 namespace Takas.DataAccess.Abstract
 {

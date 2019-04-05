@@ -2275,10 +2275,6 @@
       <Project>{D6038EE0-9EE3-419E-B405-72B45FC92179}</Project>
       <Name>Takas.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Takas.Entities\Takas.Entities.csproj">
-      <Project>{be3f4e39-7f1d-4f4a-9885-b58c6a12e48b}</Project>
-      <Name>Takas.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

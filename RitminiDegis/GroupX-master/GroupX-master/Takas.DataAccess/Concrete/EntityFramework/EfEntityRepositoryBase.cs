@@ -5,8 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Takas.Common.Entities.Abstract;
 using Takas.DataAccess.Abstract;
-using Takas.Entities.Abstract;
+
 
 namespace Takas.DataAccess.Concrete.EntityFramework
 {

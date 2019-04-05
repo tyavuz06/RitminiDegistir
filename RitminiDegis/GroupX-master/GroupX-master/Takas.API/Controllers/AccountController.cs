@@ -11,7 +11,8 @@ using System.Web.Http.Results;
 using Takas.API.Authentication;
 using Takas.Business.Abstract;
 using Takas.Common;
-using Takas.Entities.Concrete;
+using Takas.Common.Entities.Concrete;
+
 
 namespace Takas.API.Controllers
 {

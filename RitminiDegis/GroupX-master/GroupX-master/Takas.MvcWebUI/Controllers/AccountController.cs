@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Takas.Entities.Concrete;
+
 using System.Net;
 using System.Net.Http;
 using Takas.Business.Concrete;
 using Takas.Business.Abstract;
 using Takas.Common;
+using Takas.Common.Entities.Concrete;
 
 namespace Takas.MvcWebUI.Controllers
 {

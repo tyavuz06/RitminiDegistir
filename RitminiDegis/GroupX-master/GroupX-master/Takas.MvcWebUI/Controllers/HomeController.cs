@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using Takas.Business.Abstract;
 using Takas.Business.Concrete;
 using Takas.DataAccess.Concrete.EntityFramework;
-using Takas.Entities.Concrete;
 
 namespace Takas.MvcWebUI.Controllers
 {
