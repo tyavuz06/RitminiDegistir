@@ -62,6 +62,7 @@
     <Compile Include="Abstract\ITokenDal.cs" />
     <Compile Include="Abstract\IUserCommentDal.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
+    <Compile Include="Abstract\IWebApiTokenKeyDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfCategoryDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfEntityRepositoryBase.cs" />
     <Compile Include="Concrete\EntityFramework\EfExchangeDal.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Concrete\EntityFramework\EfTokenDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfUserCommentDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfUserDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfWebApiTokenKey.cs" />
     <Compile Include="Concrete\EntityFramework\TakasContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
