@@ -1841,13 +1841,17 @@
     <Content Include="Content\Site\img\core-img\favicon.ico" />
     <Content Include="Content\Site\img\core-img\heart-fill.svg" />
     <Content Include="Content\Site\img\core-img\heart.svg" />
+    <Content Include="Content\Site\img\core-img\login.svg" />
     <Content Include="Content\Site\img\core-img\logo.png" />
     <Content Include="Content\Site\img\core-img\logo2.png" />
     <Content Include="Content\Site\img\core-img\long-arrow-left.svg" />
     <Content Include="Content\Site\img\core-img\long-arrow-right.svg" />
     <Content Include="Content\Site\img\core-img\pin.png" />
     <Content Include="Content\Site\img\core-img\search.svg" />
+    <Content Include="Content\Site\img\core-img\untitled.png" />
+    <Content Include="Content\Site\img\core-img\user-login.svg" />
     <Content Include="Content\Site\img\core-img\user.svg" />
+    <Content Include="Content\Site\img\core-img\userlogin.svg" />
     <Content Include="Content\Site\img\core-img\view.svg" />
     <Content Include="Content\Site\img\product-img\product-1.jpg" />
     <Content Include="Content\Site\img\product-img\product-2.jpg" />

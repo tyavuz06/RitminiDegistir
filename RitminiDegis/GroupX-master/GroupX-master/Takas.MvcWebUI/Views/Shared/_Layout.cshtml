@@ -25,6 +25,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
+                <!-- todo logoyu % ile yap-->
                 <a class="nav-brand" href="/Home/Index"><img src="~/Images/logo.png" style="width:150px;height:75px" alt=""></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
@@ -93,35 +94,62 @@
             <!-- Header Meta Data -->
             <div class="header-meta d-flex clearfix justify-content-end">
                 <!-- Search Area -->
-                <div class="search-area">
-                    <form action="#" method="post">
-                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-                <!-- Favourite Area -->
-                <div class="favourite-area">
-                    <a href="#"><img src="/Content/Site/img/core-img/heart.svg" alt=""></a>
-                </div>
-                <!-- User Login Info -->
-                <div class="user-login-info">
-                    @if (HttpContext.Current.Session["User"] == null)
-                    {
-                        <a href="/Account/Login">
-                            <img src="/Content/Site/img/core-img/user.svg" alt="">
-                        </a>
-                    }
-                    else
-                    {
-                        <a href="/UserProfil/Index">
-                            <img src="/Content/Site/img/core-img/user.svg" alt="">
-                        </a>
-                    }
+                <div class="classy-menu">
+                    <div class="classynav">
+                        <ul>
+                            <li>
+                                <div class="search-area">
+                                    <form action="#" method="post">
+                                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                            </li>
+                            <!-- Favourite Area -->
+
+                            @if (HttpContext.Current.Session["User"] == null)
+                            {
+                            <li>
+                                <div class="user-login-info">
+                                    <a href="/Account/Login">
+                                        <img src="~/Content/Site/img/core-img/userlogin.svg" alt="">
+                                    </a>
+                                </div>
+                            </li>
+
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="user-login-info">
+                                        <a href="/UserProfil/Index">
+                                            <img src="~/Content/Site/img/core-img/user.svg" alt="">
+                                        </a>
+                                        <ul class="dropdown">
+                                            <li><a href="/Home/Index">Profil</a></li>
+                                            <li><a href="/Product/Index">Ürünlerim</a></li>
+                                            <li><a href="contact.html">Çıkış</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="favourite-area">
+                                        <a href="#"><img src="/Content/Site/img/core-img/heart.svg" alt=""></a>
+                                    </div>
+                                </li>
+
+                            }
+                            <!-- User Login Info -->
+                        </ul>
+                    </div>
                 </div>
                 <!-- Cart Area -->
-                <div class="cart-area">
-                    <a href="#" id="essenceCartBtn"><img src="/Content/Site/img/core-img/bag.svg" alt=""> <span>3</span></a>
-                </div>
+                @if (HttpContext.Current.Session["User"] != null)
+                {
+                    <div class="cart-area">
+                        <a href="#" id="essenceCartBtn"><img src="/Content/Site/img/core-img/bag.svg" alt=""> <span>3</span></a>
+                    </div>
+                }
             </div>
 
         </div>
