@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.UI.HtmlControls
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -199,6 +200,6 @@
         <!-- Demo scripts for this page-->
         <script src="~/Areas/Admin/Content/AdminPanel/js/demo/datatables-demo.js"></script>
         <script src="~/Areas/Admin/Content/AdminPanel/js/demo/chart-area-demo.js"></script>
-
+        @RenderSection("Script",false)
     </body>
 </html>

@@ -17,32 +17,37 @@
 
             @Html.LabelFor(x => x.Name)
             @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Lütfen Ad giriniz" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 
         </div>
         <div class="form-group">
             @Html.LabelFor(t => t.Surname)
             @Html.TextBoxFor(t => t.Surname, new { @class = "form-control", placeholder = "Soyad Giriniz" })
+            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
             @Html.LabelFor(t => t.Email)
             @Html.TextBoxFor(t => t.Email, new { @class = "form-control", placeholder = "name@example.com" })
             <small id="emailHelp" class="form-text text-muted">Email adresinizi hicbir kimse ile paylasmayacagiz </small>
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.LabelFor(t => t.Password)
             @Html.PasswordFor(t => t.Password, new { @class = "form-control", placeholder = "Sifrenizi Giriniz" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.LabelFor(t => t.PhoneNumber)
             @Html.TextBoxFor(t => t.PhoneNumber, new { @class = "form-control", placeholder = "Telefon Numarani Giriniz" })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
         </div>
         //Todo Buraya Role ler gelecek dropdownlist olarak secip adama o role u atayacagiz
         <div class="form-group">
             @Html.LabelFor(t => t.RoleID)
             @* @Html.DropDownListFor(t => t.RoleID, new SelectList(List<Role>))*@
         </div>
-        <input type="submit" value="Kaydet" class="btn btn-primary btn-group-lg" />
+        <input type="submit" value="Kaydet" class="btn btn-primary btn-group-lg"  />
     </div>
 
 }
