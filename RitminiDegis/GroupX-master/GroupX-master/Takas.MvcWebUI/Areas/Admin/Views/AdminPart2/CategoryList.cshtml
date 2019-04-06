@@ -1,0 +1,9 @@
+﻿@model List<Takas.Common.Entities.Concrete.Category>
+@{
+    ViewBag.Title = "CategoryList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminPanelLayoutPage.cshtml";
+}
+
+<h2>CategoryList</h2>
+
+@Html.Partial("_PartialPageAdminPanelCategoryList", Model)

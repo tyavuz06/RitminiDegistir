@@ -1,0 +1,28 @@
+﻿
+@using Takas.Common.Entities.Concrete
+@model Takas.Common.Entities.Concrete.Category
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminPanelLayoutPage.cshtml";
+}
+
+<div class="alert alert-primary text-center" role="alert">
+    Kategory Ekle
+</div>
+
+@using (Html.BeginForm("AddCategory", "AdminPart2", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-12 align-items-sm-center">
+        <div class="form-group">
+
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Lütfen kategori giriniz" })
+
+        </div>
+                
+        <input type="submit" value="Kaydet" class="btn btn-primary btn-group-lg" />
+    </div>
+
+}
+

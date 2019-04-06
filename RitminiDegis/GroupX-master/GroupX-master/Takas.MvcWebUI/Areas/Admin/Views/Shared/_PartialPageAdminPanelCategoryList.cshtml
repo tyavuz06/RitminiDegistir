@@ -1,0 +1,113 @@
+﻿@model List<Takas.Common.Entities.Concrete.Category>
+@{ bool GosterilsinMi = false; }
+@{
+    // Eger Gelen action Name TumKategoriler ise otomatikman Kullanacagi Layout u vermis oluyoruz.
+    if (HttpContext.Current.Request.RequestContext.RouteData.GetRequiredString("action") == "CategoryList")
+    {
+
+        ViewBag.Title = "TumKategoriler";
+        Layout = "~/Areas/Admin/Views/Shared/_AdminPanelLayoutPage.cshtml";
+        GosterilsinMi = true;
+    }
+
+}
+
+@* todo  Gelen Model Icerisinde IsActive e bakarak ya da isBlocked a bakarak kullanicinin bulundugu satirin arka plan rengini degistirebiliriz.*@
+
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Kategori Listesi
+        @*<div class="row"> Renk Ayari Yapmak Istersen Sendeyiz Yavuz
+                <i class="fas fa-table btn-lg"></i>
+                <div class="alert alert-success" role="alert">
+                    Kullanici Listesi
+                </div>
+            </div>*@
+    </div>@if (GosterilsinMi)
+    {
+        <a href="@Url.Action("AddCategory","AdminPart2")" class="btn btn-primary btn-xl text-center">Kategori Ekle</a>
+    }
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    @if (@GosterilsinMi)
+                    {
+                        <tr>
+                            <th>Kategori Adi</th>
+                            <th>Islemler</th>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <th>Kategory Adi</th>
+                            <th></th>
+
+                        </tr>
+                    }
+                </thead>
+                <tfoot>
+                    @if (GosterilsinMi)
+                    {
+                        <tr>
+                            <th>Kategori Adi</th>
+                            <th>Islemler</th>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+
+                            <th>Kategori Adi</th>
+                            <th></th>
+
+                        </tr>
+                    }
+                </tfoot>
+                <tbody>
+                    @if (GosterilsinMi)
+                    {
+                        <tr>
+                            <td>Nefesli Enstrüman</td>
+
+                            <td>
+                                <a href="@Url.Action("Update", "AdminPart2", new { id = 1 })" class="btn btn-outline-success btn-sm">Guncelle</a>
+                                <a href="@Url.Action("Delete", "AdminPart2", new {id = 1})" class="btn btn-outline-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz')">Sil</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Yaylı Enstrüman</td>
+
+                            <td>
+                                <a href="@Url.Action("Update", "AdminPart2", new { id = 1 })" class="btn btn-outline-success btn-sm">Guncelle</a>
+                                <a href="@Url.Action("Delete", "AdminPart2", new {id = 1})" class="btn btn-outline-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz')">Sil</a>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>Nefesli Enstrüman</td>
+
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Yaylı Enstrüman</td>
+
+                            <td></td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
