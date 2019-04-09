@@ -14,7 +14,7 @@ namespace Takas.Common.Entities.Concrete
 		public int ID { get; set; }
 
 		//[Required]
-		public int User_ID { get; set; }
+		
 
 		//[Required]
 		//[StringLength(150)]
@@ -35,6 +35,8 @@ namespace Takas.Common.Entities.Concrete
 		//[StringLength(50)]
 		public string Browser { get; set; }
 
-		[ForeignKey("User_ID")] public virtual User User { get; set; }
+		[ForeignKey("User")]
+		public int User_ID { get; set; }
+		public virtual User User { get; set; }
 	}
 }
