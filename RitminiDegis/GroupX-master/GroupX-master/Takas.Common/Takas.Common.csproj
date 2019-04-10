@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Abstract\IEntity.cs" />
+    <Compile Include="Entities\Concrete\Brand.cs" />
     <Compile Include="Entities\Concrete\Category.cs" />
     <Compile Include="Entities\Concrete\Exchange.cs" />
     <Compile Include="Entities\Concrete\Favorite.cs" />
