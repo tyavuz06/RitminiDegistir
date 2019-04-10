@@ -6,6 +6,10 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 {
 	public class TakasContext : DbContext
 	{
+		public TakasContext()
+		{
+			this.Configuration.LazyLoadingEnabled = false;
+		}
 
 		public virtual DbSet<Category> Categories { get; set; }
 		public virtual DbSet<Exchange> Exchanges { get; set; }

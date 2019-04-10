@@ -24,14 +24,15 @@ namespace Takas.MvcWebUI.Service
                 string tokenFromCookie = HttpContext.Current.Request.Cookies["userAuth"].Value;
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri("http://localhost:2765/");
+				
 
                 HttpResponseMessage result = client.PostAsJsonAsync("api/Token/GetUserFromTokenValue/", new Token {
                     TokenValue = tokenFromCookie
                 }).Result;
-
-                if (result.StatusCode == HttpStatusCode.OK)
+                string resultString = result.Content.ReadAsStringAsync().Result;
+				if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    string resultString = result.Content.ReadAsStringAsync().Result;
+                    //string resultString = result.Content.ReadAsStringAsync().Result;
                     if (resultString != "{\"Token\":null}")
                     {
                         TokenResponse tokenResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<TokenResponse>(resultString);

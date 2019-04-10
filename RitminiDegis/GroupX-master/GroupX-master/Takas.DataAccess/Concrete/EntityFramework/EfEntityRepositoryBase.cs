@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 {
 	public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : class, IEntity, new() where TContext : DbContext, new()
 	{
-		
+
 		public async Task<List<TEntity>> GetList(Expression<Func<TEntity, bool>> Filter = null)
 		{
 			using (TContext context = new TContext())
@@ -22,15 +23,15 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 			}
 		}
 
-        public List<TEntity> GetListWithoutTask(Expression<Func<TEntity, bool>> Filter = null)
-        {
-            using (TContext context = new TContext())
-            {
-                return  Filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(Filter).ToList();
-            }
-        }
+		public List<TEntity> GetListWithoutTask(Expression<Func<TEntity, bool>> Filter = null)
+		{
+			using (TContext context = new TContext())
+			{
+				return Filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(Filter).ToList();
+			}
+		}
 
-        public List<TEntity> GetListWihEagerLoading(string eagerLoading, Expression<Func<TEntity, bool>> Filter = null)
+		public List<TEntity> GetListWihEagerLoading(string eagerLoading, Expression<Func<TEntity, bool>> Filter = null)
 		{
 			using (TContext context = new TContext())
 			{
@@ -54,7 +55,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 			}
 		}
 
-		
+
 
 		public List<TEntity> EagerLoadingParamsAndSelect(Expression<Func<TEntity, bool>> Filter = null, Expression<Func<TEntity, TEntity>> FilterSelect = null, params Expression<Func<TEntity, object>>[] paths)
 		{
@@ -70,17 +71,19 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 				{
 					return sonuc.ToList();
 				}
-				else if (Filter != null && FilterSelect == null)
+				if (Filter != null && FilterSelect == null)
 				{
 					return sonuc.Where(Filter).ToList();
 				}
-				else
+				if (Filter != null && FilterSelect != null)
 				{
-					return sonuc.Select(FilterSelect).Where(Filter).ToList();
+
+					return context.Set<TEntity>().Include(paths.First()).Where(Filter).Select(FilterSelect).ToList();
 				}
-				
-					
-				
+
+				return null;
+
+
 			}
 		}
 
@@ -92,7 +95,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 				return context.Set<TEntity>().Where(Filter).FirstOrDefault();
 			}
 		}
-        public void Add(TEntity entity)
+		public void Add(TEntity entity)
 		{
 			using (TContext context = new TContext())
 			{
@@ -101,40 +104,40 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 			}
 		}
 
-        public async Task<bool> AddAsync(TEntity entity)
-        {
-            using (TContext context = new TContext())
-            {
-                try
-                {
-                    context.Entry(entity).State = EntityState.Added;
-                    await context.SaveChangesAsync();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
-        }
+		public async Task<bool> AddAsync(TEntity entity)
+		{
+			using (TContext context = new TContext())
+			{
+				try
+				{
+					context.Entry(entity).State = EntityState.Added;
+					await context.SaveChangesAsync();
+					return true;
+				}
+				catch (Exception ex)
+				{
+					return false;
+				}
+			}
+		}
 
-        public async Task<bool> UpdateAsync(TEntity entity)
-        {
-            using (TContext context = new TContext())
-            {
-                try
-                {
-                    context.Entry(entity).State = EntityState.Modified;
-                    await context.SaveChangesAsync();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
-        }
-        public void Update(TEntity entity)
+		public async Task<bool> UpdateAsync(TEntity entity)
+		{
+			using (TContext context = new TContext())
+			{
+				try
+				{
+					context.Entry(entity).State = EntityState.Modified;
+					await context.SaveChangesAsync();
+					return true;
+				}
+				catch (Exception ex)
+				{
+					return false;
+				}
+			}
+		}
+		public void Update(TEntity entity)
 		{
 			using (TContext context = new TContext())
 			{
@@ -152,6 +155,6 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 			}
 		}
 
-        
-    }
+
+	}
 }
