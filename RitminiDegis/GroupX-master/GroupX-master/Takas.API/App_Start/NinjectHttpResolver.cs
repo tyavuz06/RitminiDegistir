@@ -104,6 +104,10 @@ namespace Takas.API.App_Start
 				Bind<IUserService>().To<UserManager>().InSingletonScope();
 
 				Bind<IUserDal>().To<EfUserDal>().InSingletonScope();
+
+				Bind<IWebApiTokenKeyService>().To<WebApiTokenKeyManager>().InSingletonScope();
+
+				Bind<IWebApiTokenKeyDal>().To<EfWebApiTokenKey>().InSingletonScope();
 			} /// Ninject icin burada Bind Islemi yapiyoruz
 		}
 	}
