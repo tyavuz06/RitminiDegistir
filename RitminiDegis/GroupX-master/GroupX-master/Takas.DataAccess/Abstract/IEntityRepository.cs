@@ -21,6 +21,9 @@ namespace Takas.DataAccess.Abstract
 		List<T> EagerLoadingWithParams(Expression<Func<T, bool>> Filter = null,
 			params Expression<Func<T, object>>[] paths);
 
+		List<T> EagerLoadingParamsAndSelect(Expression<Func<T, bool>> Filter = null, Expression<Func<T, T>> FilterSelect = null,
+			params Expression<Func<T, object>>[] paths);
+
 		T Get(Expression<Func<T, bool>> Filter);
 		void Add(T entity);
 		Task<bool> AddAsync(T entity);

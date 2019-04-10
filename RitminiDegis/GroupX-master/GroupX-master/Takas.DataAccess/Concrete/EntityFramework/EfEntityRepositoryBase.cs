@@ -54,6 +54,36 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 			}
 		}
 
+		
+
+		public List<TEntity> EagerLoadingParamsAndSelect(Expression<Func<TEntity, bool>> Filter = null, Expression<Func<TEntity, TEntity>> FilterSelect = null, params Expression<Func<TEntity, object>>[] paths)
+		{
+			using (TContext context = new TContext())
+			{
+				var sonuc = context.Set<TEntity>().Include(paths.First());
+				foreach (var eager in paths.Skip(1))
+				{
+					sonuc = sonuc.Include(eager);
+				}
+
+				if (Filter == null && FilterSelect == null)
+				{
+					return sonuc.ToList();
+				}
+				else if (Filter != null && FilterSelect == null)
+				{
+					return sonuc.Where(Filter).ToList();
+				}
+				else
+				{
+					return sonuc.Select(FilterSelect).Where(Filter).ToList();
+				}
+				
+					
+				
+			}
+		}
+
 
 		public TEntity Get(Expression<Func<TEntity, bool>> Filter)
 		{
