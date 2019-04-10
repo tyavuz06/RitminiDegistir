@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Takas.Business.Abstract;
+using Takas.Common.Entities.Concrete;
 using Takas.MvcWebUI.Models;
 
 namespace Takas.MvcWebUI.Controllers
@@ -46,6 +47,12 @@ namespace Takas.MvcWebUI.Controllers
             return View(productModel);
         }
         public ActionResult AddProduct()
+        {
+            ViewBag.PageInfo = "ÜRÜN EKLE";
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ProductAddComplete(Product product)
         {
             ViewBag.PageInfo = "ÜRÜN EKLE";
             return View();

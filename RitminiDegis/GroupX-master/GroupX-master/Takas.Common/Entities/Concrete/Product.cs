@@ -19,7 +19,7 @@ namespace Takas.Common.Entities.Concrete
 		public int ID { get; set; }
 		//[Required]
 		//[StringLength(50)]
-		public string Brand { get; set; }
+		public Brand Brand { get; set; }
 		//[Required]
 		//[StringLength(50)]
 		public string Model { get; set; }
@@ -46,7 +46,6 @@ namespace Takas.Common.Entities.Concrete
 		public int Category_ID { get; set; }
 		//[Required]
 		public int User_ID { get; set; }
-
 		public virtual Category Category { get; set; }
 
 

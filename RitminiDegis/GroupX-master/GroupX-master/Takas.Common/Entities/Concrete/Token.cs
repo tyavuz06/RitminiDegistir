@@ -15,7 +15,7 @@ namespace Takas.Common.Entities.Concrete
 
 		//[Required]
 		
-
+        public int User_ID { get; set; }
 		//[Required]
 		//[StringLength(150)]
 		public string TokenValue { get; set; }

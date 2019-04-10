@@ -17,7 +17,8 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 		public virtual DbSet<Token> Tokens { get; set; }
 		public virtual DbSet<UserComment> UserComments { get; set; }
 		public virtual DbSet<User> Users { get; set; }
-		public virtual DbSet<SocialUser> SocialUsers { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<SocialUser> SocialUsers { get; set; }
 		public virtual DbSet<WebApiTokenKey> WebApiTokenKeys { get; set; }
 
 	}
