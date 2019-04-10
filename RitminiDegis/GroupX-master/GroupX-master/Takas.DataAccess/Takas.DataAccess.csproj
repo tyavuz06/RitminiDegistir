@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBrandDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IEntityRepository.cs" />
     <Compile Include="Abstract\IExchangeDal.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Abstract\IUserCommentDal.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
     <Compile Include="Abstract\IWebApiTokenKeyDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfBrandDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfCategoryDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfEntityRepositoryBase.cs" />
     <Compile Include="Concrete\EntityFramework\EfExchangeDal.cs" />
