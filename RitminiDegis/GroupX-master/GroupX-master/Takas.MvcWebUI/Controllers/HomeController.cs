@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Takas.Business.Abstract;
 using Takas.Business.Concrete;
 using Takas.DataAccess.Concrete.EntityFramework;
+using Takas.MvcWebUI.Service;
 
 namespace Takas.MvcWebUI.Controllers
 {
@@ -41,9 +42,9 @@ namespace Takas.MvcWebUI.Controllers
 
         #endregion
             
-        
 		public ActionResult Index()
 		{
+            LoginControl.ControlLogin();
             ViewBag.title = "Anasayfa";
 			return View();
 		}

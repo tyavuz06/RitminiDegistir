@@ -22,12 +22,13 @@ namespace Takas.Business.Abstract
 		/// <param name="id"> Verilen Id parametresine gore veritabaninda arama yapilir</param>
 		/// <returns>Token</returns>
 		Token Get(int id);
+        Token GetWithToken(string tokenValue);
 
-		/// <summary>
-		/// Veritabanina Yeni bir Token Eklemek icin bu method kullanilir.
-		/// </summary>
-		/// <param name="entity">Bu Parametre Token Türünde bir nesnedir.</param>
-		void Add(Token entity);
+        /// <summary>
+        /// Veritabanina Yeni bir Token Eklemek icin bu method kullanilir.
+        /// </summary>
+        /// <param name="entity">Bu Parametre Token Türünde bir nesnedir.</param>
+        void Add(Token entity);
 
 		/// <summary>
 		/// Veritabanindaki kaydi gelen kayida gore gunceller.

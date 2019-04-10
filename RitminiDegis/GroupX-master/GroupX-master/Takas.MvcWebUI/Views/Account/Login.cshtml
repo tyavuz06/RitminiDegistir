@@ -28,21 +28,11 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <form class="login100-form validate-form" method="post" action="/Account/LoginUser">
-                <span class="login100-form-title p-b-26">
+                <span class="login100-form-title p-b-72">
                     ProjectX'e Hoş Geldiniz
                 </span>
-                <span class="login100-form-title p-b-30">
-
-                    <a class="btn btn-block btn-social btn-facebook" style="background-color: #3B5998 ;color: aliceblue" href="@Takas.Common.SystemConstants.FacebookEntegration.getfburl()">
-                        <span class="fa fa-facebook" style="font-size:35px;width: 70px;"></span> Sign in with Facebook
-                    </a>
-                    @*<a class="btn btn-block btn-social btn-twitter" style="background-color: #55ACEE ;color: aliceblue" href="@Takas.Common.SystemConstants.FacebookEntegration.getfburl()">
-                            <span class="fa fa-twitter" style="font-size:35px;width: 70px;"></span> Sign in with Twitter
-                        </a>*@
-                    <a class="btn btn-block btn-social btn-google" style="background-color: #DD4B39 ;color: aliceblue" href="@Takas.Common.SystemConstants.FacebookEntegration.getfburl()">
-                        <span class="fa fa-google" style="font-size:35px;width: 70px;"></span> Sign in with Google
-                    </a>
-
+                <span style="color:red;text-align:center">
+                    @ViewBag.SystemMessage
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
@@ -66,7 +56,13 @@
                         </button>
                     </div>
                 </div>
+                <div class="container-login100-form-btn">
 
+                    <a class="btn btn-block btn-social btn-facebook" style="background-color: #3B5998 ;color: aliceblue;width:50px;" href="@Takas.Common.SystemConstants.FacebookEntegration.getfburl()">
+                        <span class="fa fa-facebook" style="font-size:25px;width:20px;"></span>
+                    </a>
+
+                </div>
                 <div class="text-center p-t-40">
                     <span class="txt1">
                         Hesabın yok mu?

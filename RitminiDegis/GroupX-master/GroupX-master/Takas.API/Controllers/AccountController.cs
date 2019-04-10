@@ -12,50 +12,92 @@ using Takas.API.Authentication;
 using Takas.Business.Abstract;
 using Takas.Common;
 using Takas.Common.Entities.Concrete;
-
+using Takas.Common.Response;
 
 namespace Takas.API.Controllers
 {
     [EnableCors(origins: "http://localhost:50903/", headers: "*", methods: "*")]
-	
+
     public class AccountController : ApiController
     {
         IUserService _userService;
+        ITokenService _tokenService;
         private IProductService _productService; // Bunu tamamen gereksiz olarak ekledim silicez. tekrar push etmem lazim ondan ekledim.
 
-        public AccountController(IUserService userService, IProductService productService)
+        public AccountController(IUserService userService, IProductService productService, ITokenService tokenService)
         {
             _userService = userService;
             _productService = productService;
+            _tokenService = tokenService;
         }
 
 
 
 
         [HttpPost]
-		//[WebApiAuthorize(Roles = "Admin,User")] // Biz Yazdik, Admin veya User Rollerine sahip kullanici bunu calistirabilecek
-		[Route("api/Account/Login")]
-		// Buradaki Donus Tipleri Object ya da User yada Baska birsey olmayacak
-		// Buradaki Donus Tiplerimiz IHttpActionResult olarak donecegiz. O Yuzden ResponseType belirliyorum ki hangi turle islem yaptigimizi Gorelim.
-		// Daha Eklemedik ama Calisma Prensibimiz bu olacak. Bunun nedeni ise Biz Burada Sadece veri donusu yapiyoruz eger bir hata olursa sistem kendi kafasina gore hata codu atayacak
-		// Yani 200 ok demekti ya 401 bilmem ne hatasi bunlari kendisi atiyor ama bi return OK(user) diyerek okay dondugumuzu NotFound() diyerek atiyorum 500 kodunu gonderecegiz
-		// buda su ise yarayacak karsi tarafta bu kodu alan yazilimci buna gore islem yapmasi gerektigini bilecek aksi durumda kullanici sistemin verecegi hatayi alacak buda kullaniciya detayli aciklama vermemis olacak.
-		// Denemdim ama normalde HttpResponseMessage olarak donersek ModelState i gonderek icersiinde ayrina hangi hatanin oldugunu bildirebiliyoruz ama IHttpActionResult ta modelstate donebilir miyiz emin degilim. (MANTIKEN DONEBILIRIZ ODA BIR OBJECT SONUCTA NESYSE BAKACAGIZ BUNLARA)
+        //[WebApiAuthorize(Roles = "Admin,User")] // Biz Yazdik, Admin veya User Rollerine sahip kullanici bunu calistirabilecek
+        [Route("api/Account/Login")]
+        // Buradaki Donus Tipleri Object ya da User yada Baska birsey olmayacak
+        // Buradaki Donus Tiplerimiz IHttpActionResult olarak donecegiz. O Yuzden ResponseType belirliyorum ki hangi turle islem yaptigimizi Gorelim.
+        // Daha Eklemedik ama Calisma Prensibimiz bu olacak. Bunun nedeni ise Biz Burada Sadece veri donusu yapiyoruz eger bir hata olursa sistem kendi kafasina gore hata codu atayacak
+        // Yani 200 ok demekti ya 401 bilmem ne hatasi bunlari kendisi atiyor ama bi return OK(user) diyerek okay dondugumuzu NotFound() diyerek atiyorum 500 kodunu gonderecegiz
+        // buda su ise yarayacak karsi tarafta bu kodu alan yazilimci buna gore islem yapmasi gerektigini bilecek aksi durumda kullanici sistemin verecegi hatayi alacak buda kullaniciya detayli aciklama vermemis olacak.
+        // Denemdim ama normalde HttpResponseMessage olarak donersek ModelState i gonderek icersiinde ayrina hangi hatanin oldugunu bildirebiliyoruz ama IHttpActionResult ta modelstate donebilir miyiz emin degilim. (MANTIKEN DONEBILIRIZ ODA BIR OBJECT SONUCTA NESYSE BAKACAGIZ BUNLARA)
         public object Login(User user)
         {
+            LoginResponse loginResponse = new LoginResponse();
             try
             {
-                User realUser = _userService.CheckUser(user);
-                if (realUser == null)
+                user = _userService.CheckUser(user);
+                if (user == null)
                 {
-                    return user;
+                    loginResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.NOTFOUND);
+                    loginResponse.Token = null;
+                    return loginResponse;
                 }
                 else
-                    return realUser;
+                {
+                    Token token = new Token()
+                    {
+                        User_ID = user.ID,
+                        IP = "",
+                        OS = "",
+                        ExpireDate = DateTime.Now.AddDays(1),
+                        Browser = "",
+                        StartDate = DateTime.Now,
+                        TokenValue = RandomSfr.Generate(60),
+                    };
+                    User lUser = new User()
+                    {
+                        ID = user.ID,
+                        Name = user.Name,
+                        Surname = user.Surname,
+                        Email = user.Email,
+                        Address = user.Address,
+                        PhoneNumber = user.PhoneNumber,
+                        Image = user.Image,
+                        AccountCreateDate = user.AccountCreateDate,
+                        AccountActiveDate = user.AccountActiveDate,
+                        ValidationKey = user.ValidationKey,
+                        WrongCount = user.WrongCount,
+                        RoleID = user.RoleID,
+                        isActive = user.isActive,
+                        ActiveStatus = user.ActiveStatus,
+                        isBlocked = user.isBlocked,
+                        Password = user.Password,
+                        Tokens = null
+                    };
+                    _tokenService.Add(token);
+                    loginResponse.Token = token;
+                    loginResponse.Token.User = lUser;
+                    loginResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.SUCCESS);
+                    return loginResponse;
+                }
             }
-            catch
+            catch(Exception ex)
             {
-                return null;
+                loginResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.SYSTEMERROR);
+                return loginResponse;
             }
         }
 
@@ -98,12 +140,12 @@ namespace Takas.API.Controllers
                     user.isActive = true;
                     try
                     {
-                        _userService.Update(user);
+                        return await _userService.UpdateAsync(user);
                     }
                     catch
                     {
+                        return false;
                     }
-
                 }
             }
             return true;

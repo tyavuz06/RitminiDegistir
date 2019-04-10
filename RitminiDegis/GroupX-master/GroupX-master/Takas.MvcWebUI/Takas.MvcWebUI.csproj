@@ -1902,6 +1902,7 @@
     <Compile Include="Models\LoginUserModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\LoginControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">

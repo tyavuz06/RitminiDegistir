@@ -8,6 +8,23 @@ namespace Takas.Common.SystemConstants
 {
     public class SystemConstannts
     {
+        public enum ERROR_CODES
+        {
+            SUCCESS = 1,
+            SYSTEMERROR = 2,
+            NOTFOUND = 3
+
+        }
+
+
+        public static Dictionary<int, string> ERROR_MESSAGE = new Dictionary<int, string>
+        {
+            {1,"İşlem başarılı" },
+            {2,"Sistem Hatası" },
+            {3,"Kullanıcı Bulunamadı" }
+
+
+        };
         public enum Brands
         {
             Marka1=1,

@@ -52,8 +52,6 @@ namespace Takas.Common.Entities.Concrete
 		public int WrongCount { get; set; }
 
 		public bool isBlocked { get; set; }
-
-
 		//yeni eklendi user ın durumunu belirtiyor
 		public int ActiveStatus { get; set; }
 

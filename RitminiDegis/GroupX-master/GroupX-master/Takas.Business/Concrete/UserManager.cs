@@ -16,7 +16,7 @@ namespace Takas.Business.Concrete
 
         public UserManager(IUserDal userDal)
         {
-	        _userDal = userDal;
+            _userDal = userDal;
         }
 
 
@@ -24,9 +24,11 @@ namespace Takas.Business.Concrete
         {
             try
             {
-                return _userDal.Get(t => t.Email == user.Email && t.Password == user.Password);
+                //user = _userDal.Get(t => t.Email == user.Email && t.Password == user.Password);
+                user = _userDal.EagerLoadingWithParams(t => t.Email == user.Email && t.Password == user.Password, t => t.Tokens).FirstOrDefault();
+                return user;
             }
-            catch (Exception ex)
+            catch
             {
                 return user;
             }
@@ -37,8 +39,8 @@ namespace Takas.Business.Concrete
         {
             try
             {
-               return  await _userDal.AddAsync(user);
-                
+                return await _userDal.AddAsync(user);
+
             }
             catch
             {
@@ -48,34 +50,43 @@ namespace Takas.Business.Concrete
 
         public Task<List<User>> GetList()
         {
-	        return _userDal.GetList();
+            return _userDal.GetList();
         }
 
         public User Get(int id)
         {
-	        return _userDal.Get(x => x.ID == id);
+            return _userDal.Get(x => x.ID == id);
         }
 
         public void Add(User entity)
         {
-	        _userDal.Add(entity);
+            _userDal.Add(entity);
         }
 
         public void Update(User entity)
         {
-	       _userDal.Update(entity);
+            _userDal.Update(entity);
+        }
+        public async Task<bool> UpdateAsync(User entity)
+        {
+            try
+            {
+                return await _userDal.UpdateAsync(entity);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void Delete(User entity)
         {
-	       _userDal.Delete(entity);
+            _userDal.Delete(entity);
         }
-		
-		public User GetUserByEmail(string email)
+
+        public User GetUserByEmail(string email)
         {
             return _userDal.Get(t => t.Email == email);
         }
-
-		
     }
 }

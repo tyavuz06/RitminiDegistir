@@ -22,7 +22,15 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 			}
 		}
 
-		public List<TEntity> GetListWihEagerLoading(string eagerLoading, Expression<Func<TEntity, bool>> Filter = null)
+        public List<TEntity> GetListWithoutTask(Expression<Func<TEntity, bool>> Filter = null)
+        {
+            using (TContext context = new TContext())
+            {
+                return  Filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(Filter).ToList();
+            }
+        }
+
+        public List<TEntity> GetListWihEagerLoading(string eagerLoading, Expression<Func<TEntity, bool>> Filter = null)
 		{
 			using (TContext context = new TContext())
 			{
@@ -54,8 +62,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 				return context.Set<TEntity>().Where(Filter).FirstOrDefault();
 			}
 		}
-
-		public void Add(TEntity entity)
+        public void Add(TEntity entity)
 		{
 			using (TContext context = new TContext())
 			{
@@ -81,6 +88,22 @@ namespace Takas.DataAccess.Concrete.EntityFramework
             }
         }
 
+        public async Task<bool> UpdateAsync(TEntity entity)
+        {
+            using (TContext context = new TContext())
+            {
+                try
+                {
+                    context.Entry(entity).State = EntityState.Modified;
+                    await context.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
         public void Update(TEntity entity)
 		{
 			using (TContext context = new TContext())
@@ -98,5 +121,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 				context.SaveChanges();
 			}
 		}
-	}
+
+        
+    }
 }

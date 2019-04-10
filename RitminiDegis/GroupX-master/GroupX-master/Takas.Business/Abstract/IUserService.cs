@@ -55,11 +55,12 @@ namespace Takas.Business.Abstract
 		/// </summary>
 		/// <param name="entity">User Turunde bir degisken gonderiliyor ve bu degiskene gore User tablosuna ekleme yapmasi isteniyor.</param>
 		void Update(User entity);
+        Task<bool> UpdateAsync(User entity);
 
-		/// <summary>
-		/// Veritabanindaki User tablosundan tek bir kayit silinmaktadir.
-		/// </summary>
-		/// <param name="entity">User türünde bir nesne veriyoruz ve veritabanından o nesne siliniyor.</param>
-		void Delete(User entity);
+        /// <summary>
+        /// Veritabanindaki User tablosundan tek bir kayit silinmaktadir.
+        /// </summary>
+        /// <param name="entity">User türünde bir nesne veriyoruz ve veritabanından o nesne siliniyor.</param>
+        void Delete(User entity);
     }
 }

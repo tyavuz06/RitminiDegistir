@@ -79,6 +79,10 @@
     <Compile Include="Entities\Concrete\WebApiKeyTable.cs" />
     <Compile Include="Entities\Concrete\WebApiTokenKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\LoginResponse.cs" />
+    <Compile Include="Response\TokenResponse.cs" />
+    <Compile Include="Response\UserResponse.cs" />
     <Compile Include="SystemConstants\FacebookEntegration.cs" />
     <Compile Include="SystemConstants\SystemConstannts.cs" />
     <Compile Include="SystemTools\MailOperation.cs" />
@@ -93,5 +97,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

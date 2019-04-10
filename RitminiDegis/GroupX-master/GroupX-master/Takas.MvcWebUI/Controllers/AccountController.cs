@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 using System.Net;
 using System.Net.Http;
 using Takas.Business.Concrete;
 using Takas.Business.Abstract;
 using Takas.Common;
 using Takas.Common.Entities.Concrete;
+using Takas.Common.Response;
+using System.Threading.Tasks;
+using Takas.MvcWebUI.Service;
 
 namespace Takas.MvcWebUI.Controllers
 {
-    
+
     public class AccountController : Controller
     {
         ITokenService _tokenService;
         ISocialUserService _socialUserService;
-		
+
         public AccountController(ISocialUserService socialUserService, ITokenService tokenService)
         {
             _socialUserService = socialUserService;
@@ -29,8 +31,17 @@ namespace Takas.MvcWebUI.Controllers
         User user = new User();
         public ActionResult Login()
         {
-            ViewBag.Title = "ProjectX | Giriş";
-            return View(user);
+            if(LoginControl.ControlLogin()==null)
+            {
+                ViewBag.SystemMessage = TempData["SystemMessage"] as string;
+                ViewBag.Title = "ProjectX | Giriş";
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
         public ActionResult SignUp()
         {
@@ -41,62 +52,54 @@ namespace Takas.MvcWebUI.Controllers
         [HttpPost]
         public ActionResult LoginUser(User user)
         {
-	       var degisken= _socialUserService.EagerLoadingUser();
-
             if (ModelState.IsValid)
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri("http://localhost:2765/");
                 HttpResponseMessage result = client.PostAsJsonAsync("api/Account/Login", new User
                 {
-                    Password = user.Password,
-                    Email = user.Email
+                    Password = Security.sha512encrypt(user.Password).Substring(0, 70),
+                    Email = user.Email,
                 }).Result;
-
+                
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
                     string resultString = result.Content.ReadAsStringAsync().Result;
-                    if (resultString !="\null")
+                    if (resultString != "{\"Token\":null}")
                     {
-                        user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(resultString);
-                        Token token = new Token()
+                        LoginResponse login = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResponse>(resultString);
+                        if (login.Code == 1)
                         {
-                            User_ID = user.ID,
-                            IP = "",
-                            OS = "",
-                            ExpireDate = DateTime.Now.AddDays(1),
-                            Browser = "",
-                            StartDate = DateTime.Now,
-                            TokenValue = RandomSfr.Generate(60),
-                            User = user
-                        };
-
-                        HttpCookie httpCookie = new HttpCookie("userAuth",token.TokenValue);
-                        httpCookie.Expires = token.ExpireDate;
-                        HttpContext.Response.Cookies.Add(httpCookie);
-                        HttpContext.Session["User"] = user;
-
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
+                            HttpCookie httpCookie = new HttpCookie("userAuth", login.Token.TokenValue);
+                            httpCookie.Expires = login.Token.ExpireDate;
+                            HttpContext.Response.Cookies.Add(httpCookie);
+                            HttpContext.Session["User"] = login.Token.User;
+                            return RedirectToAction("Index", "Home");
+                        }
+                        TempData["SystemMessage"] = login.Message;
                         HttpContext.Session["User"] = null;
-                        return View("Login", user);
+                        return RedirectToAction("Login");
                     }
-                       
-                }
-                else
-                {
                     HttpContext.Session["User"] = null;
-                    return RedirectToAction("Login", "Login", user);
+                    return RedirectToAction("Login");
                 }
-                    
-            }
-            else
-            {
+                TempData["SystemMessage"] = "Sistem Hatası";
                 HttpContext.Session["User"] = null;
-                return RedirectToAction("Login", "Login", user);
+                return RedirectToAction("Login");
+
             }
+            HttpContext.Session["User"] = null;
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Abandon();
+            HttpCookie cookie = new HttpCookie("userAuth");
+            cookie.Expires = DateTime.Now;
+            Response.Cookies.Add(cookie);
+
+            return RedirectToAction("Login", "Account");
         }
 
         public ActionResult SignUpUser(User user)
@@ -154,7 +157,7 @@ namespace Takas.MvcWebUI.Controllers
             dynamic userdata = fb.Get("me");
 
             string name = userdata.name;
-            string[] fullname=name.Split(' ');
+            string[] fullname = name.Split(' ');
             userdata.firstname = fullname[0];
             userdata.lastname = fullname[1];
             bool serviceresult = _socialUserService.SocialUserOperation((int)Common.SystemConstants.SystemConstannts.SOCIAL_TYPE.FACEBOOK, userdata.id, userdata.email, userdata.name, userdata.firstname, userdata.lastname);

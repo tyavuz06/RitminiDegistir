@@ -50,7 +50,7 @@ namespace Takas.Business.Concrete
                     PhoneNumber = "12344555"
 
                 };
-                user.Tokens = new List<Token>();
+                //user.Tokens = new List<Token>();
 
                 //o kullanıcıyı socialUser olarak atama
                 socialUser = new SocialUser
@@ -68,7 +68,7 @@ namespace Takas.Business.Concrete
                     ExpireDate = DateTime.Now.AddHours(6),
                     TokenValue = Security.sha512encrypt(RandomSfr.Generate(20)),
                 };
-                user.Tokens.Add(token);
+                //user.Tokens.Add(token);
                 HttpCookie cok = new HttpCookie("userauth", token.TokenValue);
                 cok.Expires = DateTime.Now.AddHours(6);
                 HttpContext.Current.Response.Cookies.Add(cok);
@@ -145,7 +145,7 @@ namespace Takas.Business.Concrete
         // BURASI EAGERLOADING i çekiyor
         public List<SocialUser> EagerLoadingUser()
         {
-	        return _socialUserDal.EagerLoadingWithParams(null,x=>x.User.Tokens); ;
+	        return _socialUserDal.EagerLoadingWithParams(null,x=>x.User.Tokens);
         }
 	}
 }
