@@ -128,10 +128,13 @@ namespace Takas.MvcWebUI.Controllers
 				user.WrongCount = 0;
 				user.RoleID = 1;
 
+				HttpResponseMessage result =WebApiRequestOperation.WebApiRequestOperationMethodForUser(SystemConstannts.WebApiDomainAddress,
+					"api/Account/SignUp", user);
 
-				HttpClient client = new HttpClient();
-				client.BaseAddress = new Uri("http://localhost:2765/");
-				HttpResponseMessage result = client.PostAsJsonAsync("api/Account/SignUp", user).Result;
+				//HttpClient client = new HttpClient();
+				//client.BaseAddress = new Uri("http://localhost:2765/");
+				//HttpResponseMessage result = WebApiRequestOperation.WebApiRequestOperationMethodForUser(SystemConstannts.WebApiDomainAddress,
+				//	"api/Account/SignUp", user);
 
 				if (result.StatusCode == HttpStatusCode.OK)
 				{

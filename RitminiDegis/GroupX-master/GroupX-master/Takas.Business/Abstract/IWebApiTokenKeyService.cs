@@ -15,5 +15,6 @@ namespace Takas.Business.Abstract
 
 		Task<List<WebApiTokenKey>> GetList();
 		WebApiTokenKey GetKey(string apiKey);
+		WebApiTokenKey GetByName(string userName);
 	}
 }

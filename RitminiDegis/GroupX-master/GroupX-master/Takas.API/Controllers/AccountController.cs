@@ -2,10 +2,13 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Takas.API.Authentication;
 using Takas.Business.Abstract;
+using Takas.Business.Concrete;
 using Takas.Common;
 using Takas.Common.Entities.Concrete;
 using Takas.Common.Response;
+using Takas.DataAccess.Concrete.EntityFramework;
 
 namespace Takas.API.Controllers
 {
@@ -36,8 +39,8 @@ namespace Takas.API.Controllers
 		// Yani 200 ok demekti ya 401 bilmem ne hatasi bunlari kendisi atiyor ama bi return OK(user) diyerek okay dondugumuzu NotFound() diyerek atiyorum 500 kodunu gonderecegiz
 		// buda su ise yarayacak karsi tarafta bu kodu alan yazilimci buna gore islem yapmasi gerektigini bilecek aksi durumda kullanici sistemin verecegi hatayi alacak buda kullaniciya detayli aciklama vermemis olacak.
 		// Denemdim ama normalde HttpResponseMessage olarak donersek ModelState i gonderek icersiinde ayrina hangi hatanin oldugunu bildirebiliyoruz ama IHttpActionResult ta modelstate donebilir miyiz emin degilim. (MANTIKEN DONEBILIRIZ ODA BIR OBJECT SONUCTA NESYSE BAKACAGIZ BUNLARA)
-		//	[WebApiAuthorize]
-		//	[Authorize]
+			[WebApiAuthorize(Roles ="Admin")]
+			[Authorize]
 		public object Login(User user)
 		{
 			LoginResponse loginResponse = new LoginResponse();

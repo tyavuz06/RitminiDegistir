@@ -9,6 +9,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 		public TakasContext()
 		{
 			this.Configuration.LazyLoadingEnabled = false;
+			Database.SetInitializer(new TakasContextInitializer());
 		}
 
 		public virtual DbSet<Category> Categories { get; set; }
@@ -25,5 +26,6 @@ namespace Takas.DataAccess.Concrete.EntityFramework
         public virtual DbSet<SocialUser> SocialUsers { get; set; }
 		public virtual DbSet<WebApiTokenKey> WebApiTokenKeys { get; set; }
 
+		
 	}
 }

@@ -79,6 +79,7 @@
     <Compile Include="Concrete\EntityFramework\EfUserDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfWebApiTokenKey.cs" />
     <Compile Include="Concrete\EntityFramework\TakasContext.cs" />
+    <Compile Include="Concrete\EntityFramework\TakasContextInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
