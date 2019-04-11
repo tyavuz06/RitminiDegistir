@@ -18,12 +18,12 @@ namespace Takas.API.Authentication
 		// Bu islemin gerceklesebilmesi icin [Authorize] attribute lerini eklememiz lazzim ya class seviyesinde ya da action seviyesinde eklemelisin. // KendiAuthorize attribute umuzu yazdik role islemleri icin
 		protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 		{
-			var queryString = request.RequestUri.ParseQueryString(); // Burasi Bana bir Collection donduruyor name value seklinde
-			var apiKey = queryString["apiKey"];
+		//	var queryString = request.RequestUri.ParseQueryString(); // Burasi Bana bir Collection donduruyor name value seklinde
+			//var apiKey = queryString["apiKey"];
 
 			// Header dan almak icin ustteki code blogunu kapatip alttaki code blogunu acacagiz.
 			//	var apiKey = request.Headers.GetValues("apiKey").FirstOrDefault(); // heasder a apiKey :"Kullanicinin Verecegi Key" seklinde gonderilir.
-
+			//	var key = request.Headers.GetValues("apiKey");
 			// Bu gelen apiKey e ait bir kullanici var mi buna bakmamiz lazim.
 
 			// Burayi soyle dusunelim arkadaslar. Veritabaninda Tamamen bir ayri tablo olusturacagiz ayni facebook authentication islemindeki gibi bize bir key veriyor biz o key ile cekiyoruz ya ayni mantik burada bir tablo olusturacagiz hepsinden bagimsiz orada key value seklinde apikey tutacagiz. (Biz WebApi kullanicisi Ekleme islemini yapmayacagiz yani facebook taki gibi bir sisteme kayit olma islemi yapmayip burayi elle yazma taraftariyim yani hem mobil hemde mvc tarafi icin elle key ekleyecegiz ve sistem her istek geldigi zaman bu key var mi yok mu diye kontrol edecek yani dirasidan biri bu web api ye istek attigi zaman puufff you have been banned  MadaLavir :D) 

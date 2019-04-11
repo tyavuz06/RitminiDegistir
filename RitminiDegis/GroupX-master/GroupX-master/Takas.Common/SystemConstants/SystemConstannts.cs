@@ -50,6 +50,11 @@ namespace Takas.Common.SystemConstants
 		public const string smtpClient = "smtp-mail.outlook.com";
 		public const string displayName = "ProjectX Destek";
 		public const int smtpPort = 587;
+		public const string apiKey = "apiKey"; // Burasi Her zaman Boyle
+		public const string apiValue = "Ahmet"; // Burasi Degisecek
+
+
+		public const string WebApiDomainAddress = "http://localhost:2765/";
 
 		public static Dictionary<int, string> Cities = new Dictionary<int, string>()
 		{

@@ -45,12 +45,9 @@ namespace Takas.Business.Concrete
 
 		public Token GetWithToken(string tokenValue)
 		{
-			//var Tokenrma = _tokenDal.EagerLoadingParamsAndSelect(x => x.TokenValue == tokenValue && x.ExpireDate > DateTime.Now, null, x => x.User.Tokens);
+			
 			Token token = _tokenDal.EagerLoadingWithParams(t => t.TokenValue == tokenValue && t.ExpireDate > DateTime.Now, x => x.User.Tokens).FirstOrDefault();
-		//	var tokenList = _tokenDal.GetListWithoutTask(t => t.User.ID == token.User.ID);
-			//token.User.Tokens = Tokenrma;
-
-			//token.User.Tokens = tokenList;	
+		
 
 			return token;
 		}

@@ -8,20 +8,19 @@ using Takas.Common.SystemConstants;
 
 namespace Takas.Common.Entities.Concrete
 {
-	public class Exchange:IEntity
-
+	public class Exchange : IEntity
 	{
-	public int ID { get; set; }
+		public int ID { get; set; }
 
-	//[Required]
-	public DateTime Date { get; set; }
+		//[Required]
+		public DateTime Date { get; set; }
 
-	//[Required]
-	public SystemConstannts.Situation Situation { get; set; }
+		//[Required]
+		public SystemConstannts.Situation Situation { get; set; }
 
-	//[Required]
-	public int UserRequest_ID { get; set; }
+		//[Required]
+		public int UserRequest_ID { get; set; }
 
-	public int UserRequested_ID { get; set; }
+		public int UserRequested_ID { get; set; }
 	}
 }

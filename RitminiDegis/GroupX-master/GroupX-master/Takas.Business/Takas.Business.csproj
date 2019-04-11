@@ -87,6 +87,7 @@
     <Compile Include="Concrete\WebApiTokenKeyManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\FluentValidation\FluentValidationRules\ProductValidator.cs" />
+    <Compile Include="ValidationRules\FluentValidation\FluentValidationRules\UserValidator.cs" />
     <Compile Include="ValidationRules\FluentValidation\ValidationTool\ValidationTool.cs" />
   </ItemGroup>
   <ItemGroup>

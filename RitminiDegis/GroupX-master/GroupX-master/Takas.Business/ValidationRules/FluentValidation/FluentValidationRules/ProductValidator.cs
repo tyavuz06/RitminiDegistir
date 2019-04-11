@@ -14,14 +14,11 @@ namespace Takas.Business.ValidationRules.FluentValidation.FluentValidationRules
 	{
 		public ProductValidator()
 		{
-			RuleFor(x => x.Address).MaximumLength(255).NotEmpty().OnFailure(RMA);
-			RuleFor(x => x.ID).NotEmpty().WithMessage("Ups Bu Alan Bos Olamaz");
-		
+
+		//	RuleFor(x => x.Email).NotNull().When(x=>x.)
 		}
 
-		private void RMA(Product obj)
-		{
-			throw new NotImplementedException();
-		}
+		
+
 	}
 }

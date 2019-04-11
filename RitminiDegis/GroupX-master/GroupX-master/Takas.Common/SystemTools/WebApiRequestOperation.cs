@@ -14,21 +14,14 @@ namespace Takas.Common.SystemTools
 {
 	public class WebApiRequestOperation
 	{
-		public static HttpResponseMessage WebApiRequestOperationMethodForUser(string uriString,string requestUri, User user)
+		public static HttpResponseMessage WebApiRequestOperationMethodForUser(string webApiDomainAddress, string apiRequestAddress, object entity)
 		{
+		
 			HttpClient client = new HttpClient();
-			client.BaseAddress = new Uri(uriString);
-			HttpResponseMessage result = client.PostAsJsonAsync(requestUri, new User
-			{
-				Password = user.Password,
-				Email = user.Email
-			}).Result;
-
-			if (result.StatusCode == HttpStatusCode.OK)
-			{
-			}
-
-			return null;
+			client.BaseAddress = new Uri(webApiDomainAddress);
+			client.DefaultRequestHeaders.Add(SystemConstants.SystemConstannts.apiKey, SystemConstants.SystemConstannts.apiValue);
+			HttpResponseMessage result = client.PostAsJsonAsync(apiRequestAddress, entity).Result;
+			return result;
 		}
 	}
 }

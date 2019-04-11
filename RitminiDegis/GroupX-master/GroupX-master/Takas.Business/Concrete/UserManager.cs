@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Takas.Business.Abstract;
+using Takas.Business.ValidationRules.FluentValidation.FluentValidationRules;
+using Takas.Business.ValidationRules.FluentValidation.ValidationTool;
 using Takas.Common.Entities.Concrete;
 using Takas.DataAccess.Abstract;
 using Takas.DataAccess.Concrete.EntityFramework;
@@ -39,6 +42,9 @@ namespace Takas.Business.Concrete
         {
             try
             {
+				UserValidator validator =  new UserValidator();
+				ValidationResult result = validator.Validate(user);
+			//	ValidationTool.Validate(new UserValidator(), user);
                 return await _userDal.AddAsync(user);
 
             }
