@@ -43,13 +43,10 @@ namespace Takas.Business.Concrete
 			_tokenDal.Delete(entity);
 		}
 
-		public Token GetWithToken(string tokenValue)
-		{
-			
-			Token token = _tokenDal.EagerLoadingWithParams(t => t.TokenValue == tokenValue && t.ExpireDate > DateTime.Now, x => x.User.Tokens).FirstOrDefault();
-		
-
-			return token;
-		}
-	}
+        public Token GetWithToken(string tokenValue)
+        {
+            Token token = _tokenDal.EagerLoadingWithParams(t => t.TokenValue == tokenValue && t.ExpireDate > DateTime.Now, x => x.User.Tokens).FirstOrDefault();
+            return token;
+        }
+    }
 }

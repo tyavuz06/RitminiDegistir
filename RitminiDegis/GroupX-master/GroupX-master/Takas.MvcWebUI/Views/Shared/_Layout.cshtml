@@ -109,13 +109,13 @@
 
                             @if (HttpContext.Current.Session["User"] == null)
                             {
-                            <li>
-                                <div class="user-login-info">
-                                    <a href="/Account/Login">
-                                        <img src="~/Content/Site/img/core-img/userlogin.svg" alt="">
-                                    </a>
-                                </div>
-                            </li>
+                                <li>
+                                    <div class="user-login-info">
+                                        <a href="/Account/Login">
+                                            <img src="~/Content/Site/img/core-img/userlogin.svg" alt="">
+                                        </a>
+                                    </div>
+                                </li>
 
                             }
                             else
@@ -127,6 +127,7 @@
                                         </a>
                                         <ul class="dropdown">
                                             <li><a href="/Home/Index">Profil</a></li>
+                                            <li><a href="/Product/AddProduct">Takas Ekle</a></li>
                                             <li><a href="/Product/Index">Ürünlerim</a></li>
                                             <li><a href="/Account/Logout">Çıkış</a></li>
                                         </ul>

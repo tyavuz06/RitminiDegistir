@@ -14,7 +14,6 @@ namespace Takas.MvcWebUI.Service
     {
         public static User ControlLogin()
         {
-
             if (HttpContext.Current.Session["User"] != null)
             {
                 return (User)HttpContext.Current.Session["User"];
@@ -24,43 +23,26 @@ namespace Takas.MvcWebUI.Service
             {
                 string tokenFromCookie = HttpContext.Current.Request.Cookies["userAuth"].Value;
                 HttpClient client = new HttpClient();
-				client.DefaultRequestHeaders.Add(SystemConstannts.apiKey,SystemConstannts.apiValue); 
-			//TODO BURASI BIR METHOD HALINE GETIRILMELIDIR.
+                client.DefaultRequestHeaders.Add(SystemConstannts.apiKey, SystemConstannts.apiValue);
                 client.BaseAddress = new Uri("http://localhost:2765/");
-				
 
-                HttpResponseMessage result = client.PostAsJsonAsync("api/Token/GetUserFromTokenValue/", new Token {
+
+                HttpResponseMessage result = client.PostAsJsonAsync("api/Token/GetUserFromTokenValue/", new Token
+                {
                     TokenValue = tokenFromCookie
                 }).Result;
-                string resultString = result.Content.ReadAsStringAsync().Result;
-				if (result.StatusCode == HttpStatusCode.OK)
+
+                if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    //string resultString = result.Content.ReadAsStringAsync().Result;
+                    string resultString = result.Content.ReadAsStringAsync().Result;
                     if (resultString != "{\"Token\":null}")
                     {
                         TokenResponse tokenResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<TokenResponse>(resultString);
                         if (tokenResponse.Code == 1)
                         {
-                            if (tokenResponse.User != null)
+                            if (tokenResponse.Token.User != null)
                             {
-                                //HttpResponseMessage result2 = client.PostAsJsonAsync("api/User/GetUserFromID", tokenResponse.Token.User_ID).Result;
-                                //if (result.StatusCode == HttpStatusCode.OK)
-                                //{
-                                //    string resultString2 = result.Content.ReadAsStringAsync().Result;
-                                //    if (resultString != "{\"User\":null}")
-                                //    {
-                                //        UserResponse userResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<UserResponse>(resultString2);
-                                //        if (userResponse.Code == 1)
-                                //        {
-                                //            if (userResponse.User != null)
-                                //            {
-                                //                HttpContext.Current.Session["User"] = userResponse.User;
-                                //                return userResponse.User;
-                                //            }
-                                //        }
-                                //    }
-                                //}
-                                return null;
+                                HttpContext.Current.Session["User"] = tokenResponse.Token.User;
                             }
                         }
                     }

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Takas.Common.Entities.Concrete;
 
 namespace Takas.API.Controllers
 {
@@ -13,7 +14,7 @@ namespace Takas.API.Controllers
     {
         [HttpPost]
         [Route("api/Product/AddProduct")]
-        public object AddProduct()
+        public object AddProduct(Product product)
         {
             return null;
         }

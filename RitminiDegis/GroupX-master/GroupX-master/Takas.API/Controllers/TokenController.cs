@@ -29,6 +29,9 @@ namespace Takas.API.Controllers
             try
             {
                 tokenResponse.Token=_tokenService.GetWithToken(token.TokenValue);
+                if (tokenResponse.Token == null)
+                    tokenResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.NOTFOUND);
+                else
                 tokenResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.SUCCESS);
             }
             catch(Exception ex)

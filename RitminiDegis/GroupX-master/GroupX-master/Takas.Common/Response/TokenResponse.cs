@@ -9,8 +9,6 @@ namespace Takas.Common.Response
 {
     public class TokenResponse:BaseResponse
     {
-        public string TokenValue;
-        public User User{ get; set; }
         public Token Token { get; set; }
         
     }
