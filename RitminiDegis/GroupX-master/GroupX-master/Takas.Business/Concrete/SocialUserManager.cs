@@ -71,7 +71,7 @@ namespace Takas.Business.Concrete
                     TokenValue = Security.sha512encrypt(RandomSfr.Generate(20)),
                 };
                 //user.Tokens.Add(token);
-                HttpCookie cok = new HttpCookie("userauth", token.TokenValue);
+                HttpCookie cok = new HttpCookie("userAuth", token.TokenValue);
                 cok.Expires = DateTime.Now.AddHours(6);
                 HttpContext.Current.Response.Cookies.Add(cok);
                 HttpContext.Current.Session["User"] = user;
@@ -144,7 +144,7 @@ namespace Takas.Business.Concrete
                         item.User.Tokens.Add(token);
                     }
 
-                    HttpCookie cok = new HttpCookie("userauth", token.TokenValue);
+                    HttpCookie cok = new HttpCookie("userAuth", token.TokenValue);
                     cok.Expires = DateTime.Now.AddHours(6);
                     HttpContext.Current.Response.Cookies.Add(cok);
                 }
