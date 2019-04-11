@@ -51,7 +51,7 @@ namespace Takas.Common.SystemConstants
 		public const string displayName = "ProjectX Destek";
 		public const int smtpPort = 587;
 		public const string apiKey = "apiKey"; // Burasi Her zaman Boyle
-		public const string apiValue = "Ahmet"; // Burasi Degisecek
+		public const string apiValue = "de3ae6a3-47ae-4145-95ab-0af13a3cb80e"; // Buradaki Key i WebApiTokenKeys tablosuna eklemeyi unutmayin
 
 
 		public const string WebApiDomainAddress = "http://localhost:2765/";

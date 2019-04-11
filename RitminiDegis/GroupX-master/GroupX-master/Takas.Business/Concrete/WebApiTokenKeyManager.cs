@@ -37,5 +37,10 @@ namespace Takas.Business.Concrete
 		{
 			return await _webApiTokenKeyDal.GetList();
 		}
+
+		public WebApiTokenKey GetKey(string apiKey)
+		{
+			return _webApiTokenKeyDal.Get(x => x.UserKey == apiKey);
+		}
 	}
 }

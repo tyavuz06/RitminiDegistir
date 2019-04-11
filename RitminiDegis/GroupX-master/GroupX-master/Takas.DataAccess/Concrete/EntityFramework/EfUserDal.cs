@@ -28,5 +28,23 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 				}
 			}
 		}
+
+		public int UserAddReturnUserId(User entity)
+		{
+			using (TakasContext context = new TakasContext())
+			{
+				try
+				{
+					context.Entry(entity).State = EntityState.Added;
+					context.SaveChanges();
+					return entity.ID;
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+					throw;
+				}
+			}
+		}
 	}
 }

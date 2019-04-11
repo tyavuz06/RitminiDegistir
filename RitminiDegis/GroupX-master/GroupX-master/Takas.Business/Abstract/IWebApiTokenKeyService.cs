@@ -14,5 +14,6 @@ namespace Takas.Business.Abstract
 		void Delete(WebApiTokenKey entity);
 
 		Task<List<WebApiTokenKey>> GetList();
+		WebApiTokenKey GetKey(string apiKey);
 	}
 }

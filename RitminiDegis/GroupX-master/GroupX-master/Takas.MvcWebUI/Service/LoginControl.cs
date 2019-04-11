@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web;
 using Takas.Common.Entities.Concrete;
 using Takas.Common.Response;
+using Takas.Common.SystemConstants;
 
 namespace Takas.MvcWebUI.Service
 {
@@ -23,7 +24,7 @@ namespace Takas.MvcWebUI.Service
             {
                 string tokenFromCookie = HttpContext.Current.Request.Cookies["userAuth"].Value;
                 HttpClient client = new HttpClient();
-				client.DefaultRequestHeaders.Add("apiKey","AHMET"); 
+				client.DefaultRequestHeaders.Add(SystemConstannts.apiKey,SystemConstannts.apiValue); 
 			//TODO BURASI BIR METHOD HALINE GETIRILMELIDIR.
                 client.BaseAddress = new Uri("http://localhost:2765/");
 				

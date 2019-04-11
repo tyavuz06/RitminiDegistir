@@ -42,7 +42,6 @@ namespace Takas.Business.Concrete
                 {
 
                     ActiveStatus = (int)SystemConstannts.Situation.SOCİALUSER,
-                    Email = "a@a.com",
                     Name = firstname,
                     Surname = lastname,
                     isActive = true,
@@ -78,9 +77,9 @@ namespace Takas.Business.Concrete
                 HttpContext.Current.Session["User"] = user;
 
                 //oluşturulan user ve socialuser ı database e kayıt etme
-                _userDal.Add(user);
-                var userr = _userDal.Get(t => t.Name == user.Name && t.Surname == user.Surname && t.Password == user.Password);
-                socialUser.UserID = userr.ID;
+               int eklenenUserID = _userDal.UserAddReturnUserId(user);
+                //var userr = _userDal.Get(t => t.Name == user.Name && t.Surname == user.Surname && t.Password == user.Password);
+                socialUser.UserID = eklenenUserID;
 
                 if (String.IsNullOrEmpty(methodName))
                 {

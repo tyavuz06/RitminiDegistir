@@ -10,5 +10,6 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 {
 	public class EfWebApiTokenKey : EfEntityRepositoryBase<WebApiTokenKey,TakasContext>,IWebApiTokenKeyDal 
 	{
+		
 	}
 }

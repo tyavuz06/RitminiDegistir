@@ -9,5 +9,6 @@ namespace Takas.DataAccess.Abstract
 {
 	public interface IWebApiTokenKeyDal : IEntityRepository<WebApiTokenKey>
 	{
+		
 	}
 }
