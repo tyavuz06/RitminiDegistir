@@ -8,6 +8,7 @@ using Takas.Business.Concrete;
 using Takas.Common;
 using Takas.Common.Entities.Concrete;
 using Takas.Common.Response;
+using Takas.Common.SystemConstants;
 using Takas.DataAccess.Concrete.EntityFramework;
 
 namespace Takas.API.Controllers
@@ -115,7 +116,7 @@ namespace Takas.API.Controllers
 				bool result = await _userService.AddUserWithDataAnnotation(user, typeFullName);
 				if (result)
 				{
-					string link = "<a href='http://localhost:50903/Account/Activate?email=" + user.Email + "&valKey=" + Security.sha512encrypt(user.ValidationKey) + "'>";
+					string link = "<a href='http://localhost:2765/api/Account/Activate?email=" + user.Email + "&valKey=" + Security.sha512encrypt(user.ValidationKey) + "&apiKey="+Security.sha512encrypt(SystemConstannts.apiValue)+"'>";
 					string subjectName = "ProjectX Aktivasyon İşlemi";
 					//todo image işi ayarlanacak.
 					string image = "";

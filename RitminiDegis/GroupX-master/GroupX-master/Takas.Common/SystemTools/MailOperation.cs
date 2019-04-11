@@ -33,6 +33,7 @@ namespace Takas.Common
 			var mail = new MailMessage();
 			//MailAddress bcc = new MailAddress("urenkanaatli@hotmail.com");
 			//mail.Bcc.Add(bcc);
+		//	mail.Headers.Add(SystemConstants.SystemConstannts.apiKey,SystemConstants.SystemConstannts.apiValue);
 
 			mail.From = new MailAddress(senderInfo.UserName, senderdisplayName);
 
