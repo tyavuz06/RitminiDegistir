@@ -28,7 +28,7 @@ namespace Takas.Business.Concrete
             try
             {
                 //user = _userDal.Get(t => t.Email == user.Email && t.Password == user.Password);
-                user = _userDal.EagerLoadingWithParams(t => t.Email == user.Email && t.Password == user.Password, t => t.Tokens).FirstOrDefault();
+                user = _userDal.EagerLoadingWithParams(t => t.Email == user.Email && t.Password == user.Password && t.isActive==true, t => t.Tokens).FirstOrDefault();
                 return user;
             }
             catch
