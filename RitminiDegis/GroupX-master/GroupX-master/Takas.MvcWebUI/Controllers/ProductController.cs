@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using Takas.Business.Abstract;
 using Takas.Common.Entities.Concrete;
@@ -10,7 +6,7 @@ using Takas.MvcWebUI.Models;
 
 namespace Takas.MvcWebUI.Controllers
 {
-    public class ProductController : Controller
+	public class ProductController : Controller
     {
         IProductService _productService;
         IProductImageGalleryService _productImageGalleryService;

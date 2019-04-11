@@ -104,9 +104,13 @@ namespace Takas.Business.Concrete
 				}
 				else
 				{
-					ValidationTool.Validate(new UserValidatorNotNull(), user);
+				//	ValidationTool.Validate(new UserValidatorNotNull(), user);
 					UserValidatorNotNull validator = new UserValidatorNotNull();
 					ValidationResult result = validator.Validate(user);
+					if (!result.IsValid)
+					{
+						return false;
+					}
 				
 				}
 

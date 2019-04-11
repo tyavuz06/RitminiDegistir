@@ -52,7 +52,7 @@ namespace Takas.Business.Concrete
                     PhoneNumber = "12344555"
 
                 };
-                //user.Tokens = new List<Token>();
+                user.Tokens = new List<Token>();
 
                 //o kullanıcıyı socialUser olarak atama
                 socialUser = new SocialUser
@@ -77,19 +77,27 @@ namespace Takas.Business.Concrete
                 HttpContext.Current.Session["User"] = user;
 
                 //oluşturulan user ve socialuser ı database e kayıt etme
-               int eklenenUserID = _userDal.UserAddReturnUserId(user);
+             //  int eklenenUserID = _userDal.UserAddReturnUserId(user);
                 //var userr = _userDal.Get(t => t.Name == user.Name && t.Surname == user.Surname && t.Password == user.Password);
-                socialUser.UserID = eklenenUserID;
+              //  socialUser.UserID = eklenenUserID;
 
                 if (String.IsNullOrEmpty(methodName))
                 {
-	                ValidationTool.Validate(new UserValidator(), user);
+	                //ValidationTool.Validate(new UserValidator(), user);
 	                UserValidator validator = new UserValidator();
 	                ValidationResult result = validator.Validate(user);
 
 					// TANSU BURAYA DUSMESI LAZIM CODUN
 					// Kullaniciyi eklemeden buraya breakpoint koyar misin bakalim buraya dusucek mi
 					// Tam _socialUserDal.Add(socialUser); un oraya koy ekleme yapmasin ama oraya dustugunu gorelim
+					//oluşturulan user ve socialuser ı database e kayıt etme
+					user.Tokens.Add(token);
+					int eklenenUserID = _userDal.UserAddReturnUserId(user);
+					//var userr = _userDal.Get(t => t.Name == user.Name && t.Surname == user.Surname && t.Password == user.Password);
+					socialUser.UserID = eklenenUserID;
+
+				
+
 					_socialUserDal.Add(socialUser);
 				}
                 else

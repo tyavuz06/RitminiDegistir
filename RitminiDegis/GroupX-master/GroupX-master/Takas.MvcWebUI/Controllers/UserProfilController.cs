@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Takas.MvcWebUI.Controllers
 {
 	/// <summary>
 	/// Kullanici Kendi takas listelerini goruntuleyip bilgielrini guncelleyebilecek
 	/// </summary>
-    public class UserProfilController : Controller
+	public class UserProfilController : Controller
     {
         public UserProfilController()
         {
