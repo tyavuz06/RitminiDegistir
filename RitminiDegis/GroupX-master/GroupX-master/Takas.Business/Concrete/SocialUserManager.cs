@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using FluentValidation.Results;
 using Takas.Business.Abstract;
+using Takas.Business.ValidationRules.FluentValidation.FluentValidationRules;
+using Takas.Business.ValidationRules.FluentValidation.ValidationTool;
 using Takas.Common;
 using Takas.Common.Entities.Concrete;
 using Takas.Common.SystemConstants;
@@ -26,7 +29,7 @@ namespace Takas.Business.Concrete
             _tokenDal = tokenDal;
         }
 
-        public bool SocialUserOperation(int socialType, string socialID, string email, string username, string firstname, string lastname)
+        public bool SocialUserOperation(int socialType, string socialID, string email, string username, string firstname, string lastname,string methodName)
         {
 
             //bu kullanıcı daha once kayıt olmuşmu
@@ -79,11 +82,29 @@ namespace Takas.Business.Concrete
                 var userr = _userDal.Get(t => t.Name == user.Name && t.Surname == user.Surname && t.Password == user.Password);
                 socialUser.UserID = userr.ID;
 
-                _socialUserDal.Add(socialUser);
-
-
-                try
+                if (String.IsNullOrEmpty(methodName))
                 {
+	                ValidationTool.Validate(new UserValidator(), user);
+	                UserValidator validator = new UserValidator();
+	                ValidationResult result = validator.Validate(user);
+
+					// TANSU BURAYA DUSMESI LAZIM CODUN
+					// Kullaniciyi eklemeden buraya breakpoint koyar misin bakalim buraya dusucek mi
+					// Tam _socialUserDal.Add(socialUser); un oraya koy ekleme yapmasin ama oraya dustugunu gorelim
+					_socialUserDal.Add(socialUser);
+				}
+                else
+                {
+	                ValidationTool.Validate(new UserValidatorNotNull(), user);
+	                UserValidatorNotNull validator = new UserValidatorNotNull();
+	                ValidationResult result = validator.Validate(user);
+
+                }
+				// _socialUserDal.Add(socialUser); buradaydi If icerisine aldim
+
+
+				try
+				{
 
                     return true;
 

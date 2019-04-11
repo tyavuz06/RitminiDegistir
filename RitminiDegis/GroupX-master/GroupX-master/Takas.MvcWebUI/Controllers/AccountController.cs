@@ -115,6 +115,7 @@ namespace Takas.MvcWebUI.Controllers
 
 		public ActionResult SignUpUser(User user)
 		{
+			
 			if (ModelState.IsValid)
 			{
 				user.AccountActiveDate = DateTime.Now;
@@ -171,7 +172,7 @@ namespace Takas.MvcWebUI.Controllers
 			string[] fullname = name.Split(' ');
 			userdata.firstname = fullname[0];
 			userdata.lastname = fullname[1];
-			bool serviceresult = _socialUserService.SocialUserOperation((int)Common.SystemConstants.SystemConstannts.SOCIAL_TYPE.FACEBOOK, userdata.id, userdata.email, userdata.name, userdata.firstname, userdata.lastname);
+			bool serviceresult = _socialUserService.SocialUserOperation((int)Common.SystemConstants.SystemConstannts.SOCIAL_TYPE.FACEBOOK, userdata.id, userdata.email, userdata.name, userdata.firstname, userdata.lastname,null);
 
 			if (serviceresult)
 			{

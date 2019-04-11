@@ -9,5 +9,6 @@ namespace Takas.DataAccess.Abstract
 {
 	public interface IUserDal : IEntityRepository<User>
 	{
+		Task<bool> AddUserWithDataAnnotationAsyn(User entity,string methodName);
 	}
 }

@@ -42,13 +42,14 @@ namespace Takas.Business.Concrete
         {
             try
             {
+
 				UserValidator validator =  new UserValidator();
 				ValidationResult result = validator.Validate(user);
 			//	ValidationTool.Validate(new UserValidator(), user);
                 return await _userDal.AddAsync(user);
 
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
@@ -89,6 +90,36 @@ namespace Takas.Business.Concrete
         {
             _userDal.Delete(entity);
         }
+
+        public async Task<bool> AddUserWithDataAnnotation(User user, string methodName)
+        {
+			try
+			{
+				if (String.IsNullOrEmpty(methodName))
+				{
+					ValidationTool.Validate(new UserValidator(), user);
+					UserValidator validator = new UserValidator();
+					ValidationResult result = validator.Validate(user);
+					
+				}
+				else
+				{
+					ValidationTool.Validate(new UserValidatorNotNull(), user);
+					UserValidatorNotNull validator = new UserValidatorNotNull();
+					ValidationResult result = validator.Validate(user);
+				
+				}
+
+				
+				
+				return await _userDal.AddAsync(user);
+
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
 
         public User GetUserByEmail(string email)
         {

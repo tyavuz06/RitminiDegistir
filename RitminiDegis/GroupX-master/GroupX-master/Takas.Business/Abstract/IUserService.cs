@@ -62,5 +62,14 @@ namespace Takas.Business.Abstract
         /// </summary>
         /// <param name="entity">User türünde bir nesne veriyoruz ve veritabanından o nesne siliniyor.</param>
         void Delete(User entity);
-    }
+
+
+		/// <summary>
+		/// Async Olarak User Ekleme Islemı yapar Gerıye Boolean türünde değer döner, Bizden method ismi isteceyecktir.
+		/// </summary>
+		/// <param name="user"> User turunde User</param>
+		/// <param name="methodName"> hangi method tan geldigimizi soyleyen bir olay</param>
+		/// <returns>boolen turunde </returns>
+		Task<bool> AddUserWithDataAnnotation(User user,string methodName);
+	}
 }
