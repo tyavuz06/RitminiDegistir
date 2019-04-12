@@ -15,6 +15,11 @@ namespace Takas.Common.SystemConstants
             NOTFOUND = 3
 
         }
+        public enum USER_ROLES
+        {
+            USER=1,
+            ADMIN=2
+        }
 
 
         public static Dictionary<int, string> ERROR_MESSAGE = new Dictionary<int, string>

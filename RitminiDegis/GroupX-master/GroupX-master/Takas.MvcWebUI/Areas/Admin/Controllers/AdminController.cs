@@ -4,8 +4,10 @@ using System.Data.Entity.Infrastructure.MappingViews;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Takas.Business.Abstract;
 using Takas.Common.Entities.Concrete;
 
 
@@ -15,17 +17,20 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 	//TODO Web Api lere gitmeden once ModelState lerimizi kontrol edelim hata varsa webapi ye gitmeyecegiz bunlari unutma.
 	public class AdminController : Controller
 	{
-		// GET: Admin/Admin
-		public ActionResult Index()
+        IUserService _userservice;
+        public AdminController(IUserService userservice)
+        {
+            _userservice = userservice;
+        }
+
+        // GET: Admin/Admin
+        public async Task<ActionResult> Index()
 		{
-			//todo Bu sayfada bir model gidcek bu model de User Class imizi gonderecek. Veritabanindaki tum kullanicilari buraya gonderecegiz. WebApi den gelecek buraya degerler. Admin Panel aslinda Web Api ile calismasa da olur mu acaba bunu bir dusunelim.
-
-			
-			
-			
-
-
-			return View();
+            //todo Bu sayfada bir model gidcek bu model de User Class imizi gonderecek. Veritabanindaki tum kullanicilari buraya gonderecegiz. WebApi den gelecek buraya degerler. Admin Panel aslinda Web Api ile calismasa da olur mu acaba bunu bir dusunelim.
+            Models.UserShowViewModel model = new Models.UserShowViewModel();
+            List<User>users= await _userservice.GetList();
+           
+			return View(users);
 		}
 
 		public ActionResult UserList()
