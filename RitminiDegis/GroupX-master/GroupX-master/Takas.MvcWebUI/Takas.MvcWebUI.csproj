@@ -2247,6 +2247,7 @@
     <Content Include="Areas\Admin\Views\AdminPart2\Update.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPart2\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelCategoryList.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelMessageList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
