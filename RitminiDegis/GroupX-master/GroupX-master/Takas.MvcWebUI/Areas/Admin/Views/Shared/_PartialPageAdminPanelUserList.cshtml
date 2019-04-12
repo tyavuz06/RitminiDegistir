@@ -1,5 +1,5 @@
-﻿@model List<Takas.Common.Entities.Concrete.User>
-@*@model Takas.MvcWebUI.Areas.Admin.Models.UserShowViewModel*@
+﻿
+@model Takas.MvcWebUI.Areas.Admin.Models.UserShowViewModel
 @{ bool GosterilsinMi = false; }
 @{
     // Eger Gelen action Name TumKullanicilar ise otomatikman Kullanacagi Layout u vermis oluyoruz.
@@ -89,7 +89,7 @@
                 <tbody>
                     @if (GosterilsinMi)
                     {
-                        foreach (var item in Model)
+                        foreach (var item in Model.Users)
                         {
                             
                         <tr>

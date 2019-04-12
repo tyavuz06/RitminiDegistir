@@ -9,6 +9,5 @@ namespace Takas.MvcWebUI.Areas.Admin.Models
     public class UserShowViewModel
     {
         public List<User> Users { get; set; }
-
     }
 }

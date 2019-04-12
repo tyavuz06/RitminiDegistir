@@ -80,10 +80,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 
 					return context.Set<TEntity>().Include(paths.First()).Where(Filter).Select(FilterSelect).ToList();
 				}
-
 				return null;
-
-
 			}
 		}
 
