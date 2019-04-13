@@ -46,7 +46,7 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 					Browser = "",
 					StartDate = DateTime.Now,
 					TokenValue = RandomSfr.Generate(60),
-				};
+				});
 			}
 		}
 	}
