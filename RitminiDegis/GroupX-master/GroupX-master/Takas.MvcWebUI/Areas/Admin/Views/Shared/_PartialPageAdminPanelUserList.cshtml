@@ -91,35 +91,40 @@
                     {
                         foreach (var item in Model.Users)
                         {
-                            
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.Surname</td>
-                            <td>@item.Email</td>
-                            <td>@item.PhoneNumber</td>
-                            <td>@item.RoleID</td>
-                            <td>
-                                <a href="@Url.Action("Update", "Admin", new { id = 1 })" class="btn btn-outline-success btn-sm">Guncelle</a>
-                                <a href="@Url.Action("Delete", "Admin", new {id = 1})" class="btn btn-outline-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz')">Sil</a>
-                            </td>
-                        </tr>
+
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.Email</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.RoleID</td>
+                                <td>
+                                    <a href="@Url.Action("Update", "Admin", new { id = 1 })" class="btn btn-outline-success btn-sm">Guncelle</a>
+                                    <a href="@Url.Action("Delete", "Admin", new { id = 1 })" class="btn btn-outline-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz')">Sil</a>
+                                </td>
+                            </tr>
 
                         }
                     }
                     else
                     {
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>Burasi Adress Kismi RMA</td>
-                        </tr>
+                        foreach (var item in Model.Users)
+                        {
+
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.Email</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.RoleID</td>
+                                <td>@item.Address</td>
+                               
+                            </tr>
+
+                        }
                     }
 
-                    
-                </tbody>
+                    </tbody>
             </table>
         </div>
     </div>
