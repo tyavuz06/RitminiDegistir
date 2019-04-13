@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure.MappingViews;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Takas.Business.Abstract;
 using Takas.Common.Entities.Concrete;
 
 
@@ -15,25 +11,39 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 	//TODO Web Api lere gitmeden once ModelState lerimizi kontrol edelim hata varsa webapi ye gitmeyecegiz bunlari unutma.
 	public class AdminController : Controller
 	{
-		// GET: Admin/Admin
-		public ActionResult Index()
+		#region Ctor
+		IUserService _userservice;
+		public AdminController(IUserService userservice)
 		{
-			//todo Bu sayfada bir model gidcek bu model de User Class imizi gonderecek. Veritabanindaki tum kullanicilari buraya gonderecegiz. WebApi den gelecek buraya degerler. Admin Panel aslinda Web Api ile calismasa da olur mu acaba bunu bir dusunelim.
-
-			
-			
-			
+			_userservice = userservice;
+		}
+		#endregion
 
 
-			return View();
+
+
+		#region Index Sayfasi - UserList Cekiliyoruz ayrica
+		// GET: Admin/Admin
+		public async Task<ActionResult> Index()
+		{
+			Models.UserShowViewModel model = new Models.UserShowViewModel();
+
+			model.Users = await _userservice.GetList();
+			TempData["UserShowViewModel"] = model;
+			return View(model);
+
 		}
 
 		public ActionResult UserList()
 		{
-			//todo Bu sayfada bir model gidcek bu model de User Class imizi gonderecek. Veritabanindaki tum kullanicilari buraya gonderecegiz. WebApi den gelecek buraya degerler.
-
-			return View("_PartialPageAdminPanelUserList");
+			var model = TempData["UserShowViewModel"];
+			return View("_PartialPageAdminPanelUserList", model);
 		}
+		#endregion
+
+
+
+		#region User Ekleme Islemleri
 
 		[HttpGet]
 		public ActionResult AddUser()
@@ -43,27 +53,63 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult AddUser(User user)
+		public async Task<ActionResult> AddUser(User user)
 		{
-			//Todo Burada Kullanici ekleme islemi yapilacak WebApi uzerinden.	
+			// Eger Gelen Kullanici Validation lari gecememis ise geriye gonderiyoruz.
+			if (!ModelState.IsValid)
+			{
+				return View(user);
+			}
+
+			try
+			{
+				await _userservice.AddUser(user);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+
+			}
+
 			//ToDo viewbag ile deger gonderelim bu sayfamiza kullanici kayit olduktan sonra ekrana popup acip kullanci basarili bir sekilde kaydoldu diyebiliriz.
 			return View();
 		}
 
+		#endregion
+
+
+
+
+		#region User Update Islemleri
+
 		public ActionResult Update(int id)
 		{
-			//Todo Web Api uzerinden islem yapacagiz
-			//Todo gidip Id ye gore Bu degerleri cekecegiz sonra bunu view a bascacagiz.
-			return View();
+			if (id == 0)
+			{
+				return HttpNotFound();
+			}
+
+			User updateUser = null;
+			try
+			{
+				updateUser = _userservice.Get(id);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+
+			}
+
+			return View(updateUser);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Update(User user)
+		public async Task<ActionResult> Update(User user)
 		{
 			if (ModelState.IsValid)
 			{
-				//Todo WebApi ye gonder Kayit Islemini Yapsin
+				await _userservice.UpdateAsync(user);
 				return RedirectToAction("Index");
 			}
 			else
@@ -72,12 +118,30 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 			}
 		}
 
+		#endregion
+
+
+
+
+		#region User Delete Islemleri
 		public ActionResult Delete(int id)
 		{
-			//Todo Web Api uzerinden islem yapacagiz
-			//todo Gelen id ye gore 
+			if (id == 0)
+			{
+				return HttpNotFound();
+			}
+
+			try
+			{
+				var user = _userservice.Get(id);
+				_userservice.Delete(user);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
 			return RedirectToAction("Index");
 		}
-
+		#endregion
 	}
 }

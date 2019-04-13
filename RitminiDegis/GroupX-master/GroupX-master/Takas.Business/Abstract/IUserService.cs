@@ -31,6 +31,7 @@ namespace Takas.Business.Abstract
 		/// <returns>User</returns>
 		User GetUserByEmail(string email);
 
+
         /// <summary>
         /// Bu Method VeriTabanindaki Tum User Listesini Getitir.
         /// </summary>

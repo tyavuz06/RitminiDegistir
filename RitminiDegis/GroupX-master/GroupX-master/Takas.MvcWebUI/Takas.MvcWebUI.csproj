@@ -1889,6 +1889,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminPart2Controller.cs" />
+    <Compile Include="Areas\Admin\Models\UserShowViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OrnekController.cs" />
@@ -2246,6 +2247,7 @@
     <Content Include="Areas\Admin\Views\AdminPart2\Update.cshtml" />
     <Content Include="Areas\Admin\Views\AdminPart2\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelCategoryList.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelMessageList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
@@ -2270,7 +2272,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Ornek\" />
   </ItemGroup>
   <ItemGroup>

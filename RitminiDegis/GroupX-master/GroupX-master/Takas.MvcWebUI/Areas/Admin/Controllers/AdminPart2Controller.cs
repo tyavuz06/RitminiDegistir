@@ -10,6 +10,7 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 {
     public class AdminPart2Controller : Controller
     {
+        #region
         // GET: Admin/AdminPart2
         public ActionResult CategoryList()
         {
@@ -58,5 +59,12 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
             //todo Gelen id ye gore 
             return RedirectToAction("CategoryList");
         }
+        #endregion
+
+        public ActionResult MessageList()
+        {
+            return View("_PartialPageAdminPanelMessageList");
+        }
+
     }
 }
