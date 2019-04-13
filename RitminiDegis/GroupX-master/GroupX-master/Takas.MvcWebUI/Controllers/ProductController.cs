@@ -60,27 +60,56 @@ namespace Takas.MvcWebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                string path = Server.MapPath("~/Uploads/");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
+                //string path = Server.MapPath("~/Uploads/");
+                //if (!Directory.Exists(path))
+                //{
+                //    Directory.CreateDirectory(path);
+                //}
+
                 product.Situation = SystemConstannts.Situation.BEKLEMEDE;
                 product.Date = DateTime.Now;
                 product.User_ID = (HttpContext.Session["User"] as User).ID;
                 product.Image = PImage.FileName;
+                HttpResponseMessage result;
+                using (HttpClient client = new HttpClient())
+                {
+                    using (var content = new MultipartFormDataContent())
+                    {
+                        byte[] Bytes = new byte[PImage.InputStream.Length + 1];
+                        PImage.InputStream.Read(Bytes, 0, Bytes.Length);
+                        var fileContent = new ByteArrayContent(Bytes);
+                        fileContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment") { FileName = PImage.FileName };
+                        content.Add(fileContent);
 
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://localhost:2765/");
-                HttpResponseMessage result = client.PostAsJsonAsync("api/Product/AddProduct", product).Result;
+                        client.DefaultRequestHeaders.Add(SystemConstannts.apiKey, SystemConstannts.apiValue);
+                        var requestUri = "http://localhost:2765/api/Product/AddProductImageToFolder";
+                        result = client.PostAsync(requestUri, content).Result;
 
+                    }
+                }
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    string resultString = result.Content.ReadAsStringAsync().Result;
-
+                    using (HttpClient client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri("http://localhost:2765/");
+                        client.DefaultRequestHeaders.Add(SystemConstannts.apiKey, SystemConstannts.apiValue);
+                        result = client.PostAsJsonAsync("api/Product/AddProduct", product).Result;
+                    }
+                    if (result.StatusCode == HttpStatusCode.OK)
+                    {
+                        string resultString = result.Content.ReadAsStringAsync().Result;
+                        if (resultString != "{\"Product\":null}")
+                        {
+                            ProductAddResponse addResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductAddResponse>(resultString);
+                            if(addResponse.Code==1)
+                            {
+                                return RedirectToAction("MyProducts","UserProfil");
+                            }
+                        }
+                    }
                 }
             }
-            return View("AddProduct");
+            return RedirectToAction("AddProduct");
         }
     }
 }

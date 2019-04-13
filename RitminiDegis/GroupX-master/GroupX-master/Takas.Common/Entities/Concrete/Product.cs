@@ -36,11 +36,10 @@ namespace Takas.Common.Entities.Concrete
         public int Category_ID { get; set; }
         //[Required]
         public int User_ID { get; set; }
+        [ForeignKey("Category_ID")]
         public virtual Category Category { get; set; }
         [ForeignKey("BrandID")]
         public virtual Brand Brand { get; set; }
-        public virtual ICollection<Favorite> Favourites { get; set; }
-        public virtual ICollection<ProductImageGallery> ProductImageGalleries { get; set; }
         [ForeignKey("User_ID")]
         public virtual User User { get; set; }
     }
