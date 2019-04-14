@@ -9,6 +9,7 @@ namespace Takas.Common.Response
 {
     public class GetUserProductResponse : BaseResponse
     {
+        string deneme; //burası recepte tam gitmediği için eklendi
         public List<Product> Products { get; set; }
     }
 }
