@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,9 +44,10 @@ namespace Takas.Common.Entities.Concrete
 
 		public int RoleID { get; set; }
 
-		public DateTime AccountCreateDate { get; set; }
-
-		public DateTime AccountActiveDate { get; set; }
+		[DataType(DataType.DateTime)]
+		public DateTime? AccountCreateDate { get; set; }
+		[DataType(DataType.DateTime)]
+		public DateTime? AccountActiveDate { get; set; }
 
 		public bool isActive { get; set; }
 

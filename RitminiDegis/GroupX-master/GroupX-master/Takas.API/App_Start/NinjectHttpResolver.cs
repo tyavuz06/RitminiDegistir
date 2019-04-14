@@ -108,6 +108,11 @@ namespace Takas.API.App_Start
 				Bind<IWebApiTokenKeyService>().To<WebApiTokenKeyManager>().InSingletonScope();
 
 				Bind<IWebApiTokenKeyDal>().To<EfWebApiTokenKey>().InSingletonScope();
+
+				Bind<IBrandService>().To<BrandManager>().InSingletonScope();
+
+				Bind<IBrandDal>().To<EfBrandDal>().InSingletonScope();
+
 			} /// Ninject icin burada Bind Islemi yapiyoruz
 		}
 	}

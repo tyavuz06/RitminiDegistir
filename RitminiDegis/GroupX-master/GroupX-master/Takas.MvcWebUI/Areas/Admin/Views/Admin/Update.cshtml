@@ -9,7 +9,7 @@
     Guncelleme Islemi
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Update", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -33,7 +33,7 @@
                 @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -71,5 +71,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark" })
 </div>

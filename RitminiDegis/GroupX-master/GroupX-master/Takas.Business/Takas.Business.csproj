@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBrandService.cs" />
     <Compile Include="Abstract\ICategoryService.cs" />
     <Compile Include="Abstract\IExchangeService.cs" />
     <Compile Include="Abstract\IFavoriteService.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Abstract\IUserService.cs" />
     <Compile Include="Abstract\IWebApiTokenKeyService.cs" />
     <Compile Include="Concrete\CategoryManager.cs" />
+    <Compile Include="Concrete\BrandManager.cs" />
     <Compile Include="Concrete\ExchangeManager.cs" />
     <Compile Include="Concrete\FavoriteManager.cs" />
     <Compile Include="Concrete\MessageManager.cs" />
