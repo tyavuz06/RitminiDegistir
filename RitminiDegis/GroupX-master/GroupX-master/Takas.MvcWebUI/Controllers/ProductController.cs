@@ -12,6 +12,7 @@ using Takas.Common;
 using Takas.Common.Entities.Concrete;
 using Takas.Common.Response;
 using Takas.Common.SystemConstants;
+using Takas.Common.SystemTools;
 using Takas.MvcWebUI.Models;
 
 namespace Takas.MvcWebUI.Controllers
@@ -29,6 +30,10 @@ namespace Takas.MvcWebUI.Controllers
 
 		public ActionResult Index()
 		{
+			HttpResponseMessage result;
+			result = WebApiRequestOperation.WebApiRequestOperationMethodForUser(SystemConstannts.WebApiDomainAddress, "api/Product/ProductList",
+				new { user = ((User)HttpContext.Session["User"]) });
+			
 			return View();
 		}
 
@@ -71,8 +76,10 @@ namespace Takas.MvcWebUI.Controllers
 				product.User_ID = (HttpContext.Session["User"] as User).ID;
 				product.Image = PImage.FileName;
 				HttpResponseMessage result;
+
 				using (HttpClient client = new HttpClient())
 				{
+					
 					using (var content = new MultipartFormDataContent())
 					{
 						byte[] Bytes = new byte[PImage.InputStream.Length + 1];
@@ -83,8 +90,7 @@ namespace Takas.MvcWebUI.Controllers
 
 						client.DefaultRequestHeaders.Add(SystemConstannts.apiKey, SystemConstannts.apiValue);
 						var requestUri = "http://localhost:2765/api/Product/AddProductImageToFolder";
-						result = client.PostAsync(requestUri, content).Result;
-
+						result = client.PostAsync(requestUri, content).Result;	
 					}
 				}
 				if (result.StatusCode == HttpStatusCode.OK)

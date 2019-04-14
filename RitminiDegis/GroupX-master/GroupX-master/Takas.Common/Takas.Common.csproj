@@ -83,6 +83,7 @@
     <Compile Include="Response\BaseResponse.cs" />
     <Compile Include="Response\LoginResponse.cs" />
     <Compile Include="Response\ProductAddResponse.cs" />
+    <Compile Include="Response\ProductReturnResponse.cs" />
     <Compile Include="Response\TokenResponse.cs" />
     <Compile Include="Response\UserResponse.cs" />
     <Compile Include="SystemConstants\FacebookEntegration.cs" />
