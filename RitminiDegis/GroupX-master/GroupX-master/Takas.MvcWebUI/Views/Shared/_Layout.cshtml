@@ -16,7 +16,7 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="/Content/Site/css/core-style.css">
     <link rel="stylesheet" href="/Content/Site/style.css">
-
+    @RenderSection("Css", false);
 </head>
 <body>
     <!-- ##### Header Area Start ##### -->
@@ -330,6 +330,7 @@
     <script src="/Content/Site/js/classy-nav.min.js"></script>
     <!-- Active js -->
     <script src="/Content/Site/js/active.js"></script>
+    @RenderSection("Script",false)
 
 </body>
 

@@ -1,6 +1,70 @@
-﻿
+﻿@model ProductFilterViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Script
+{
+    <script>
+
+        @*$(function()
+        {
+            $("#btnFilterSearch").onClick(function() {
+
+                var _categoryName = $("#categoryName").val();
+                var _brandName = $("#brandName").val();
+
+                var _data = {
+                    categoryName: _categoryName,
+                    brandName: _brandName
+                };
+
+                $.ajax({
+                    url: @Url.Action("ProducFilter","Product"),
+                    type: "POST",
+                    data:_data
+
+                })
+
+            })
+        }
+        )*@
+
+        $(function() {
+            alert("RMA");
+            $(".uflemeliler").click(function() {
+
+                var tiklanan = $(this).text(); //Tiklanain Text degerini aliyorum.
+                $(this).off('click'); // ikinci Kez tiklanmasini engelliyorum
+                $("#displayNoneKaldir").css('display', 'block');
+                //   $("#filterSecilenGoster").append("<p>" + tiklanan + "</p>" +"<span class='Kaldir fa fa-times'></span>");
+                $("#filterSecilenGoster").append("<p class='pHover' onclick='Sil(this)'>" +
+                    tiklanan +
+                    "<i class='fa fa-times'></i> </p>"); // FilterSilmeIslemi adinda class olusturdum.
+            });
+
+
+        });
+
+
+        function Sil(e) {
+            console.log(e);
+            var _text = e.textContent;
+            console.log(_text);
+            console.log($("a:contains("+_text+")").bind('click'));
+            console.log($("a:contains(" + _text + ")"));
+            $("a:contains("+_text+")").bind('click');
+            e.remove();
+
+        }
+
+
+    </script>
+
+    <style>
+        .pHover :hover {
+            background-color: red;
+        }
+    </style>
 }
 
 
@@ -10,7 +74,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="page-title text-center">
-                    <h2>dresses</h2>
+                    <h2>Urunler</h2>
                 </div>
             </div>
         </div>
@@ -24,107 +88,62 @@
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="shop_sidebar_area">
 
+                    <div class="widget price mb-50">
+                        <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Filtrele</h6>
+                        <!-- Widget Title 2 -->
+                    </div>
                     <!-- ##### Single Widget ##### -->
                     <div class="widget catagory mb-50">
                         <!-- Widget Title -->
-                        <h6 class="widget-title mb-30">Catagories</h6>
+                        <h6 class="widget-title mb-30">Kategoriler</h6>
 
                         <!--  Catagories  -->
                         <div class="catagories-menu">
                             <ul id="menu-content2" class="menu-content collapse show">
                                 <!-- Single Item -->
                                 <li data-toggle="collapse" data-target="#clothing">
-                                    <a href="#">clothing</a>
+                                    <a href="#">Uflemeli Calgilar</a>
                                     <ul class="sub-menu collapse show" id="clothing">
-                                        <li><a href="#">All</a></li>
-                                        <li><a href="#">Bodysuits</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                        <li><a href="#">Jackets &amp; Coats</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Pants &amp; Leggings</a></li>
-                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                        <li><a href="#">Shirts &amp; Blouses</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                        <li><a class="uflemeliler bulBeni">Flut</a></li>
+                                        <li><a class="uflemeliler bulBeni">Borazan</a></li>
                                     </ul>
                                 </li>
                                 <!-- Single Item -->
                                 <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                    <a href="#">shoes</a>
+                                    <a href="#">Tellıler</a>
                                     <ul class="sub-menu collapse" id="shoes">
-                                        <li><a href="#">All</a></li>
-                                        <li><a href="#">Bodysuits</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                        <li><a href="#">Jackets &amp; Coats</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Pants &amp; Leggings</a></li>
-                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                        <li><a href="#">Shirts &amp; Blouses</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                        <li><a href="#">Keman</a></li>
+                                        <li><a href="#">Chello</a></li>
+                                        <li><a href="#">Saz</a></li>
+                                        <li><a href="#">Gitar</a></li>
                                     </ul>
                                 </li>
-                                <!-- Single Item -->
-                                <li data-toggle="collapse" data-target="#accessories" class="collapsed">
-                                    <a href="#">accessories</a>
-                                    <ul class="sub-menu collapse" id="accessories">
-                                        <li><a href="#">All</a></li>
-                                        <li><a href="#">Bodysuits</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                        <li><a href="#">Jackets &amp; Coats</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Pants &amp; Leggings</a></li>
-                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                        <li><a href="#">Shirts &amp; Blouses</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">Sweaters &amp; Knits</a></li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
 
                     <!-- ##### Single Widget ##### -->
-                    <div class="widget price mb-50">
-                        <!-- Widget Title -->
-                        <h6 class="widget-title mb-30">Filter by</h6>
-                        <!-- Widget Title 2 -->
-                        <p class="widget-title2 mb-30">Price</p>
-
-                        <div class="widget-desc">
-                            <div class="slider-range">
-                                <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
-                                    <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                </div>
-                                <div class="range-price">Range: $49.00 - $360.00</div>
+                    @*<!-- ##### Single Widget ##### --> Renkler Kaldirildi
+                        <div class="widget color mb-50">
+                            <!-- Widget Title 2 -->
+                            <p class="widget-title2 mb-30">Color</p>
+                            <div class="widget-desc">
+                                <ul class="d-flex">
+                                    <li><a class="color1 colorSearch"></a></li>
+                                    <li><a class="color2 colorSearch"></a></li>
+                                    <li><a class="color3 colorSearch"></a></li>
+                                    <li><a class="color4 colorSearch"></a></li>
+                                    <li><a class="color5 colorSearch"></a></li>
+                                    <li><a class="color6 colorSearch"></a></li>
+                                    <li><a class="color7 colorSearch"></a></li>
+                                    <li><a class="color8 colorSearch"></a></li>
+                                    <li><a class="color9 colorSearch"></a></li>
+                                    <li><a class="color10 colorSearch"></a></li>
+                                </ul>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- ##### Single Widget ##### -->
-                    <div class="widget color mb-50">
-                        <!-- Widget Title 2 -->
-                        <p class="widget-title2 mb-30">Color</p>
-                        <div class="widget-desc">
-                            <ul class="d-flex">
-                                <li><a href="#" class="color1"></a></li>
-                                <li><a href="#" class="color2"></a></li>
-                                <li><a href="#" class="color3"></a></li>
-                                <li><a href="#" class="color4"></a></li>
-                                <li><a href="#" class="color5"></a></li>
-                                <li><a href="#" class="color6"></a></li>
-                                <li><a href="#" class="color7"></a></li>
-                                <li><a href="#" class="color8"></a></li>
-                                <li><a href="#" class="color9"></a></li>
-                                <li><a href="#" class="color10"></a></li>
-                            </ul>
-                        </div>
-                    </div>
+                        </div>*@
 
                     <!-- ##### Single Widget ##### -->
                     <div class="widget brands mb-50">
@@ -140,6 +159,17 @@
                             </ul>
                         </div>
                     </div>
+                    <a class="btn btn-success" type="button" id="btnFilterSearch">Filtrele</a>
+
+
+
+
+                    <div style="display: none" id="displayNoneKaldir">
+                        <ul id="filterSecilenGoster"></ul>
+                    </div>
+
+
+
                 </div>
             </div>
 
@@ -150,7 +180,7 @@
                             <div class="product-topbar d-flex align-items-center justify-content-between">
                                 <!-- Total Products -->
                                 <div class="total-products">
-                                    <p><span>186</span> products found</p>
+                                    <p><span>9</span> Urun Gosteriliyor</p>
                                 </div>
                                 <!-- Sorting -->
                                 <div class="product-sorting d-flex">
@@ -173,7 +203,7 @@
 
                         <!-- Single Product -->
                         <div class="col-12 col-sm-6 col-lg-4">
-                            <div class="single-product-wrapper">
+                            <div class="single-product-wrapper" id="GuncellenecekOlanId">
                                 <!-- Product Image -->
                                 <div class="product-img">
                                     <img src="/Content/Site/img/product-img/product-1.jpg" alt="">
