@@ -28,12 +28,13 @@ namespace Takas.Business.Abstract
 		/// </summary>
 		/// <param name="yeniProduct"></param>
 		void Add(Product yeniProduct);
+        List<Product> GetProductList(int ID);
 
-		/// <summary>
-		/// Veritabanindaki kaydi gelen kayida gore gunceller.
-		/// </summary>
-		/// <param name="yeniProduct">PRoduct Turunde bir degisken gonderiliyor ve bu degiskene gore Product tablosuna ekleme yapmasi isteniyor.</param>
-		void Update(Product yeniProduct);
+        /// <summary>
+        /// Veritabanindaki kaydi gelen kayida gore gunceller.
+        /// </summary>
+        /// <param name="yeniProduct">PRoduct Turunde bir degisken gonderiliyor ve bu degiskene gore Product tablosuna ekleme yapmasi isteniyor.</param>
+        void Update(Product yeniProduct);
 
 		/// <summary>
 		/// Veritabanindaki Product tablosundan tek bir kayit silinmaktadir.

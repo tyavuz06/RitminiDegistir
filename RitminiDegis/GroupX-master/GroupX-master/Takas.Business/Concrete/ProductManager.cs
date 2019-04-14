@@ -50,5 +50,11 @@ namespace Takas.Business.Concrete
 		{
 			return _productDal.GetListWihEagerLoading("ProductImageGalleries", x => x.User_ID == userId);
 		}
-   }
+
+        public List<Product> GetProductList(int ID)
+        {
+            var ProductList = _productDal.EagerLoadingWithParams(t => t.User_ID == ID,x=>x.Brand,x=>x.Category);
+            return ProductList;
+        }
+    }
 }
