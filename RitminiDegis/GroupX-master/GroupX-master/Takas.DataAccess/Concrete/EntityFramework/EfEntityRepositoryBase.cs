@@ -96,8 +96,17 @@ namespace Takas.DataAccess.Concrete.EntityFramework
 		{
 			using (TContext context = new TContext())
 			{
-				context.Entry(entity).State = EntityState.Added;
-				context.SaveChanges();
+				try
+				{
+					context.Entry(entity).State = EntityState.Added;
+					context.SaveChanges();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+					throw;
+				}
+				
 			}
 		}
 

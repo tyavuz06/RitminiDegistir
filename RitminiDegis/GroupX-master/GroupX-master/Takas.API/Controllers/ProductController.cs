@@ -11,64 +11,88 @@ using Takas.Common.Response;
 using System.Web;
 using System.IO;
 using Takas.Business.Abstract;
+using Takas.Common.SystemConstants;
 
 namespace Takas.API.Controllers
 {
-    [EnableCors(origins: "http://localhost:50903/", headers: "*", methods: "*")]
-    public class ProductController : ApiController
-    {
-        IProductService _productService;
-        public ProductController(IProductService productService)
-        {
-            _productService = productService;
-        }
+	[EnableCors(origins: "http://localhost:50903/", headers: "*", methods: "*")]
+	public class ProductController : ApiController
+	{
+		IProductService _productService;
+		private IUserService _userService;
+		public ProductController(IProductService productService, IUserService userService)
+		{
+			_productService = productService;
+			_userService = userService;
+		}
 
-        [HttpPost]
-        [Route("api/Product/AddProductImageToFolder")]
-        public HttpResponseMessage AddProductImageToFolder()
-        {
-            string path = HttpContext.Current.Server.MapPath("~/Uploads");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            HttpResponseMessage result = null;
-            var httpRequest = HttpContext.Current.Request;
-            if (httpRequest.Files.Count > 0)
-            {
-                var docfiles = new List<string>();
-                foreach (string file in httpRequest.Files)
-                {
-                    var postedFile = httpRequest.Files[file];
-                    var filePath = HttpContext.Current.Server.MapPath("~/Uploads/" + postedFile.FileName);
-                    postedFile.SaveAs(filePath);
-                    docfiles.Add(filePath);
-                }
-                result = Request.CreateResponse(HttpStatusCode.OK, docfiles);
-            }
-            else
-            {
-                result = Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-            return result;
-        }
-        [HttpPost]
-        [Route("api/Product/AddProduct")]
-        public object AddProduct(Product product)
-        {
-            ProductAddResponse addResponse = new ProductAddResponse();
-            try
-            {
-                _productService.Add(product);
-                addResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.SUCCESS);
-                addResponse.Product = product;
-            }catch(Exception ex)
-            {
-                addResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.SYSTEMERROR);
-                addResponse.Product = null;
-            }
-            
-            return addResponse;
-        }
-    }
+		[HttpPost]
+		[Route("api/Product/AddProductImageToFolder")]
+		public HttpResponseMessage AddProductImageToFolder()
+		{
+			string path = HttpContext.Current.Server.MapPath("~/Uploads");
+			if (!Directory.Exists(path))
+			{
+				Directory.CreateDirectory(path);
+			}
+			HttpResponseMessage result = null;
+			var httpRequest = HttpContext.Current.Request;
+			if (httpRequest.Files.Count > 0)
+			{
+				var docfiles = new List<string>();
+				foreach (string file in httpRequest.Files)
+				{
+					var postedFile = httpRequest.Files[file];
+					var filePath = HttpContext.Current.Server.MapPath("~/Uploads/" + postedFile.FileName);
+					postedFile.SaveAs(filePath);
+					docfiles.Add(filePath);
+				}
+				result = Request.CreateResponse(HttpStatusCode.OK, docfiles);
+			}
+			else
+			{
+				result = Request.CreateResponse(HttpStatusCode.BadRequest);
+			}
+			return result;
+		}
+		[HttpPost]
+		[Route("api/Product/AddProduct")]
+		public object AddProduct(Product product)
+		{
+			ProductAddResponse addResponse = new ProductAddResponse();
+			try
+			{
+				_productService.Add(product);
+				addResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.SUCCESS);
+				addResponse.Product = product;
+			}
+			catch (Exception ex)
+			{
+				addResponse.setError(Common.SystemConstants.SystemConstannts.ERROR_CODES.SYSTEMERROR);
+				addResponse.Product = null;
+			}
+
+			return addResponse;
+		}
+		[HttpPost]
+		[Route("api/Product/ProductList")]
+		public object ProductList(User user)
+		{
+			ProductReturnResponse productReturnResponse = new ProductReturnResponse();
+			try
+			{
+				var productList = _productService.GetListByUserId(user.ID);
+				productReturnResponse.Products = productList;
+				productReturnResponse.setError(SystemConstannts.ERROR_CODES.SUCCESS);
+			}
+			catch (Exception e)
+			{
+				productReturnResponse.setError(SystemConstannts.ERROR_CODES.NOTFOUND);
+				productReturnResponse.Products = null;
+			}
+
+			return productReturnResponse;
+
+		}
+	}
 }
