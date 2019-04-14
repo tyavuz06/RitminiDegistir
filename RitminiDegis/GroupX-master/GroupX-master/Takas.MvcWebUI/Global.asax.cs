@@ -15,7 +15,11 @@ namespace Takas.MvcWebUI
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 			ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
-            
+            //string path = HttpContext.Current.Server.MapPath("~/Uploads");
+            //if (!System.IO.Directory.Exists(path))
+            //{
+            //    System.IO.Directory.CreateDirectory(path);
+            //}
         }
     }
 }

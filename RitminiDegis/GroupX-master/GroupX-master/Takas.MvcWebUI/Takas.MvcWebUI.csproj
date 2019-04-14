@@ -1902,7 +1902,6 @@
     </Compile>
     <Compile Include="Models\LoginUserModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
-    <Compile Include="Models\ProductFilterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\LoginControl.cs" />
   </ItemGroup>

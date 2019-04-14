@@ -40,11 +40,11 @@ namespace Takas.API.Controllers
 			if (httpRequest.Files.Count > 0)
 			{
 				var docfiles = new List<string>();
-				foreach (string file in httpRequest.Files)
-				{
-					var postedFile = httpRequest.Files[file];
-					var filePath = HttpContext.Current.Server.MapPath("~/Uploads/" + postedFile.FileName);
-					postedFile.SaveAs(filePath);
+                foreach (string file in httpRequest.Files)
+                {
+                    var postedFile = httpRequest.Files[file];
+                    var filePath = HttpContext.Current.Server.MapPath("~/Uploads/" + postedFile.FileName);
+                    postedFile.SaveAs(filePath);
 					docfiles.Add(filePath);
 				}
 				result = Request.CreateResponse(HttpStatusCode.OK, docfiles);
@@ -73,26 +73,6 @@ namespace Takas.API.Controllers
 			}
 
 			return addResponse;
-		}
-		[HttpPost]
-		[Route("api/Product/ProductList")]
-		public object ProductList(User user)
-		{
-			ProductReturnResponse productReturnResponse = new ProductReturnResponse();
-			try
-			{
-				var productList = _productService.GetListByUserId(user.ID);
-				productReturnResponse.Products = productList;
-				productReturnResponse.setError(SystemConstannts.ERROR_CODES.SUCCESS);
-			}
-			catch (Exception e)
-			{
-				productReturnResponse.setError(SystemConstannts.ERROR_CODES.NOTFOUND);
-				productReturnResponse.Products = null;
-			}
-
-			return productReturnResponse;
-
 		}
 	}
 }

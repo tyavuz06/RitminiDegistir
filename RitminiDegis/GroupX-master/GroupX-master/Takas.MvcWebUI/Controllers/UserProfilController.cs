@@ -43,19 +43,33 @@ namespace Takas.MvcWebUI.Controllers
         }
         public ActionResult Profil()
         {
-            ViewBag.PageInfo = "PROFİLİM";
-            return View();
+            if (LoginControl.ControlLogin() != null)
+            {
+                ViewBag.PageInfo = "PROFİLİM";
+                return View();
+            }else
+                return View("NotFound");
         }
 
         public ActionResult Exchanges()
         {
-            ViewBag.PageInfo = "TAKASLARIM";
-            return View();
+            if (LoginControl.ControlLogin() != null)
+            {
+                ViewBag.PageInfo = "TAKASLARIM";
+                return View();
+            }
+            else
+                return View("NotFound");
         }
         public ActionResult Messages()
         {
-            ViewBag.PageInfo = "MESAJLARIM";
-            return View();
+            if (LoginControl.ControlLogin() != null)
+            {
+                ViewBag.PageInfo = "MESAJLARIM";
+                return View();
+            }
+            else
+                return View("NotFound");
         }
     }
 }

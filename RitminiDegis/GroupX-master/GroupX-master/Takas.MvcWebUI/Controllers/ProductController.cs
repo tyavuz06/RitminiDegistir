@@ -57,6 +57,7 @@ namespace Takas.MvcWebUI.Controllers
 		public ActionResult AddProduct()
 		{
 			ViewBag.PageInfo = "ÜRÜN EKLE";
+
 			return View();
 		}
 		[HttpPost]
@@ -65,12 +66,6 @@ namespace Takas.MvcWebUI.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				//string path = Server.MapPath("~/Uploads/");
-				//if (!Directory.Exists(path))
-				//{
-				//    Directory.CreateDirectory(path);
-				//}
-
 				product.Situation = SystemConstannts.Situation.BEKLEMEDE;
 				product.Date = DateTime.Now;
 				product.User_ID = (HttpContext.Session["User"] as User).ID;

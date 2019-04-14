@@ -108,7 +108,8 @@ namespace Takas.MvcWebUI.Controllers
 
 			return RedirectToAction("Login", "Account");
 		}
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
 		public ActionResult SignUpUser(User user)
 		{
 			

@@ -5,7 +5,9 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" method="post" action="/Account/SignUpUser">
+            @using (Html.BeginForm("SignUpUser", "Account", FormMethod.Post, new { @class = "login100-form validate-form" }))
+            {
+                @Html.AntiForgeryToken()
                 <span class="login100-form-title p-b-26">
                     ProjectX'e Hoş Geldiniz
                 </span>
@@ -13,14 +15,15 @@
 
                 </span>
                 <div class="wrap-input100 validate-input" data-validate="">
-                    @Html.TextBoxFor(t=>t.Name,new {@class="input100" ,name="Name"})
+                    @Html.TextBoxFor(t => t.Name, new { @class = "input100", name = "Name" })
                     <span class="focus-input100" data-placeholder="Adınızı Giriniz."></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="">
                     @Html.TextBoxFor(t => t.Surname, new { @class = "input100", name = "Surname" })
                     <span class="focus-input100" data-placeholder="Soyadınızı Giriniz."></span>
                 </div>
-                <div class="wrap-input100">@*validate-input" data-validate="Valid email is: a@b.c">*@
+                <div class="wrap-input100">
+                    @*validate-input" data-validate="Valid email is: a@b.c">*@
                     @Html.TextBoxFor(t => t.Email, new { @class = "input100", name = "Email" })
                     <span class="focus-input100" data-placeholder="Email"></span>
                 </div>
@@ -29,7 +32,7 @@
                     <span class="btn-show-pass">
                         <i class="zmdi zmdi-eye"></i>
                     </span>
-                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "Password", type="password" })
+                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "Password", type = "password" })
                     <span class="focus-input100" data-placeholder="Şifre"></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Şifreyi Tekrar Giriniz.">
@@ -40,7 +43,7 @@
                     <span class="focus-input100" data-placeholder="Şifre Tekrar"></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="">
-                    @Html.TextAreaFor(t=>t.Address, new { @class = "input100", name = "Address" })
+                    @Html.TextAreaFor(t => t.Address, new { @class = "input100", name = "Address" })
                     <span class="focus-input100" data-placeholder="Adresinizi Giriniz."></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="">
@@ -65,7 +68,7 @@
                         Giriş Yap
                     </a>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
