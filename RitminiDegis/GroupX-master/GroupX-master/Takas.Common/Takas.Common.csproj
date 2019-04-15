@@ -81,6 +81,8 @@
     <Compile Include="Entities\Concrete\WebApiTokenKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\GetBrandListResponse.cs" />
+    <Compile Include="Response\GetCategoryListResponse.cs" />
     <Compile Include="Response\GetUserProductResponse.cs" />
     <Compile Include="Response\LoginResponse.cs" />
     <Compile Include="Response\ProductAddResponse.cs" />

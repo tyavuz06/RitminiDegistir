@@ -29,7 +29,9 @@ namespace Takas.MvcWebUI.Controllers
 		User user = new User();
 		public ActionResult Login()
 		{
-			if (LoginControl.ControlLogin() == null)
+            var sonuc = LoginControl.ControlLogin();
+
+            if (LoginControl.ControlLogin() == null)
 			{
 				ViewBag.SystemMessage = TempData["SystemMessage"] as string;
 				ViewBag.Title = "ProjectX | Giriş";

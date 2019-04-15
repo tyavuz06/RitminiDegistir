@@ -1,4 +1,4 @@
-﻿
+﻿@model Takas.MvcWebUI.Models.ProductAddModel
 @{
 
     Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
@@ -16,48 +16,51 @@
                     @using (Html.BeginForm("productAddComplete", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <div class="row">
-
-
-                            <div class="col-12 mb-3">
-                                <label for="marka">Kategori <span>*</span></label>
-                                <select class="w-100" id="category" name="Category_ID">
-                                    <option value="1">Kategori1</option>
-                                    <option value="2">Kategori2</option>
-                                </select>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="marka">Marka <span>*</span></label>
-                                <select class="w-100" id="marka" name="BrandID">
-                                    <option value="1">United States</option>
-                                    <option value="2">United Kingdom</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-12 mb-3">
-                                <label for="model">Model <span>*</span></label>
-                                <input type="text" class="form-control" id="Model" name="Model" value="" required>
-                            </div>
-
-                            <div class="col-md-12 mb-3">
-                                <label for="urunad">Ürün Adı <span>*</span></label>
-                                <input type="text" class="form-control" id="product_name" name="Name" value="" required>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="street_address">Açıklama <span>*</span></label>
-                                <input type="text" class="form-control mb-3" id="address" name="Description" value="">
-
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="uploadfile">Resim <span>*</span></label>
-                                <br />
-                                <input type="file" name="PImage" id="Image" />
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <button class="btn essence-btn" type="submit">Yükle</button>
-                            </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="marka">Kategori <span>*</span></label>
+                            <select class="w-100" id="category" name="Category_ID" required>
+                                <option value="-1">Kategori Seçiniz</option>
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
+                            </select>
                         </div>
+                        <div class="col-12 mb-3">
+                            <label for="marka">Marka <span>*</span></label>
+                            <select class="w-100" id="marka" name="BrandID" required>
+                                <option value="-1">Marka Seçiniz</option>
+                                @foreach (var item in Model.Brands)
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="model">Model <span>*</span></label>
+                            <input type="text" class="form-control" id="Model" name="Model" value="" required>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label for="urunad">Ürün Adı <span>*</span></label>
+                            <input type="text" class="form-control" id="product_name" name="Name" value="" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="street_address">Açıklama <span>*</span></label>
+                            <input type="text" class="form-control mb-3" id="address" name="Description" value="" required>
+
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="uploadfile">Resim <span>*</span></label>
+                            <br />
+                            <input type="file" name="PImage" id="Image" required />
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <button class="btn essence-btn" type="submit">Yükle</button>
+                        </div>
+                    </div>
 
                     }
                 </div>

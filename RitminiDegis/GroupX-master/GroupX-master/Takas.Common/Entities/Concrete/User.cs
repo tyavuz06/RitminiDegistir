@@ -19,10 +19,16 @@ namespace Takas.Common.Entities.Concrete
 		//[StringLength(50)]
 		[DisplayName("Soyad")]
 		public string Surname { get; set; }
-		//[Required]
-		//[StringLength(500)]
-		[DisplayName("Adres")]
+
+        //[Required]
+        [DisplayName("Şehir")]
+        public int City { get; set; }
+
+        //[Required]
+        //[StringLength(500)]
+        [DisplayName("Adres")]
 		public string Address { get; set; }
+
 		//[Required]
 		//[StringLength(100)]
 		[DisplayName("Email")]

@@ -43,6 +43,7 @@ namespace Takas.MvcWebUI.Service
                             if (tokenResponse.Token.User != null)
                             {
                                 HttpContext.Current.Session["User"] = tokenResponse.Token.User;
+                                return tokenResponse.Token.User;
                             }
                         }
                     }

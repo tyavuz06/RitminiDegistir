@@ -1,77 +1,49 @@
-﻿
+﻿@model Takas.Common.Entities.Concrete.User
 @{
     ViewBag.Title = "Profil";
     Layout = "~/Views/Shared/_UserProfileLayout.cshtml";
+
 }
 <!-- ##### Checkout Area Start ##### -->
 <div class="col-12 col-md-8 col-lg-9">
     <div class="shop_grid_product_area">
         <div class="row">
-            <div class="col-12 col-md-9">
+            <div class="col-12 col-md-10">
                 <div class="single-product-wrapper">
-                    <form action="#" method="post">
+                    @using (Html.BeginForm("ProfileEdit", "UserProfil", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
                         <div class="row">
+
                             <div class="col-md-6 mb-3">
-                                <label for="first_name">First Name <span>*</span></label>
-                                <input type="text" class="form-control" id="first_name" value="" required>
+                                <label for="first_name"><span>Ad*</span></label>
+                                <input type="text" class="form-control" id="first_name" name="Name" value="@Model.Name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="last_name">Last Name <span>*</span></label>
-                                <input type="text" class="form-control" id="last_name" value="" required>
+                                <label for="last_name"> <span>Soyad*</span></label>
+                                <input type="text" class="form-control" id="last_name" name="Surname" value="@Model.Surname" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="company">Company Name</label>
-                                <input type="text" class="form-control" id="company" value="">
+                                <label for="email_address">Email Addresi<span>*</span></label>
+                                <input type="email" class="form-control" id="email_address" name="Email" value="@Model.Email" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="country">Country <span>*</span></label>
-                                <select class="w-100" id="country">
-                                    <option value="usa">United States</option>
-                                    <option value="uk">United Kingdom</option>
-                                    <option value="ger">Germany</option>
-                                    <option value="fra">France</option>
-                                    <option value="ind">India</option>
-                                    <option value="aus">Australia</option>
-                                    <option value="bra">Brazil</option>
-                                    <option value="cana">Canada</option>
-                                </select>
+                                <label for="phone_number">Telefon Numarası<span>*</span></label>
+                                <input type="text" class="form-control" id="phone_number" name="PhoneNumber" min="0" value="@Model.PhoneNumber" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="street_address">Address <span>*</span></label>
-                                <input type="text" class="form-control mb-3" id="street_address" value="">
-                                <input type="text" class="form-control" id="street_address2" value="">
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="postcode">Postcode <span>*</span></label>
-                                <input type="text" class="form-control" id="postcode" value="">
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="city">Town/City <span>*</span></label>
-                                <input type="text" class="form-control" id="city" value="">
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="state">Province <span>*</span></label>
-                                <input type="text" class="form-control" id="state" value="">
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="phone_number">Phone No <span>*</span></label>
-                                <input type="number" class="form-control" id="phone_number" min="0" value="">
-                            </div>
-                            <div class="col-12 mb-4">
-                                <label for="email_address">Email Address <span>*</span></label>
-                                <input type="email" class="form-control" id="email_address" value="">
+                                <label for="adres">Adres</label>
+                                <input type="text" class="form-control" id="adres" name="Address" value="@Model.Address" required>
                             </div>
 
-                           
                             <div class="col-12" align="center">
                                 <a href="#" class="btn essence-btn">Değişikleri Kaydet</a>
                             </div>
+                            }
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>

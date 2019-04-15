@@ -183,6 +183,8 @@
     <Compile Include="Authentication\WebApiAuthorizeAttribute.cs" />
     <Compile Include="Authentication\WebApiKeyHandler.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BrandController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Mvc;
+using Takas.Common.Entities.Concrete;
 using Takas.Common.Response;
 using Takas.Common.SystemConstants;
 using Takas.Common.SystemTools;
@@ -23,7 +24,7 @@ namespace Takas.MvcWebUI.Controllers
         }
         public ActionResult MyProducts()
         {
-            if(LoginControl.ControlLogin()!=null)
+            if (LoginControl.ControlLogin() != null)
             {
                 ViewBag.PageInfo = "ÜRÜNLERİM";
                 HttpResponseMessage result = WebApiRequestOperation.WebApiRequestOperationMethodForUser(SystemConstannts.WebApiDomainAddress, "api/UserProfile/GetMyProducts", (HttpContext.Session["User"] as Takas.Common.Entities.Concrete.User));
@@ -39,15 +40,16 @@ namespace Takas.MvcWebUI.Controllers
                 return View(response);
             }
             return View("NotFound");
-           
+
         }
         public ActionResult Profil()
         {
             if (LoginControl.ControlLogin() != null)
             {
                 ViewBag.PageInfo = "PROFİLİM";
-                return View();
-            }else
+                return View((HttpContext.Session["User"] as User));
+            }
+            else
                 return View("NotFound");
         }
 

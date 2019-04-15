@@ -19,12 +19,12 @@
                     <span class="focus-input100" data-placeholder="Adınızı Giriniz."></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="">
-                    @Html.TextBoxFor(t => t.Surname, new { @class = "input100", name = "Surname" })
+                    @Html.TextBoxFor(t => t.Surname, new { @class = "input100", name = "Surname"})
                     <span class="focus-input100" data-placeholder="Soyadınızı Giriniz."></span>
                 </div>
-                <div class="wrap-input100">
+                <div class="wrap-input100 validate-input" data-validate="a@a.com">
                     @*validate-input" data-validate="Valid email is: a@b.c">*@
-                    @Html.TextBoxFor(t => t.Email, new { @class = "input100", name = "Email" })
+                    @Html.TextBoxFor(t => t.Email, new { @class = "input100", name = "Email"})
                     <span class="focus-input100" data-placeholder="Email"></span>
                 </div>
 
@@ -32,22 +32,31 @@
                     <span class="btn-show-pass">
                         <i class="zmdi zmdi-eye"></i>
                     </span>
-                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "Password", type = "password" })
+                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "Password", type = "password"})
                     <span class="focus-input100" data-placeholder="Şifre"></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Şifreyi Tekrar Giriniz.">
                     <span class="btn-show-pass">
                         <i class="zmdi zmdi-eye"></i>
                     </span>
-                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "RePassword", type = "password" })
+                    @Html.TextBoxFor(t => t.Password, new { @class = "input100", name = "RePassword", type = "password"})
                     <span class="focus-input100" data-placeholder="Şifre Tekrar"></span>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="">
+                <div class="wrap-input100 validate-input" data-validate="Adresi Giriniz.">
+                    <select class="input100" id="country" name="City" required>
+                        <option value="-1">Şehir Seçiniz..</option>
+                        @foreach (var item in Takas.Common.SystemConstants.SystemConstannts.Cities)
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Adresi Giriniz.">
                     @Html.TextAreaFor(t => t.Address, new { @class = "input100", name = "Address" })
                     <span class="focus-input100" data-placeholder="Adresinizi Giriniz."></span>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="">
-                    @Html.TextBoxFor(t => t.PhoneNumber, new { @class = "input100", name = "PhoneNumber" })
+                <div class="wrap-input100 validate-input" data-validate="Telefon Numarasını Giriniz.">
+                    @Html.TextBoxFor(t => t.PhoneNumber, new { @class = "input100", name = "PhoneNumber"})
                     <span class="focus-input100" data-placeholder="Telefon Numarası Giriniz."></span>
                 </div>
                 <div class="container-login100-form-btn">

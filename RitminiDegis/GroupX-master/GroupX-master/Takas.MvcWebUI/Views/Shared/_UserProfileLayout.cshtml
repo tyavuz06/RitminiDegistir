@@ -26,15 +26,27 @@
                         @*<h6 class="widget-title mb-30">Catagories</h6>*@
 
                         <!--  Catagories  -->
+
                         <div class="catagories-menu">
                             <ul id="menu-content2" class="menu-content collapse show">
                                 <!-- Single Item -->
-                                <li>
-                                    <a href="/UserProfil/MyProducts">ÜRÜNLERİM</a>
+                                <li data-toggle="collapse" data-target="#myproducts">
+                                    <a href="">ÜRÜNLERİM</a>
+                                    <ul class="sub-menu collapse show" id="myproducts">
+                                        <li><a href="/UserProfil/MyProducts">Ürün Listem</a></li>
+                                        <li><a href="">Takastaki Ürünlerim</a></li>
+                                        <li><a href="">Onay Bekleyen Ürünlerim</a></li>
+                                        <li><a href="">Takaslanmış Ürünlerim</a></li>
+                                        <li><a href="/Product/AddProduct">Ürün Ekle</a></li>
+                                    </ul>
                                 </li>
                                 <!-- Single Item -->
-                                <li>
+                                <li data-toggle="collapse" data-target="#myprofile">
                                     <a href="/UserProfil/Profil">PROFİLİM</a>
+                                    <ul class="sub-menu collapse show" id="myprofile">
+                                        <li><a href="/UserProfil/Profil">Profilimi Düzenle</a></li>
+                                        <li><a href="">Profil Resmim</a></li>
+                                    </ul>
                                 </li>
                                 <!-- Single Item -->
                                 <li>
