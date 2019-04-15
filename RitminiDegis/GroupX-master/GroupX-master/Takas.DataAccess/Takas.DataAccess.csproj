@@ -83,16 +83,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Takas.Common\Takas.Common.csproj">
-      <Project>{423EF69A-915E-4149-AA92-1201A5D55531}</Project>
-      <Name>Takas.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Takas.Common\Takas.Common.csproj">
+      <Project>{423ef69a-915e-4149-aa92-1201a5d55531}</Project>
+      <Name>Takas.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -159,12 +159,12 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 
 		#region Brand List
 
-		public ActionResult BrandList()
+		public async Task<ActionResult> BrandList()
 		{
 			List<Brand> brands;
 			try
 			{
-				brands = _brandService.GetList();
+				brands =await _brandService.GetList();
 				return View(brands);
 			}
 			catch (Exception e)
@@ -195,7 +195,7 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 
 			try
 			{
-				_brandService.AddBrand(brand);
+				_brandService.Add(brand);
 			}
 			catch (Exception e)
 			{
@@ -263,7 +263,7 @@ namespace Takas.MvcWebUI.Areas.Admin.Controllers
 			try
 			{
 				var brand = _brandService.Get(id);
-				_brandService.Detele(brand);
+				_brandService.Delete(brand);
 				return RedirectToAction("BrandList");
 			}
 			catch (Exception e)

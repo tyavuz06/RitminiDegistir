@@ -79,7 +79,6 @@
     <Compile Include="Abstract\IWebApiTokenKeyService.cs" />
     <Compile Include="Concrete\BrandManager.cs" />
     <Compile Include="Concrete\CategoryManager.cs" />
-    <Compile Include="Concrete\BrandManager.cs" />
     <Compile Include="Concrete\ExchangeManager.cs" />
     <Compile Include="Concrete\FavoriteManager.cs" />
     <Compile Include="Concrete\MessageManager.cs" />
