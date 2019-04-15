@@ -99,8 +99,8 @@
                                 <td>@item.PhoneNumber</td>
                                 <td>@item.RoleID</td>
                                 <td>
-                                    <a href="@Url.Action("Update", "Admin", new { id = 1 })" class="btn btn-outline-success btn-sm">Guncelle</a>
-                                    <a href="@Url.Action("Delete", "Admin", new { id = 1 })" class="btn btn-outline-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz')">Sil</a>
+                                    <a href="@Url.Action("Update", "Admin", new { id = item.ID })" class="btn btn-outline-success btn-sm">Guncelle</a>
+                                    <a href="@Url.Action("Delete", "Admin", new { id = item.ID })" class="btn btn-outline-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz')">Sil</a>
                                 </td>
                             </tr>
 

@@ -1887,6 +1887,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Authentication\MyAuthenticationAttribute.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminPart2Controller.cs" />
     <Compile Include="Areas\Admin\Models\UserShowViewModel.cs" />
@@ -2249,6 +2250,10 @@
     <Content Include="Areas\Admin\Views\AdminPart2\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelCategoryList.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelMessageList.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\BrandList.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_PartialPageAdminPanelBrandList.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddBrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\BrandUpdate.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />

@@ -26,7 +26,7 @@
 </head>
 <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="#">Admin Panel</a>
+        <a class="navbar-brand mr-1" href="@Url.Action("Index","Admin")">Admin Panel</a>
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
@@ -134,10 +134,17 @@
                         <span>Mesajlar</span>
                     </a>
                 </li>
+                
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="@Url.Action("BrandList","Admin")">
+                        <i class="fas fa-fw fa fa-envelope"></i>
+                        <span>Markalar</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Home")">
                         <i class="fas fa-fw fa fa-cog"></i>
-                        <span>Ayarlar</span>
+                        <span>Ana Sayfa</span>
                     </a>
                 </li>
             </ul>

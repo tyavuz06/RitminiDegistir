@@ -30,11 +30,14 @@
         )*@
 
         $(function() {
-            alert("RMA");
+
+
             $(".uflemeliler").click(function() {
 
                 var tiklanan = $(this).text(); //Tiklanain Text degerini aliyorum.
-                $(this).off('click'); // ikinci Kez tiklanmasini engelliyorum
+                element = $(this);
+                $(this).hide();
+              //  $(this).off('click'); // ikinci Kez tiklanmasini engelliyorum
                 $("#displayNoneKaldir").css('display', 'block');
                 //   $("#filterSecilenGoster").append("<p>" + tiklanan + "</p>" +"<span class='Kaldir fa fa-times'></span>");
                 $("#filterSecilenGoster").append("<p class='pHover' onclick='Sil(this)'>" +
@@ -43,19 +46,21 @@
             });
 
 
-        });
 
+        });
 
         function Sil(e) {
             console.log(e);
             var _text = e.textContent;
             console.log(_text);
-            console.log($("a:contains("+_text+")").bind('click'));
-            console.log($("a:contains(" + _text + ")"));
-            $("a:contains("+_text+")").bind('click');
+            var degisken = $(".uflemeliler").find(_text);
+            console.log(degisken);
+            console.log(degisken.selector);
             e.remove();
 
+
         }
+
 
 
     </script>

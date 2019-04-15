@@ -59,6 +59,10 @@ namespace Takas.MvcWebUI.DependencyInjection.Ninject
 
             Bind<ISocialUserDal>().To<EfSocialUserDal>().InSingletonScope();
 
-        }
+            Bind<IBrandService>().To<BrandManager>().InSingletonScope();
+
+            Bind<IBrandDal>().To<EfBrandDal>().InSingletonScope();
+
+		}
     }
 }
